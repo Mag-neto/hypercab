@@ -14,12 +14,12 @@ public class ModuleRegistryTest extends AbstractIntegrationTest {
 
 	@Test
 	public void registryRegistersTestModules() {
-		Assert.assertEquals(serverRegistry.getRegisteredModules().size(), 1);
+		Assert.assertTrue(serverRegistry.getRegisteredModules().size() >= 1);
 	}
 
 	@Test
 	public void registryRegistersTestEnhancers() {
-		Assert.assertEquals(serverRegistry.getTableEnhancers().size(), 1);
+		Assert.assertTrue(serverRegistry.getTableEnhancers().size() >= 1);
 	}
 
 }

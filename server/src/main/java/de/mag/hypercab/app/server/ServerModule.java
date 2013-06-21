@@ -1,7 +1,10 @@
 package de.mag.hypercab.app.server;
 
+import org.springframework.stereotype.Component;
+
 import de.mag.hypercab.api.HypercabModule;
 
+@Component
 public class ServerModule implements HypercabModule {
 
 	@Override

@@ -9,7 +9,7 @@
 	<artifactId>hypercab-server</artifactId>
 	<name>[Module] Hypercab Server</name>
 	<description>Bootstrapping module for Hypercab Manager</description>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>de.mag.hypercab</groupId>
@@ -32,6 +32,31 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.ini4j</groupId>
+			<artifactId>ini4j</artifactId>
+		</dependency>
 	</dependencies>
-
+	<build>
+		<finalName>hypercab-rest</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<packaging>war</packaging>
+	<profiles>
+		<profile>
+			<id>mag</id>
+			<properties>
+				<hyperpin.base.path>/Users/marco/HyperPin</hyperpin.base.path>
+			</properties>
+		</profile>
+	</profiles>
 </project>
