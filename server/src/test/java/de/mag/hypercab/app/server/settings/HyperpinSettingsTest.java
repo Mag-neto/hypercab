@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import de.mag.hypercab.AbstractIntegrationTest;
+import de.mag.hypercab.app.settings.HyperpinSettings;
 
 public class HyperpinSettingsTest extends AbstractIntegrationTest {
 

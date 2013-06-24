@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.mag.hypercab.api.HypercabModule;
 import de.mag.hypercab.app.server.ServerRegistry;
-import de.mag.hypercab.app.server.settings.HyperpinSettings;
+import de.mag.hypercab.app.settings.HyperpinSettings;
 
 @Controller
 @RequestMapping("/server")

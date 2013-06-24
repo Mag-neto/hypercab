@@ -1,5 +1,6 @@
 package de.mag.hypercab.api;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,8 +14,7 @@ import java.util.Map;
  */
 public class Table {
 
-	// platform
-	private String platform;
+	private Platform platform;
 
 	// database.xml elements
 	private String description;
@@ -23,21 +23,36 @@ public class Table {
 	private String machineType;
 	private String manufacturer;
 
+	// table status
+	private boolean active;
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	private Map<String, String> additional = new HashMap<>();
 
 	public void addAdditional(String key, String value) {
 		this.additional.put(key, value);
 	}
 
-	public Map<String, String> getAdditional() {
-		return additional;
+	public String getAdditional(String key) {
+		return additional.get(key);
 	}
 
-	public String getPlatform() {
+	public Map<String, String> getAdditionals() {
+		return Collections.unmodifiableMap(additional);
+	}
+
+	public Platform getPlatform() {
 		return platform;
 	}
 
-	public void setPlatform(String platform) {
+	public void setPlatform(Platform platform) {
 		this.platform = platform;
 	}
 

@@ -1,4 +1,4 @@
-package de.mag.hypercab.app.server.settings;
+package de.mag.hypercab.app.settings;
 
 import java.io.File;
 import java.io.IOException;
