@@ -1,5 +1,7 @@
 package de.mag.hypercab.app.server;
 
+import java.util.Collection;
+
 import org.springframework.stereotype.Component;
 
 import de.mag.hypercab.api.Table;
@@ -11,7 +13,7 @@ public class DummyTableEnhancer implements TableEnhancer {
 	// TODO: Remove this as soon as there is at least one TableEnhancer in the
 	// applicationContext
 	@Override
-	public void enhance(Table table) {
+	public void enhance(Collection<Table> tables) {
 
 	}
 

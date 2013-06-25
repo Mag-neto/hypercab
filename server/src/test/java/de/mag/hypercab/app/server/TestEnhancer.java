@@ -1,5 +1,7 @@
 package de.mag.hypercab.app.server;
 
+import java.util.Collection;
+
 import org.springframework.stereotype.Component;
 
 import de.mag.hypercab.api.Table;
@@ -9,7 +11,7 @@ import de.mag.hypercab.api.TableEnhancer;
 public class TestEnhancer implements TableEnhancer {
 
 	@Override
-	public void enhance(Table table) {
+	public void enhance(Collection<Table> table) {
 
 	}
 

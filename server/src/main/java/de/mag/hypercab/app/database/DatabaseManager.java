@@ -1,15 +1,16 @@
 package de.mag.hypercab.app.database;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
+import de.mag.hypercab.api.Platform;
 import de.mag.hypercab.api.Table;
 import de.mag.hypercab.app.server.Configuration;
 
@@ -34,9 +35,20 @@ public class DatabaseManager {
 	public void init() {
 		this.hyperpinRootPath = configuration.getHyperpinPath();
 		this.vpActiveTables = XmlDatabase.readDb(new File(hyperpinRootPath, VP_DB_ACTIVE));
+		addPlatformAndStatus(vpActiveTables, Platform.VISUAL_PINBALL, true);
 		this.vpInactiveTables = XmlDatabase.readDb(new File(hyperpinRootPath, VP_DB_INACTIVE));
+		addPlatformAndStatus(vpInactiveTables, Platform.VISUAL_PINBALL, false);
 		this.fpActiveTables = XmlDatabase.readDb(new File(hyperpinRootPath, FP_DB_ACTIVE));
+		addPlatformAndStatus(fpActiveTables, Platform.FUTURE_PINBALL, true);
 		this.fpInactiveTables = XmlDatabase.readDb(new File(hyperpinRootPath, FP_DB_INACTIVE));
+		addPlatformAndStatus(fpInactiveTables, Platform.FUTURE_PINBALL, false);
+	}
+
+	private void addPlatformAndStatus(Map<String, Table> tables, Platform platform, boolean isActive) {
+		for (Table t : tables.values()) {
+			t.setPlatform(platform);
+			t.setActive(isActive);
+		}
 	}
 
 	public void activateTable(String tableDescription) {
@@ -90,8 +102,8 @@ public class DatabaseManager {
 		}
 	}
 
-	public List<Table> getInstalledTables() {
-		List<Table> tables = new ArrayList<>();
+	public Set<Table> getInstalledTables() {
+		Set<Table> tables = new HashSet<>();
 		tables.addAll(vpActiveTables.values());
 		tables.addAll(vpInactiveTables.values());
 		tables.addAll(fpActiveTables.values());
@@ -99,15 +111,15 @@ public class DatabaseManager {
 		return tables;
 	}
 
-	public List<Table> getActiveTables() {
-		List<Table> tables = new ArrayList<>();
+	public Set<Table> getActiveTables() {
+		Set<Table> tables = new HashSet<>();
 		tables.addAll(vpActiveTables.values());
 		tables.addAll(fpActiveTables.values());
 		return tables;
 	}
 
-	public List<Table> getInactiveTables() {
-		List<Table> tables = new ArrayList<>();
+	public Set<Table> getInactiveTables() {
+		Set<Table> tables = new HashSet<>();
 		tables.addAll(vpInactiveTables.values());
 		tables.addAll(fpInactiveTables.values());
 		return tables;

@@ -1,5 +1,7 @@
 package de.mag.hypercab.api;
 
+import java.util.Collection;
+
 /**
  * A Table enhancer adds additional information to the table object.
  * 
@@ -8,5 +10,5 @@ package de.mag.hypercab.api;
  */
 public interface TableEnhancer {
 
-	void enhance(Table table);
+	void enhance(Collection<Table> tables);
 }

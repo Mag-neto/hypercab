@@ -1,4 +1,4 @@
-package de.mag.hypercab.web.server;
+package de.mag.hypercab.web;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -33,12 +33,12 @@ public class ServerControllerTest extends AbstractWebIntegrationTest {
 
 	@Test
 	public void serverDeliversServerInfo() throws Exception {
-		mvc.perform(get("/server")).andExpect(status().isOk()).andReturn();
+		mvc.perform(get("/server")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void serverDeliversSettings() throws Exception {
-		mvc.perform(get("/server/config")).andExpect(status().isOk()).andReturn();
+		mvc.perform(get("/server/config")).andExpect(status().isOk());
 	}
 
 	@Test
