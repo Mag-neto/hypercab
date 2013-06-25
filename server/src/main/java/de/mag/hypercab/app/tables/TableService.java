@@ -39,6 +39,18 @@ public class TableService {
 		return inactiveTables;
 	}
 
+	public void activateTable(String tableRef) {
+		databaseManager.activateTable(tableRef);
+	}
+
+	public void deactivateTable(String tableRef) {
+		databaseManager.deactivateTable(tableRef);
+	}
+
+	public void save() {
+		databaseManager.save();
+	}
+
 	private void enhanceTables(Collection<Table> tables) {
 		for (TableEnhancer enhancer : serverRegistry.getTableEnhancers()) {
 			enhancer.enhance(tables);

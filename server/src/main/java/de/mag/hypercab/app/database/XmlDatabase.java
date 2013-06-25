@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -76,7 +76,7 @@ public class XmlDatabase {
 		}
 	}
 
-	static void writeDb(File dbFile, List<Table> tables) {
+	static void writeDb(File dbFile, Collection<Table> tables) {
 		try (OutputStream outStream = new FileOutputStream(dbFile.getAbsolutePath() + ".new");) {
 			outStream.write("<menu>\n".getBytes("UTF-8"));
 			for (Table table : tables) {

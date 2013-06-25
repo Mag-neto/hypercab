@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,6 +36,24 @@ public class TableController {
 	@RequestMapping(value = "/inactive", method = RequestMethod.GET)
 	public Set<Table> getInactiveTables() {
 		return tableService.getInactiveTables();
+	}
+
+	@ResponseBody
+	@RequestMapping("/save")
+	public void saveTables() {
+		tableService.save();
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/{tableDesc}/activate")
+	public void activateTable(@PathVariable String tableDesc) {
+		tableService.activateTable(tableDesc);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/{tableDesc}/deactivate")
+	public void deactivateTable(@PathVariable String tableDesc) {
+		tableService.deactivateTable(tableDesc);
 	}
 
 }
