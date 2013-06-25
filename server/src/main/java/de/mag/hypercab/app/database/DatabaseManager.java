@@ -1,6 +1,8 @@
 package de.mag.hypercab.app.database;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -47,47 +49,67 @@ public class DatabaseManager {
 
 	public void deactivateTable(String tableDescription) {
 		if (vpActiveTables.containsKey(tableDescription)) {
-			switchInactive(vpActiveTables.get(tableDescription));
+			switchActive(vpActiveTables.get(tableDescription));
 		} else if (fpActiveTables.containsKey(tableDescription)) {
-			switchInactive(fpActiveTables.get(tableDescription));
+			switchActive(fpActiveTables.get(tableDescription));
 		}
 	}
 
 	private void switchActive(Table table) {
 		switch (table.getPlatform()) {
 		case VISUAL_PINBALL:
-			synchronized (this) {
-				table.setActive(true);
-				vpInactiveTables.remove(table.getDescription());
-				vpActiveTables.put(table.getDescription(), table);
+			if (!table.isActive()) {
+				synchronized (this) {
+					table.setActive(true);
+					vpInactiveTables.remove(table.getDescription());
+					vpActiveTables.put(table.getDescription(), table);
+				}
+			} else {
+				synchronized (this) {
+					table.setActive(false);
+					vpActiveTables.remove(table.getDescription());
+					vpInactiveTables.put(table.getDescription(), table);
+				}
 			}
 			break;
 		case FUTURE_PINBALL:
-			synchronized (this) {
-				table.setActive(true);
-				fpInactiveTables.remove(table.getDescription());
-				fpActiveTables.put(table.getDescription(), table);
+			if (!table.isActive()) {
+				synchronized (this) {
+					table.setActive(true);
+					fpInactiveTables.remove(table.getDescription());
+					fpActiveTables.put(table.getDescription(), table);
+				}
+			} else {
+				synchronized (this) {
+					table.setActive(false);
+					fpActiveTables.remove(table.getDescription());
+					fpInactiveTables.put(table.getDescription(), table);
+				}
 			}
 			break;
 		}
 	}
 
-	private void switchInactive(Table table) {
-		switch (table.getPlatform()) {
-		case VISUAL_PINBALL:
-			synchronized (this) {
-				table.setActive(false);
-				vpActiveTables.remove(table.getDescription());
-				vpInactiveTables.put(table.getDescription(), table);
-			}
-			break;
-		case FUTURE_PINBALL:
-			synchronized (this) {
-				table.setActive(false);
-				fpActiveTables.remove(table.getDescription());
-				fpInactiveTables.put(table.getDescription(), table);
-			}
-			break;
-		}
+	public List<Table> getInstalledTables() {
+		List<Table> tables = new ArrayList<>();
+		tables.addAll(vpActiveTables.values());
+		tables.addAll(vpInactiveTables.values());
+		tables.addAll(fpActiveTables.values());
+		tables.addAll(fpInactiveTables.values());
+		return tables;
+	}
+
+	public List<Table> getActiveTables() {
+		List<Table> tables = new ArrayList<>();
+		tables.addAll(vpActiveTables.values());
+		tables.addAll(fpActiveTables.values());
+		return tables;
+	}
+
+	public List<Table> getInactiveTables() {
+		List<Table> tables = new ArrayList<>();
+		tables.addAll(vpInactiveTables.values());
+		tables.addAll(fpInactiveTables.values());
+		return tables;
 	}
 }
