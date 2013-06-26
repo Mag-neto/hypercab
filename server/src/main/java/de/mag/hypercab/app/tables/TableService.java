@@ -39,6 +39,18 @@ public class TableService {
 		return inactiveTables;
 	}
 
+	public Set<Table> getVPTables() {
+		Set<Table> vpTables = databaseManager.getVPTables();
+		enhanceTables(vpTables);
+		return vpTables;
+	}
+
+	public Set<Table> getFPTables() {
+		Set<Table> fpTables = databaseManager.getFPTables();
+		enhanceTables(fpTables);
+		return fpTables;
+	}
+
 	public void activateTable(String tableRef) {
 		databaseManager.activateTable(tableRef);
 	}

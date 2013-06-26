@@ -125,10 +125,62 @@ public class DatabaseManager {
 		return tables;
 	}
 
+	public Set<Table> getVPTables() {
+		Set<Table> tables = new HashSet<>();
+		tables.addAll(vpActiveTables.values());
+		tables.addAll(vpInactiveTables.values());
+		return tables;
+	}
+
+	public Set<Table> getFPTables() {
+		Set<Table> tables = new HashSet<>();
+		tables.addAll(fpActiveTables.values());
+		tables.addAll(fpInactiveTables.values());
+		return tables;
+	}
+
 	public void save() {
 		XmlDatabase.writeDb(new File(hyperpinRootPath, VP_DB_ACTIVE), vpActiveTables.values());
 		XmlDatabase.writeDb(new File(hyperpinRootPath, VP_DB_INACTIVE), vpInactiveTables.values());
 		XmlDatabase.writeDb(new File(hyperpinRootPath, FP_DB_ACTIVE), fpActiveTables.values());
 		XmlDatabase.writeDb(new File(hyperpinRootPath, FP_DB_INACTIVE), fpInactiveTables.values());
+	}
+
+	public void addTable(Table table) {
+		switch (table.getPlatform()) {
+		case VISUAL_PINBALL:
+			if (table.isActive()) {
+				vpActiveTables.put(table.getDescription(), table);
+			} else {
+				vpInactiveTables.put(table.getDescription(), table);
+			}
+			break;
+		case FUTURE_PINBALL:
+			if (table.isActive()) {
+				fpActiveTables.put(table.getDescription(), table);
+			} else {
+				fpInactiveTables.put(table.getDescription(), table);
+			}
+			break;
+		}
+	}
+
+	public void removeTable(Table table) {
+		switch (table.getPlatform()) {
+		case VISUAL_PINBALL:
+			if (table.isActive()) {
+				vpActiveTables.remove(table.getDescription());
+			} else {
+				vpInactiveTables.remove(table.getDescription());
+			}
+			break;
+		case FUTURE_PINBALL:
+			if (table.isActive()) {
+				fpActiveTables.remove(table.getDescription());
+			} else {
+				fpInactiveTables.remove(table.getDescription());
+			}
+			break;
+		}
 	}
 }

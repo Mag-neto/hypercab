@@ -39,6 +39,18 @@ public class TableController {
 	}
 
 	@ResponseBody
+	@RequestMapping(value = "/visualpinball", method = RequestMethod.GET)
+	public Set<Table> getVPTables() {
+		return tableService.getVPTables();
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/futurepinball", method = RequestMethod.GET)
+	public Set<Table> getFPTables() {
+		return tableService.getFPTables();
+	}
+
+	@ResponseBody
 	@RequestMapping("/save")
 	public void saveTables() {
 		tableService.save();
