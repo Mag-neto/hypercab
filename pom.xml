@@ -23,6 +23,23 @@
 		<testng.version>6.1.1</testng.version>
 		<mockito.version>1.9.5</mockito.version>
 	</properties>
+	
+	<modules>
+		<module>api</module>
+		<module>bootstrap</module>
+		<module>hyperpin</module>
+		<module>hyperpin-media</module>
+		<module>webapp</module>
+	</modules>
+	
+	<profiles>
+		<profile>
+			<id>mag</id>
+			<properties>
+				<hyperpin.base.path>/Users/marco/HyperPin</hyperpin.base.path>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<testResources>
@@ -94,6 +111,16 @@
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
 				<version>${spring.version}</version>
 				<exclusions>
@@ -104,14 +131,14 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-mapper-asl</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${jackson.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -176,9 +203,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<modules>
-		<module>server</module>
-		<module>api</module>
-	</modules>
 </project>

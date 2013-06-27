@@ -6,14 +6,20 @@
 		<artifactId>hypercab</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>hypercab-api</artifactId>
-	<name>Hypercab API</name>
-	<description>Interfaces and public Hypercab API</description>
+	<artifactId>hypercab-hyperpin-media</artifactId>
+	<name>[Module] Hyperpin Media Module</name>
+	<description>Media Module for Hypercab handling table media data such as images/flyer/videos</description>
 
 	<dependencies>
 		<dependency>
+			<groupId>de.mag.hypercab</groupId>
+			<artifactId>hypercab-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 	</dependencies>
+
 </project>
