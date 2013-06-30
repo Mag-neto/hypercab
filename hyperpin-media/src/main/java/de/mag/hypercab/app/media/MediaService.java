@@ -21,6 +21,10 @@ public class MediaService {
 		return imageConverter.toByteArray(resolveResourceFile(tableRef, type));
 	}
 
+	public boolean mediaFileExists(String tableRef, MediaType type) {
+		return resolveResourceFile(tableRef, type).exists();
+	}
+
 	private File resolveResourceFile(String tableRef, MediaType type) {
 		// FIXME: Flyer Images are in subfolders (Front,Back,Inside1...)
 		return new File(configuration.getHyperpinPath(), type.mediaPath() + tableRef + type.extension());
