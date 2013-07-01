@@ -1,0 +1,18 @@
+<div>
+    <h3>Hyperpin settings:</h3>
+    <p>Configure your 'Settings.ini' file here.</p>
+    <table class="table">
+        <tr data-ng-repeat="(key,section) in settings.settings">
+            <td>{{key}}</td>
+            <td>
+                <dl class="dl-horizontal">
+                <div data-ng-repeat="(key,value) in section">
+
+                    <dt>{{key}}</dt>
+                    <dd><input type="text" value="{{value}}"></dd>
+                </div>
+                </dl>
+            </td>
+        </tr>
+    </table>
+</div>
