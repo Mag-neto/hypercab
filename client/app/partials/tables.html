@@ -1,5 +1,43 @@
 <div class="container">
+    <input type="text" placeholder="filter" ng-model="searchTerm">
+    <table class="table">
+        <thead>
+        <tr>
+        <td>Table</td>
+        <td>&nbsp;</td>
+        <td>Backglass</td>
+        <td>Table</td>
+        <td>Wheel</td>
+        <td>Video</td>
+        </tr>
+        </thead>
+        <tr ng-repeat="table in tableData.tables | filter:searchTerm">
+            <td>{{table.description}}</td>
+            <td>
+                <input ng-show="table.active" type="button" class="btn btn-success btn-mini" value="Deactivate" data-ng-click="toggleActive(table)">
+                <input ng-show="!table.active" type="button" class="btn btn-inverse btn-mini" value="Activate" data-ng-click="toggleActive(table)">
+            </td>
+            <td>
+                <span ng-show="table.additionals.backglassImage == 'true'" class="badge badge-success">OK</span>
+                <span ng-show="table.additionals.backglassImage == 'false'" class="badge badge-warning">!</span>
+            </td>
+            <td>
+                <span ng-show="table.additionals.tableImage == 'true'" class="badge badge-success">OK</span>
+                <span ng-show="table.additionals.tableImage == 'false'" class="badge badge-warning">!</span>
+            </td>
+            <td>
+                <span ng-show="table.additionals.wheelImage == 'true'" class="badge badge-success">OK</span>
+                <span ng-show="table.additionals.wheelImage == 'false'" class="badge badge-warning">!</span>
+            </td>
+            <td>
+                <span ng-show="table.additionals.tableVideo == 'true'" class="badge badge-success">OK</span>
+                <span ng-show="table.additionals.tableVideo == 'false'" class="badge badge-warning">!</span>
+            </td>
+        </tr>
+    </table>
+     <!--
     <div data-ng-repeat="table in tableData.tables">
         <p class="span2">{{table.description}}</p>
     </div>
+    -->
 </div>

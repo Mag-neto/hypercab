@@ -2,5 +2,8 @@ hypercab.controller('TablesController', ['$scope','tablesService',function($scop
 
     $scope.tableData = tablesService.getTables();
 
+    $scope.toggleActive = function(table){
+        table.active = !table.active;
+    }
 }])
 
