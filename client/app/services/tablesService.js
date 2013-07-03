@@ -16,4 +16,20 @@ hypercab.service('tablesService', ['$http',function($http){
             console.log('Stored table data');
         })
     }
+
+    this.activateTable = function(description){
+        console.log("activating "+description);
+        $http.get('../hypercab-rest/tables/'+description+'/activate');
+    }
+
+    this.deactivateTable = function(description){
+        console.log("deactivating "+description);
+        $http.get('../hypercab-rest/tables/'+description+'/deactivate');
+    }
+
+    this.createImageLink = function(table, type){
+        if(table.platform == 'VISUAL_PINBALL'){
+            return "../hypercab-rest/media/visualpinball/"+table.description+"/"+type;
+        }
+    }
 }]);

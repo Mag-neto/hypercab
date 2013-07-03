@@ -18,26 +18,23 @@
                 <input ng-show="!table.active" type="button" class="btn btn-inverse btn-mini" value="Activate" data-ng-click="toggleActive(table)">
             </td>
             <td>
-                <span ng-show="table.additionals.backglassImage == 'true'" class="badge badge-success">OK</span>
-                <span ng-show="table.additionals.backglassImage == 'false'" class="badge badge-warning">!</span>
+                <span ng-show="table.additionals.backglassImage == 'true'" class="badge badge-success" data-ng-click="displayImage(table,'backglass')">
+                    <i class="icon-file icon-white"></i>
+                </span>
+                <span ng-show="table.additionals.backglassImage == 'false'" class="badge badge-warning"><i class="icon-upload icon-white"></i></span>
             </td>
             <td>
-                <span ng-show="table.additionals.tableImage == 'true'" class="badge badge-success">OK</span>
-                <span ng-show="table.additionals.tableImage == 'false'" class="badge badge-warning">!</span>
+                <span ng-show="table.additionals.tableImage == 'true'" class="badge badge-success" data-ng-click="displayImage(table,'table')"><i class="icon-file icon-white"></i></span>
+                <span ng-show="table.additionals.tableImage == 'false'" class="badge badge-warning"><i class="icon-upload icon-white"></i></span>
             </td>
             <td>
-                <span ng-show="table.additionals.wheelImage == 'true'" class="badge badge-success">OK</span>
-                <span ng-show="table.additionals.wheelImage == 'false'" class="badge badge-warning">!</span>
+                <span ng-show="table.additionals.wheelImage == 'true'" class="badge badge-success"><i class="icon-file icon-white" data-ng-click="displayImage(table,'wheel')"></i></span>
+                <span ng-show="table.additionals.wheelImage == 'false'" class="badge badge-warning"><i class="icon-upload icon-white"></i></span>
             </td>
             <td>
-                <span ng-show="table.additionals.tableVideo == 'true'" class="badge badge-success">OK</span>
-                <span ng-show="table.additionals.tableVideo == 'false'" class="badge badge-warning">!</span>
+                <span ng-show="table.additionals.tableVideo == 'true'" class="badge badge-success"><i class="icon-file icon-white"></i></span>
+                <span ng-show="table.additionals.tableVideo == 'false'" class="badge badge-warning"><i class="icon-upload icon-white"></i></span>
             </td>
         </tr>
     </table>
-     <!--
-    <div data-ng-repeat="table in tableData.tables">
-        <p class="span2">{{table.description}}</p>
-    </div>
-    -->
 </div>
