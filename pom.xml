@@ -11,19 +11,28 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+		<!-- Library versions -->
 		<spring.version>3.2.3.RELEASE</spring.version>
 		<commons.lang3.version>3.0</commons.lang3.version>
 		<commons.io.version>2.4</commons.io.version>
 		<commons-compress.version>1.5</commons-compress.version>
 		<ini4j.version>0.5.2</ini4j.version>
 		<jackson.version>1.9.12</jackson.version>
+		<servlet.api.version>3.0.1</servlet.api.version>
 
 		<slf4j.version>1.7.2</slf4j.version>
 		<logback.version>1.0.11</logback.version>
 		<testng.version>6.1.1</testng.version>
 		<mockito.version>1.9.5</mockito.version>
+
+		<!-- Plugin versions -->
+		<compiler.plugin.version>3.1</compiler.plugin.version>
+		<assembly.plugin.version>2.4</assembly.plugin.version>
+		<jar.plugin.version>2.4</jar.plugin.version>
+		<war.plugin.version>2.3</war.plugin.version>
+		<jetty.plugin.version>9.0.2.v20130417</jetty.plugin.version>
 	</properties>
-	
+
 	<modules>
 		<module>api</module>
 		<module>bootstrap</module>
@@ -31,7 +40,7 @@
 		<module>hyperpin-media</module>
 		<module>webapp</module>
 	</modules>
-	
+
 	<profiles>
 		<profile>
 			<id>mag</id>
@@ -52,21 +61,11 @@
 				<filtering>true</filtering>
 			</testResource>
 		</testResources>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-			</resource>
-			<resource>
-				<directory>src/main/config</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>${compiler.plugin.version}</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<source>1.7</source>
@@ -74,35 +73,43 @@
 					<compilerVersion>1.7</compilerVersion>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>jar</goal>
-							<goal>test-jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<descriptors>
-						<descriptor>src/main/assembly/src.xml</descriptor>
-					</descriptors>
-				</configuration>
-			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${assembly.plugin.version}</version>
+					<configuration>
+						<descriptors>
+							<descriptor>src/main/assembly/src.xml</descriptor>
+						</descriptors>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${jar.plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>jar</goal>
+								<goal>test-jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${war.plugin.version}</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+				<plugin>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
-					<version>9.0.2.v20130417</version>
+					<version>${jetty.plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -143,7 +150,7 @@
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
-				<version>3.0.1</version>
+				<version>${servlet.api.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
@@ -156,6 +163,32 @@
 				<groupId>org.ini4j</groupId>
 				<artifactId>ini4j</artifactId>
 				<version>${ini4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.mag.hypercab</groupId>
+				<artifactId>hypercab-bootstrap</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.mag.hypercab</groupId>
+				<artifactId>hypercab-bootstrap</artifactId>
+				<version>${project.version}</version>
+				<type>test-jar</type>
+			</dependency>
+			<dependency>
+				<groupId>de.mag.hypercab</groupId>
+				<artifactId>hypercab-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.mag.hypercab</groupId>
+				<artifactId>hypercab-hyperpin</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.mag.hypercab</groupId>
+				<artifactId>hypercab-hyperpin-media</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -187,7 +220,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.2.2.RELEASE</version>
+			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

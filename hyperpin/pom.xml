@@ -14,12 +14,10 @@
 		<dependency>
 			<groupId>de.mag.hypercab</groupId>
 			<artifactId>hypercab-api</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.mag.hypercab</groupId>
 			<artifactId>hypercab-bootstrap</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -45,7 +43,6 @@
 			<groupId>de.mag.hypercab</groupId>
 			<artifactId>hypercab-bootstrap</artifactId>
 			<type>test-jar</type>
-			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
