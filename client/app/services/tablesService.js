@@ -32,4 +32,11 @@ hypercab.service('tablesService', ['$http',function($http){
             return "../hypercab-rest/media/visualpinball/"+table.description+"/"+type;
         }
     }
+
+    this.save = function(){
+        console.log("saving databases...")
+        $http.get('../hypercab-rest/tables/save').success(function(){
+            console.log('saved databases.');
+        })
+    }
 }]);

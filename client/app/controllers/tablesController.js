@@ -15,5 +15,9 @@ hypercab.controller('TablesController', ['$scope','tablesService',function($scop
         var link = tablesService.createImageLink(table,type);
         window.open(link);
     }
+
+    $scope.save = function(){
+        tablesService.save();
+    }
 }])
 
