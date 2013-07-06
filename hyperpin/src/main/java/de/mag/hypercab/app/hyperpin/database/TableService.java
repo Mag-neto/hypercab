@@ -62,6 +62,10 @@ public class TableService {
 		databaseManager.save();
 	}
 
+	public void addTable(Table table) {
+		databaseManager.addTable(table);
+	}
+
 	private void enhanceTables(Collection<Table> tables) {
 		for (TableEnhancer enhancer : serverRegistry.getTableEnhancers()) {
 			enhancer.enhance(tables);

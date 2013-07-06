@@ -27,6 +27,12 @@ public class TableController {
 	}
 
 	@ResponseBody
+	@RequestMapping(value = "", method = RequestMethod.PUT)
+	public void createTable(Table table) {
+		tableService.addTable(table);
+	}
+
+	@ResponseBody
 	@RequestMapping(value = "/active", method = RequestMethod.GET)
 	public Set<Table> getActiveTables() {
 		return tableService.getActiveTables();
