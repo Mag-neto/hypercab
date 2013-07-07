@@ -16,4 +16,10 @@ hypercab.service('settingsService',['$http', function($http){
             console.log('Stored hyperpin settings');
         })
     }
+
+    this.saveSettings = function(settings){
+        $http.put('../hypercab-rest/settings',settings).success(function(){
+            console.log('Saved settings');
+        })
+    }
 }]);
