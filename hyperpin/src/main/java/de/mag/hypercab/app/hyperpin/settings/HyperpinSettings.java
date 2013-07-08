@@ -2,8 +2,8 @@ package de.mag.hypercab.app.hyperpin.settings;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -32,36 +32,38 @@ public class HyperpinSettings {
 		settings = new Ini(settingsFile);
 	}
 
-	public Map<String, Map<String, String>> getSettings() {
-		Map<String, Map<String, String>> sectionData = new HashMap<>();
+	public List<SectionVO> getSettings() {
+		List<SectionVO> sections = new ArrayList<>();
 		Set<Entry<String, Section>> entrySet = settings.entrySet();
 		for (Entry<String, Section> entry : entrySet) {
 			Set<Entry<String, String>> configEntries = entry.getValue().entrySet();
-			sectionData.put(entry.getKey(), extractSectionConfig(configEntries));
-
+			SectionVO s = new SectionVO();
+			s.setName(entry.getKey());
+			s.setConfigs(extractConfigs(configEntries));
+			sections.add(s);
 		}
-		return sectionData;
+		return sections;
 	}
 
-	private Map<String, String> extractSectionConfig(Set<Entry<String, String>> configEntries) {
-		Map<String, String> sectionConfig = new HashMap<>();
+	private List<KeyValuePair> extractConfigs(Set<Entry<String, String>> configEntries) {
+		List<KeyValuePair> configs = new ArrayList<>();
 		for (Entry<String, String> e : configEntries) {
-			sectionConfig.put(e.getKey(), e.getValue());
+			configs.add(new KeyValuePair(e.getKey(), e.getValue()));
 		}
-		return sectionConfig;
+		return configs;
 	}
 
-	public void saveSettings(Map<String, Map<String, String>> config) throws IOException {
-		for (Entry<String, Map<String, String>> section : config.entrySet()) {
+	public void saveSettings(List<SectionVO> configs) throws IOException {
+		for (SectionVO section : configs) {
 			writeSectionConfig(section);
 		}
 		settings.store();
 	}
 
-	private void writeSectionConfig(Entry<String, Map<String, String>> section) {
-		Section currentSection = settings.get(section.getKey());
-		for (Entry<String, String> configValue : section.getValue().entrySet()) {
-			currentSection.put(configValue.getKey(), configValue.getValue());
+	private void writeSectionConfig(SectionVO section) {
+		Section currentSection = settings.get(section.getName());
+		for (KeyValuePair config : section.getConfigs()) {
+			currentSection.put(config.getKey(), config.getValue());
 		}
 	}
 

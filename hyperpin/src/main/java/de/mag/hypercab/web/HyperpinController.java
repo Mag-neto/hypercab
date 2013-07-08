@@ -1,7 +1,8 @@
 package de.mag.hypercab.web;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.mag.hypercab.app.hyperpin.settings.HyperpinSettings;
+import de.mag.hypercab.app.hyperpin.settings.SectionVO;
 
 @Controller
 @RequestMapping("/settings")
@@ -23,15 +25,15 @@ public class HyperpinController {
 
 	@ResponseBody
 	@RequestMapping("")
-	public Map<String, Map<String, String>> getHyperpinConfig() {
+	public List<SectionVO> getHyperpinConfig() {
 		return hyperpinSettings.getSettings();
 
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE })
-	public void storeConfig(@RequestBody Map<String, Map<String, String>> config) throws IOException {
-		hyperpinSettings.saveSettings(config);
+	public void storeConfig(@RequestBody SectionVO[] sections) throws IOException {
+		hyperpinSettings.saveSettings(Arrays.asList(sections));
 	}
 
 }
