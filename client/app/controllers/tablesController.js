@@ -1,23 +1,23 @@
-hypercab.controller('TablesController', ['$scope','tablesService',function($scope,tablesService){
+hypercab.controller('TablesController', ['$scope', 'tablesService', function ($scope, tablesService) {
 
     $scope.tableData = tablesService.getTables();
 
-    $scope.toggleActive = function(table){
-        if(table.active){
+    $scope.toggleActive = function (table) {
+        if (table.active) {
             tablesService.deactivateTable(table.description);
-        }else{
+        } else {
             tablesService.activateTable(table.description);
         }
         table.active = !table.active;
-    }
+    };
 
-    $scope.displayImage = function(table,type){
-        var link = tablesService.createImageLink(table,type);
+    $scope.displayImage = function (table, type) {
+        var link = tablesService.createImageLink(table, type);
         window.open(link);
-    }
+    };
 
-    $scope.save = function(){
+    $scope.save = function () {
         tablesService.save();
-    }
-}])
+    };
+}]);
 
