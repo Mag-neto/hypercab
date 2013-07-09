@@ -1,0 +1,53 @@
+<div class="container">
+    <h3>{{selectedTable.description}}</h3>
+    <p>Upload or replace media files for this table</p>
+    <table class="table">
+        <tr>
+            <td>
+                Backglass Image
+            </td>
+            <td>
+                <div ng-show="selectedTable.additionals.backglassImage == 'true'">
+                    <input type="button" class="btn btn-success" data-ng-click="displayImage(selectedTable,'backglass')" value="View">
+                    <input type="button" class="btn btn-primary" value="Replace...">
+                </div>
+                <input type="button" ng-show="selectedTable.additionals.backglassImage == 'false'" class="btn btn-warning" value="Upload">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Table Image
+            </td>
+            <td>
+                <div ng-show="selectedTable.additionals.tableImage == 'true'">
+                    <input type="button" class="btn btn-success" data-ng-click="displayImage(selectedTable,'table')" value="View">
+                    <input type="button" class="btn btn-primary" value="Replace...">
+                </div>
+                <input type="button" ng-show="selectedTable.additionals.tableImage == 'false'" class="btn btn-warning" value="Upload">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Wheel Image
+            </td>
+            <td>
+                <div ng-show="selectedTable.additionals.wheelImage == 'true'">
+                    <input type="button" class="btn btn-success" data-ng-click="displayImage(selectedTable,'wheel')" value="View">
+                    <input type="button" class="btn btn-primary" value="Replace...">
+                </div>
+                <input type="button" ng-show="selectedTable.additionals.wheelImage == 'false'" class="btn btn-warning" value="Upload">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Table Video
+            </td>
+            <td>
+                <div ng-show="selectedTable.additionals.tableVideo == 'true'">
+                    <input type="button" class="btn btn-primary" value="Replace...">
+                </div>
+                <input type="button" ng-show="selectedTable.additionals.tableVideo == 'false'" class="btn btn-warning" value="Upload">
+            </td>
+        </tr>
+    </table>
+</div>

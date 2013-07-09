@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tr ng-repeat="table in tableData.tables | orderBy:'description' | filter:searchTerm">
-            <td>{{table.description}}</td>
+            <td><a href="#tabledetail" data-ng-click="setSelectedTable(table)">{{table.description}}</a></td>
             <td>
                 <input ng-show="table.active" type="button" class="btn btn-success btn-mini" value="Deactivate" data-ng-click="toggleActive(table)">
                 <input ng-show="!table.active" type="button" class="btn btn-inverse btn-mini" value="Activate" data-ng-click="toggleActive(table)">

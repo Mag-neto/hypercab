@@ -1,6 +1,7 @@
 hypercab.service('tablesService', ['$http', function ($http) {
 
     var tableData = {};
+    var selectedTable = {};
 
     function fetchTables() {
         $http.get('../hypercab-rest/tables').success(function (data) {
@@ -42,5 +43,13 @@ hypercab.service('tablesService', ['$http', function ($http) {
         $http.get('../hypercab-rest/tables/save').success(function () {
             console.log('saved databases.');
         });
+    };
+
+    this.setSelectedTable = function (table) {
+        selectedTable = table;
+    };
+
+    this.getSelectedTable = function () {
+        return selectedTable;
     };
 }]);

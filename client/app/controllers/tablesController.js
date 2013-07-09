@@ -1,6 +1,7 @@
 hypercab.controller('TablesController', ['$scope', 'tablesService', function ($scope, tablesService) {
 
     $scope.tableData = tablesService.getTables();
+    $scope.selectedTable = tablesService.getSelectedTable();
 
     $scope.toggleActive = function (table) {
         if (table.active) {
@@ -16,8 +17,17 @@ hypercab.controller('TablesController', ['$scope', 'tablesService', function ($s
         window.open(link);
     };
 
+    $scope.getImageLink = function (table, type) {
+        return tablesService.createImageLink(table,type);
+    };
+
     $scope.save = function () {
         tablesService.save();
     };
+
+    $scope.setSelectedTable = function (table) {
+        tablesService.setSelectedTable(table);
+    };
+
 }]);
 
