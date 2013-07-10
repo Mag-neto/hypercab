@@ -22,6 +22,10 @@ hypercab.config(function ($routeProvider) {
             templateUrl: 'app/partials/tabledetail.html',
             controller: 'TablesController'
         })
+        .when('/addTable', {
+            templateUrl: 'app/partials/addTable.html',
+            controller: 'TablesController'
+        })
         .otherwise({
             redirectTo: '/'
         });

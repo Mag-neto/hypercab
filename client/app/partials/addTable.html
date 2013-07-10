@@ -1,0 +1,44 @@
+<div class="container">
+    <h3>Add new Table</h3>
+    <p>Enter table data below:</p>
+
+    <table class="table" data-ng-model="newTable">
+        <tr>
+            <td>Platform:</td>
+            <td>
+                <input type="text" data-ng-model="newTable.platform">
+            </td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input type="text" data-ng-model="newTable.fileName">
+            </td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td>
+                <input type="text" data-ng-model="newTable.description">
+            </td>
+        </tr>
+        <tr>
+            <td>Manufacturer:</td>
+            <td>
+                <input type="text" data-ng-model="newTable.manufacturer">
+            </td>
+        </tr>
+        <tr>
+            <td>Year:</td>
+            <td>
+                <input type="text" data-ng-model="newTable.year">
+            </td>
+        </tr>
+        <tr>
+            <td>Type (SS or EM):</td>
+            <td>
+                <input type="text" data-ng-model="newTable.machineType">
+            </td>
+        </tr>
+    </table>
+    <a href="#tables" data-ng-click="addTable(newTable)"><input type="button" class="btn btn-primary" value="Add Table"></a>
+</div>

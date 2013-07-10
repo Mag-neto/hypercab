@@ -29,5 +29,10 @@ hypercab.controller('TablesController', ['$scope', 'tablesService', function ($s
         tablesService.setSelectedTable(table);
     };
 
+    $scope.addTable = function (table) {
+        tablesService.addTable(table);
+        $scope.tableData = tablesService.forceTablesReload();
+    };
+
 }]);
 
