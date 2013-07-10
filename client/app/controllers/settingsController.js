@@ -4,6 +4,6 @@ hypercab.controller('SettingsController', ['$scope', 'settingsService', function
 
     $scope.save = function (settings) {
         settingsService.saveSettings(settings);
-    }
+    };
 
 }]);

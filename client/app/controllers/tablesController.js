@@ -18,7 +18,7 @@ hypercab.controller('TablesController', ['$scope', 'tablesService', function ($s
     };
 
     $scope.getImageLink = function (table, type) {
-        return tablesService.createImageLink(table,type);
+        return tablesService.createImageLink(table, type);
     };
 
     $scope.save = function () {

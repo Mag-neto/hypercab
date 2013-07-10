@@ -1,17 +1,20 @@
 <div class="container">
-    <input type="button" class="btn btn-primary pull-right" value="Save Settings" data-ng-click="save(settings.settings)">
+    <input type="button" class="btn btn-primary pull-right" value="Save Settings"
+           data-ng-click="save(settings.settings)">
+
     <h3>Hyperpin settings:</h3>
+
     <p>Configure your 'Settings.ini' file here.</p>
     <table class="table">
         <tr data-ng-repeat="section in settings.settings | orderBy:'name'">
             <td>{{section.name}}</td>
             <td>
                 <dl class="dl-horizontal">
-                <div data-ng-repeat="entry in section.configs">
+                    <div data-ng-repeat="entry in section.configs">
 
-                    <dt>{{entry.key}}</dt>
-                    <dd><input type="text" data-ng-model="entry.value"></dd>
-                </div>
+                        <dt>{{entry.key}}</dt>
+                        <dd><input type="text" data-ng-model="entry.value"></dd>
+                    </div>
                 </dl>
             </td>
         </tr>

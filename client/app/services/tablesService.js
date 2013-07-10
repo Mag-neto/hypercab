@@ -1,7 +1,6 @@
 hypercab.service('tablesService', ['$http', function ($http) {
 
-    var tableData = {};
-    var selectedTable = {};
+    var tableData = {}, selectedTable = {};
 
     function fetchTables() {
         $http.get('../hypercab-rest/tables').success(function (data) {
