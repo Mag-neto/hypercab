@@ -26,6 +26,9 @@ public class Table {
 	// table status
 	private boolean active;
 
+	// additional information added by {@link TableEnhancer} classes
+	private Map<String, String> additional = new HashMap<>();
+
 	public boolean isActive() {
 		return active;
 	}
@@ -33,8 +36,6 @@ public class Table {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
-	private Map<String, String> additional = new HashMap<>();
 
 	public void addAdditional(String key, String value) {
 		this.additional.put(key, value);

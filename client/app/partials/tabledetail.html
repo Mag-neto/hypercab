@@ -11,10 +11,12 @@
                 <div ng-show="selectedTable.additionals.backglassImage == 'true'">
                     <input type="button" class="btn btn-success" data-ng-click="displayImage(selectedTable,'backglass')"
                            value="View">
-                    <input type="button" class="btn btn-primary" value="Replace...">
+                    <button class="btn btn-primary" value="Replace..." onclick="$('#bgupload').click();"></button>
                 </div>
-                <input type="button" ng-show="selectedTable.additionals.backglassImage == 'false'"
-                       class="btn btn-warning" value="Upload">
+                <div ng-show="selectedTable.additionals.backglassImage == 'false'">
+                    <button class="btn btn-warning" value="Upload" onclick="$('#bgupload').click();"></button>
+                </div>
+                <input type="file" id="bgupload" file-upload table="selectedTable" mediatype="backglass"/>
             </td>
         </tr>
         <tr>
@@ -24,11 +26,13 @@
             <td>
                 <div ng-show="selectedTable.additionals.tableImage == 'true'">
                     <input type="button" class="btn btn-success" data-ng-click="displayImage(selectedTable,'table')"
-                           value="View">
-                    <input type="button" class="btn btn-primary" value="Replace...">
+                        value="View">
+                    <button class="btn btn-primary" value="Replace..." onclick="$('#tableupload').click();"></button>
                 </div>
-                <input type="button" ng-show="selectedTable.additionals.tableImage == 'false'" class="btn btn-warning"
-                       value="Upload">
+                <div ng-show="selectedTable.additionals.tableImage == 'false'">
+                    <button class="btn btn-warning" value="Upload" onclick="$('#tableupload').click();"></button>
+                </div>
+                <input type="file" id="tableupload" file-upload table="selectedTable" mediatype="table"/>
             </td>
         </tr>
         <tr>
@@ -39,10 +43,12 @@
                 <div ng-show="selectedTable.additionals.wheelImage == 'true'">
                     <input type="button" class="btn btn-success" data-ng-click="displayImage(selectedTable,'wheel')"
                            value="View">
-                    <input type="button" class="btn btn-primary" value="Replace...">
+                    <button class="btn btn-primary" value="Replace..." onclick="$('#wheelupload').click();"></button>
                 </div>
-                <input type="button" ng-show="selectedTable.additionals.wheelImage == 'false'" class="btn btn-warning"
-                       value="Upload">
+                <div ng-show="selectedTable.additionals.wheelImage == 'false'">
+                    <button class="btn btn-warning" value="Upload" onclick="$('#wheelupload').click();"></button>
+                </div>
+                <input type="file" id="wheelupload" file-upload table="selectedTable" mediatype="wheel"/>
             </td>
         </tr>
         <tr>

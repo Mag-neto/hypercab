@@ -19,6 +19,13 @@ import de.mag.hypercab.app.hyperpin.database.TableService;
 @RequestMapping("/tables")
 public class TableController {
 
+	private static final String DEACTIVATE_TABLE = "/{tableDesc}/deactivate";
+	private static final String ACTIVATE_TABLE = "/{tableDesc}/activate";
+	private static final String SAVE_TABLES = "/save";
+	private static final String FUTUREPINBALL_TABLES = "/futurepinball";
+	private static final String VISUALPINBALL_TABLES = "/visualpinball";
+	private static final String INACTIVE_TABLES = "/inactive";
+	private static final String ACTIVE_TABLES = "/active";
 	@Resource
 	private TableService tableService;
 
@@ -35,43 +42,43 @@ public class TableController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/active", method = RequestMethod.GET)
+	@RequestMapping(value = ACTIVE_TABLES, method = RequestMethod.GET)
 	public Set<Table> getActiveTables() {
 		return tableService.getActiveTables();
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/inactive", method = RequestMethod.GET)
+	@RequestMapping(value = INACTIVE_TABLES, method = RequestMethod.GET)
 	public Set<Table> getInactiveTables() {
 		return tableService.getInactiveTables();
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/visualpinball", method = RequestMethod.GET)
+	@RequestMapping(value = VISUALPINBALL_TABLES, method = RequestMethod.GET)
 	public Set<Table> getVPTables() {
 		return tableService.getVPTables();
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/futurepinball", method = RequestMethod.GET)
+	@RequestMapping(value = FUTUREPINBALL_TABLES, method = RequestMethod.GET)
 	public Set<Table> getFPTables() {
 		return tableService.getFPTables();
 	}
 
 	@ResponseBody
-	@RequestMapping("/save")
+	@RequestMapping(SAVE_TABLES)
 	public void saveTables() {
 		tableService.save();
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/{tableDesc}/activate")
+	@RequestMapping(value = ACTIVATE_TABLE)
 	public void activateTable(@PathVariable String tableDesc) {
 		tableService.activateTable(tableDesc);
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/{tableDesc}/deactivate")
+	@RequestMapping(value = DEACTIVATE_TABLE)
 	public void deactivateTable(@PathVariable String tableDesc) {
 		tableService.deactivateTable(tableDesc);
 	}
