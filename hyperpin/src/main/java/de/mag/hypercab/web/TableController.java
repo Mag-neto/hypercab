@@ -22,10 +22,7 @@ public class TableController {
 	private static final String DEACTIVATE_TABLE = "/{tableDesc}/deactivate";
 	private static final String ACTIVATE_TABLE = "/{tableDesc}/activate";
 	private static final String SAVE_TABLES = "/save";
-	private static final String FUTUREPINBALL_TABLES = "/futurepinball";
-	private static final String VISUALPINBALL_TABLES = "/visualpinball";
-	private static final String INACTIVE_TABLES = "/inactive";
-	private static final String ACTIVE_TABLES = "/active";
+
 	@Resource
 	private TableService tableService;
 
@@ -39,30 +36,6 @@ public class TableController {
 	@RequestMapping(value = "", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public void createTable(@RequestBody Table table) {
 		tableService.addTable(table);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = ACTIVE_TABLES, method = RequestMethod.GET)
-	public Set<Table> getActiveTables() {
-		return tableService.getActiveTables();
-	}
-
-	@ResponseBody
-	@RequestMapping(value = INACTIVE_TABLES, method = RequestMethod.GET)
-	public Set<Table> getInactiveTables() {
-		return tableService.getInactiveTables();
-	}
-
-	@ResponseBody
-	@RequestMapping(value = VISUALPINBALL_TABLES, method = RequestMethod.GET)
-	public Set<Table> getVPTables() {
-		return tableService.getVPTables();
-	}
-
-	@ResponseBody
-	@RequestMapping(value = FUTUREPINBALL_TABLES, method = RequestMethod.GET)
-	public Set<Table> getFPTables() {
-		return tableService.getFPTables();
 	}
 
 	@ResponseBody

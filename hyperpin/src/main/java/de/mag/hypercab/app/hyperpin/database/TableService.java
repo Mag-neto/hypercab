@@ -26,30 +26,6 @@ public class TableService {
 		return installedTables;
 	}
 
-	public Set<Table> getActiveTables() {
-		Set<Table> activeTables = databaseManager.getActiveTables();
-		enhanceTables(activeTables);
-		return activeTables;
-	}
-
-	public Set<Table> getInactiveTables() {
-		Set<Table> inactiveTables = databaseManager.getInactiveTables();
-		enhanceTables(inactiveTables);
-		return inactiveTables;
-	}
-
-	public Set<Table> getVPTables() {
-		Set<Table> vpTables = databaseManager.getVPTables();
-		enhanceTables(vpTables);
-		return vpTables;
-	}
-
-	public Set<Table> getFPTables() {
-		Set<Table> fpTables = databaseManager.getFPTables();
-		enhanceTables(fpTables);
-		return fpTables;
-	}
-
 	public void activateTable(String tableRef) {
 		databaseManager.activateTable(tableRef);
 	}
@@ -64,6 +40,10 @@ public class TableService {
 
 	public void addTable(Table table) {
 		databaseManager.addTable(table);
+	}
+
+	public void removeTable(Table table) {
+		databaseManager.removeTable(table);
 	}
 
 	private void enhanceTables(Collection<Table> tables) {
