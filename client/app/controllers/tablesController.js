@@ -34,6 +34,11 @@ hypercab.controller('TablesController', ['$scope', 'tablesService', 'UploadServi
         $scope.tableData = tablesService.forceTablesReload();
     };
 
+    $scope.removeTable = function (table) {
+        tablesService.removeTable(table);
+        $scope.tableData = tablesService.forceTablesReload();
+    };
+
     $scope.uploadFiles = function (table, mediatype, files) {
         $scope.uploadResult = {};
         uploadService.uploadFile(table, mediatype, files[0], function () {

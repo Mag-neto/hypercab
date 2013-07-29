@@ -51,6 +51,16 @@ hypercab.service('tablesService', ['$http', function ($http) {
             });
     };
 
+    this.removeTable = function (table) {
+        $http.delete('../hypercab-rest/tables', table)
+            .success(function (){
+                console.log('removed table '+table.description);
+            })
+            .error(function (){
+                console.log('error removing table '+table.description);
+            });
+    };
+
     this.save = function () {
         console.log("saving databases...");
         $http.get('../hypercab-rest/tables/save').success(function () {
