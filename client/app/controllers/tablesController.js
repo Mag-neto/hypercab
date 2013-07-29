@@ -1,4 +1,4 @@
-hypercab.controller('TablesController', ['$scope', 'tablesService', 'UploadService', function ($scope, tablesService, uploadService) {
+hypercab.controller('TablesController', ['$scope', 'tablesService', 'uploadService', function ($scope, tablesService, uploadService) {
 
     $scope.tableData = tablesService.getTables();
     $scope.selectedTable = tablesService.getSelectedTable();

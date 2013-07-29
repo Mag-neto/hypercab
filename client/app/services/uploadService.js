@@ -1,5 +1,4 @@
-angular.module('uploadService', [])
-    .service('UploadService', ['$http', function ($http) {
+hypercab.service('uploadService', ['$http', function ($http) {
         this.uploadFile = function (table, mediatype, file, successCallback, errorCallback) {
             $http({
                 method: 'POST',

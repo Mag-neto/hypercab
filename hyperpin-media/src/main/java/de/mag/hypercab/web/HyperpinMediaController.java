@@ -20,12 +20,12 @@ import de.mag.hypercab.app.media.MediaType;
 public class HyperpinMediaController {
 
 	private static final String FILEUPLOAD_FILE_PARAM = "file";
-	private static final String FUTUREPINBALL_WHEEL = "/futurepinball/{tableRef}/wheel";
-	private static final String FUTUREPINBALL_TABLE = "/futurepinball/{tableRef}/table";
-	private static final String FUTUREPINBALL_BACKGLASS = "/futurepinball/{tableRef}/backglass";
-	private static final String VISUALPINBALL_WHEEL = "/visualpinball/{tableRef}/wheel";
-	private static final String VISUALPINBALL_TABLE = "/visualpinball/{tableRef}/table";
-	private static final String VISUALPINBALL_BACKGLASS = "/visualpinball/{tableRef}/backglass";
+	private static final String FUTUREPINBALL_WHEEL = "/FUTURE_PINBALL/{tableRef}/wheel";
+	private static final String FUTUREPINBALL_TABLE = "/FUTURE_PINBALL/{tableRef}/table";
+	private static final String FUTUREPINBALL_BACKGLASS = "/FUTURE_PINBALL/{tableRef}/backglass";
+	private static final String VISUALPINBALL_WHEEL = "/VISUAL_PINBALL/{tableRef}/wheel";
+	private static final String VISUALPINBALL_TABLE = "/VISUAL_PINBALL/{tableRef}/table";
+	private static final String VISUALPINBALL_BACKGLASS = "/VISUAL_PINBALL/{tableRef}/backglass";
 
 	@Resource
 	private MediaService mediaService;
@@ -39,8 +39,7 @@ public class HyperpinMediaController {
 	@ResponseBody
 	@RequestMapping(value = VISUALPINBALL_BACKGLASS, method = RequestMethod.POST)
 	public void storeVPBackglassImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file,
-			@PathVariable String tableRef)
-			throws IOException {
+			@PathVariable String tableRef) throws IOException {
 		mediaService.storeMediaFile(file.getInputStream(), tableRef, MediaType.VP_BACKGLASS_IMAGE);
 	}
 
@@ -52,8 +51,8 @@ public class HyperpinMediaController {
 
 	@ResponseBody
 	@RequestMapping(value = VISUALPINBALL_TABLE, method = RequestMethod.POST)
-	public void storeVPTableImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file, @PathVariable String tableRef)
-			throws IOException {
+	public void storeVPTableImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file,
+			@PathVariable String tableRef) throws IOException {
 		mediaService.storeMediaFile(file.getInputStream(), tableRef, MediaType.VP_TABLE_IMAGE);
 	}
 
@@ -65,8 +64,8 @@ public class HyperpinMediaController {
 
 	@ResponseBody
 	@RequestMapping(value = VISUALPINBALL_WHEEL, method = RequestMethod.POST)
-	public void storeVPWheelImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file, @PathVariable String tableRef)
-			throws IOException {
+	public void storeVPWheelImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file,
+			@PathVariable String tableRef) throws IOException {
 		mediaService.storeMediaFile(file.getInputStream(), tableRef, MediaType.VP_WHEEL_IMAGE);
 	}
 
@@ -79,8 +78,7 @@ public class HyperpinMediaController {
 	@ResponseBody
 	@RequestMapping(value = FUTUREPINBALL_BACKGLASS, method = RequestMethod.POST)
 	public void storeFPBackglassImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file,
-			@PathVariable String tableRef)
-			throws IOException {
+			@PathVariable String tableRef) throws IOException {
 		mediaService.storeMediaFile(file.getInputStream(), tableRef, MediaType.FP_BACKGLASS_IMAGE);
 	}
 
@@ -92,8 +90,8 @@ public class HyperpinMediaController {
 
 	@ResponseBody
 	@RequestMapping(value = FUTUREPINBALL_TABLE, method = RequestMethod.POST)
-	public void storeFPTableImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file, @PathVariable String tableRef)
-			throws IOException {
+	public void storeFPTableImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file,
+			@PathVariable String tableRef) throws IOException {
 		mediaService.storeMediaFile(file.getInputStream(), tableRef, MediaType.FP_TABLE_IMAGE);
 	}
 
@@ -105,8 +103,8 @@ public class HyperpinMediaController {
 
 	@ResponseBody
 	@RequestMapping(value = FUTUREPINBALL_WHEEL, method = RequestMethod.POST)
-	public void storeFPWheelImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file, @PathVariable String tableRef)
-			throws IOException {
+	public void storeFPWheelImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file,
+			@PathVariable String tableRef) throws IOException {
 		mediaService.storeMediaFile(file.getInputStream(), tableRef, MediaType.FP_WHEEL_IMAGE);
 	}
 }

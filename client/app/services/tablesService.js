@@ -32,13 +32,7 @@ hypercab.service('tablesService', ['$http', function ($http) {
     };
 
     this.createImageLink = function (table, type) {
-        var link;
-        if (table.platform === 'VISUAL_PINBALL') {
-            link = "../hypercab-rest/media/visualpinball/" + table.description + "/" + type;
-        } else {
-            link = "../hypercab-rest/media/futurepinball/" + table.description + "/" + type;
-        }
-        return link;
+        return "../hypercab-rest/media/"+table.platform +'/'+ table.description + "/" + type;
     };
 
     this.addTable = function (table) {
