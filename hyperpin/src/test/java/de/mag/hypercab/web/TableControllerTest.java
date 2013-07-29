@@ -30,14 +30,4 @@ public class TableControllerTest extends AbstractWebIntegrationTest {
 		mvc.perform(get("/tables")).andExpect(status().isOk());
 	}
 
-	@Test
-	public void deliversActiveTables() throws Exception {
-		mvc.perform(get("/tables/active")).andExpect(status().isOk());
-	}
-
-	@Test
-	public void deliversInactiveTables() throws Exception {
-		mvc.perform(get("/tables/inactive")).andExpect(status().isOk());
-	}
-
 }
