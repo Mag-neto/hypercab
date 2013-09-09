@@ -1,4 +1,4 @@
-package de.mag.hypercab.app;
+package de.mag.hypercab.app.hyperpin;
 
 import java.io.File;
 

@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
-import de.mag.hypercab.app.Configuration;
+import de.mag.hypercab.app.hyperpin.Configuration;
 
 @Service
 public class MediaService {

@@ -14,7 +14,7 @@ import org.ini4j.Ini;
 import org.ini4j.Profile.Section;
 import org.springframework.stereotype.Component;
 
-import de.mag.hypercab.app.Configuration;
+import de.mag.hypercab.app.hyperpin.Configuration;
 
 @Component
 public class HyperpinSettings {
