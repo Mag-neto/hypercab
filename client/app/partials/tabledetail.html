@@ -16,7 +16,7 @@
                 <div ng-show="selectedTable.additionals.backglassImage == 'false'">
                     <input type="button" class="btn btn-warning" value="Upload" onclick="$('#bgupload').click();">
                 </div>
-                <input type="file" class="hidden" id="bgupload" file-upload table="selectedTable.platform" mediatype="backglass"/>
+                <input type="file" class="hidden" id="bgupload" file-upload table="selectedTable" mediatype="backglass"/>
             </td>
         </tr>
         <tr>
@@ -25,10 +25,10 @@
             </td>
             <td>
                 <div ng-show="selectedTable.additionals.tableImage == 'true'">
-                    <input type="button" class="btn btn-success" data-ng-click="displayImage(selectedTable,'table')"
-                        value="View">
-                    <input type="button" class="btn btn-primary" value="Replace..." onclick="$('#tableupload').click();">
-                </div>
+                <input type="button" class="btn btn-success" data-ng-click="displayImage(selectedTable,'table')"
+                       value="View">
+                <input type="button" class="btn btn-primary" value="Replace..." onclick="$('#tableupload').click();">
+            </div>
                 <div ng-show="selectedTable.additionals.tableImage == 'false'">
                     <input type="button" class="btn btn-warning" value="Upload" onclick="$('#tableupload').click();">
                 </div>
