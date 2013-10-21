@@ -10,10 +10,12 @@ import org.springframework.core.io.ClassPathResource;
 @ComponentScan(basePackages = "de.mag.hypercab.app")
 public class ApplicationConfig {
 
+	private static final String HYPERCAB_PROPERTIES_FILENAME = "hypercab.properties";
+
 	@Bean
 	public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
 		PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
-		configurer.setLocation(new ClassPathResource("hypercab.properties"));
+		configurer.setLocation(new ClassPathResource(HYPERCAB_PROPERTIES_FILENAME));
 		return configurer;
 	}
 

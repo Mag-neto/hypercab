@@ -26,14 +26,6 @@ public class TableService {
 		return installedTables;
 	}
 
-	public void activateTable(String tableRef) {
-		databaseManager.activateTable(tableRef);
-	}
-
-	public void deactivateTable(String tableRef) {
-		databaseManager.deactivateTable(tableRef);
-	}
-
 	public void save() {
 		databaseManager.save();
 	}
@@ -44,6 +36,10 @@ public class TableService {
 
 	public void removeTable(Table table) {
 		databaseManager.removeTable(table);
+	}
+
+	public void updateTable(String description, Table table) {
+		databaseManager.updateTable(description, table);
 	}
 
 	private void enhanceTables(Collection<Table> tables) {

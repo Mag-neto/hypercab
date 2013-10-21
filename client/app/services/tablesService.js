@@ -21,14 +21,15 @@ hypercab.service('tablesService', ['$http', function ($http) {
         fetchTables();
     };
 
-    this.activateTable = function (description) {
-        console.log("activating " + description);
-        $http.get('../hypercab-rest/tables/' + description + '/activate');
-    };
-
-    this.deactivateTable = function (description) {
-        console.log("deactivating " + description);
-        $http.get('../hypercab-rest/tables/' + description + '/deactivate');
+    this.updateTable = function (description, table) {
+        console.log("updating " + description);
+        $http.put('../hypercab-rest/tables/' + description, table)
+            .success(function (){
+               console.log('updated table '+table.description);
+            })
+            .error(function (){
+                console.log('error updating table '+table.description);
+            });
     };
 
     this.createImageLink = function (table, type) {
@@ -36,7 +37,7 @@ hypercab.service('tablesService', ['$http', function ($http) {
     };
 
     this.addTable = function (table) {
-        $http.put('../hypercab-rest/tables', table)
+        $http.post('../hypercab-rest/tables', table)
             .success(function (){
                console.log('added table '+table.description);
             })

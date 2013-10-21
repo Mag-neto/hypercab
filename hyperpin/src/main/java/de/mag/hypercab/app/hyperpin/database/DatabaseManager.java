@@ -51,89 +51,10 @@ public class DatabaseManager {
 		}
 	}
 
-	void activateTable(String tableDescription) {
-		if (vpInactiveTables.containsKey(tableDescription)) {
-			switchActive(vpInactiveTables.get(tableDescription));
-		} else if (fpInactiveTables.containsKey(tableDescription)) {
-			switchActive(fpInactiveTables.get(tableDescription));
-		}
-	}
-
-	void deactivateTable(String tableDescription) {
-		if (vpActiveTables.containsKey(tableDescription)) {
-			switchActive(vpActiveTables.get(tableDescription));
-		} else if (fpActiveTables.containsKey(tableDescription)) {
-			switchActive(fpActiveTables.get(tableDescription));
-		}
-	}
-
-	private void switchActive(Table table) {
-		switch (table.getPlatform()) {
-		case VISUAL_PINBALL:
-			if (!table.isActive()) {
-				synchronized (this) {
-					table.setActive(true);
-					vpInactiveTables.remove(table.getDescription());
-					vpActiveTables.put(table.getDescription(), table);
-				}
-			} else {
-				synchronized (this) {
-					table.setActive(false);
-					vpActiveTables.remove(table.getDescription());
-					vpInactiveTables.put(table.getDescription(), table);
-				}
-			}
-			break;
-		case FUTURE_PINBALL:
-			if (!table.isActive()) {
-				synchronized (this) {
-					table.setActive(true);
-					fpInactiveTables.remove(table.getDescription());
-					fpActiveTables.put(table.getDescription(), table);
-				}
-			} else {
-				synchronized (this) {
-					table.setActive(false);
-					fpActiveTables.remove(table.getDescription());
-					fpInactiveTables.put(table.getDescription(), table);
-				}
-			}
-			break;
-		}
-	}
-
 	Set<Table> getInstalledTables() {
 		Set<Table> tables = new HashSet<>();
 		tables.addAll(vpActiveTables.values());
 		tables.addAll(vpInactiveTables.values());
-		tables.addAll(fpActiveTables.values());
-		tables.addAll(fpInactiveTables.values());
-		return tables;
-	}
-
-	Set<Table> getActiveTables() {
-		Set<Table> tables = new HashSet<>();
-		tables.addAll(vpActiveTables.values());
-		tables.addAll(fpActiveTables.values());
-		return tables;
-	}
-
-	Set<Table> getInactiveTables() {
-		Set<Table> tables = new HashSet<>();
-		tables.addAll(vpInactiveTables.values());
-		tables.addAll(fpInactiveTables.values());
-		return tables;
-	}
-
-	Set<Table> getVPTables() {
-		Set<Table> tables = new HashSet<>();
-		tables.addAll(vpActiveTables.values());
-		tables.addAll(vpInactiveTables.values());
-		return tables;
-	}
-
-	Set<Table> getFPTables() {
-		Set<Table> tables = new HashSet<>();
 		tables.addAll(fpActiveTables.values());
 		tables.addAll(fpInactiveTables.values());
 		return tables;
@@ -182,5 +103,29 @@ public class DatabaseManager {
 			}
 			break;
 		}
+	}
+
+	void updateTable(String description, Table table) {
+		Table tableToUpdate = findTable(description);
+		if (tableToUpdate != null) {
+			tableToUpdate.setActive(table.isActive());
+			tableToUpdate.setDescription(table.getDescription());
+			tableToUpdate.setFileName(table.getFileName());
+			tableToUpdate.setMachineType(table.getMachineType());
+			tableToUpdate.setManufacturer(table.getManufacturer());
+			tableToUpdate.setPlatform(table.getPlatform());
+			tableToUpdate.setYear(table.getYear());
+		}
+	}
+
+	private Table findTable(String description) {
+		Set<Table> installedTables = getInstalledTables();
+		for (Table currentTable : installedTables) {
+			if (currentTable.getDescription().equals(description)) {
+				return currentTable;
+			}
+		}
+		throw new DatabaseException("No table with description " + description
+				+ " registered in database.");
 	}
 }

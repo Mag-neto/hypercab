@@ -4,11 +4,7 @@ hypercab.controller('TablesController', ['$scope', 'tablesService', 'uploadServi
     $scope.selectedTable = tablesService.getSelectedTable();
 
     $scope.toggleActive = function (table) {
-        if (table.active) {
-            tablesService.deactivateTable(table.description);
-        } else {
-            tablesService.activateTable(table.description);
-        }
+        tablesService.updateTable(table.description, table);
         table.active = !table.active;
     };
 
