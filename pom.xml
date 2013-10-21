@@ -49,6 +49,12 @@
 				<hyperpin.base.path>/Users/marco/HyperPin</hyperpin.base.path>
 			</properties>
 		</profile>
+		<profile>
+			<id>cab</id>
+			<properties>
+				<hyperpin.base.path>C:/HyperPin</hyperpin.base.path>
+			</properties>
+		</profile>
 	</profiles>
 
 	<build>
