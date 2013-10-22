@@ -16,7 +16,7 @@ public class ImageConverterTest {
 	}
 
 	@Test
-	public void imagesAreLoaded() {
+	public void convertsImageFileToByteArray() {
 		byte[] imgData = imageConverter.toByteArray(new File("src/test/resources/AFM.png"));
 		Assert.assertNotNull(imgData);
 		Assert.assertTrue(imgData.length == 3793235);
