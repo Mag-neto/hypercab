@@ -105,17 +105,54 @@ public class DatabaseManager {
 		}
 	}
 
+	private void toggleActive(Table table) {
+		switch (table.getPlatform()) {
+		case VISUAL_PINBALL:
+			if (!table.isActive()) {
+				synchronized (this) {
+					table.setActive(true);
+					vpInactiveTables.remove(table.getDescription());
+					vpActiveTables.put(table.getDescription(), table);
+				}
+			} else {
+				synchronized (this) {
+					table.setActive(false);
+					vpActiveTables.remove(table.getDescription());
+					vpInactiveTables.put(table.getDescription(), table);
+				}
+			}
+			break;
+		case FUTURE_PINBALL:
+			if (!table.isActive()) {
+				synchronized (this) {
+					table.setActive(true);
+					fpInactiveTables.remove(table.getDescription());
+					fpActiveTables.put(table.getDescription(), table);
+				}
+			} else {
+				synchronized (this) {
+					table.setActive(false);
+					fpActiveTables.remove(table.getDescription());
+					fpInactiveTables.put(table.getDescription(), table);
+				}
+			}
+			break;
+		}
+	}
+
 	void updateTable(String description, Table table) {
 		Table tableToUpdate = findTable(description);
-		if (tableToUpdate != null) {
-			tableToUpdate.setActive(table.isActive());
-			tableToUpdate.setDescription(table.getDescription());
-			tableToUpdate.setFileName(table.getFileName());
-			tableToUpdate.setMachineType(table.getMachineType());
-			tableToUpdate.setManufacturer(table.getManufacturer());
-			tableToUpdate.setPlatform(table.getPlatform());
-			tableToUpdate.setYear(table.getYear());
+
+		if (tableToUpdate.isActive() != table.isActive()) {
+			toggleActive(tableToUpdate);
 		}
+		tableToUpdate.setActive(table.isActive());
+		tableToUpdate.setDescription(table.getDescription());
+		tableToUpdate.setFileName(table.getFileName());
+		tableToUpdate.setMachineType(table.getMachineType());
+		tableToUpdate.setManufacturer(table.getManufacturer());
+		tableToUpdate.setPlatform(table.getPlatform());
+		tableToUpdate.setYear(table.getYear());
 	}
 
 	private Table findTable(String description) {
