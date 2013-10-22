@@ -19,7 +19,7 @@ public class ServerRegistryTest extends AbstractIntegrationTest {
 
 	@Test
 	public void registryRegistersTestEnhancers() {
-		Assert.assertEquals(serverRegistry.getTableEnhancers().size(), 2);
+		Assert.assertEquals(serverRegistry.getTableEnhancers().size(), 1);
 	}
 
 }
