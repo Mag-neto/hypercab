@@ -55,6 +55,12 @@
 				<hyperpin.base.path>C:/HyperPin</hyperpin.base.path>
 			</properties>
 		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<hyperpin.base.path>${project.build.directory}/test-classes/HyperPin</hyperpin.base.path>
+			</properties>
+		</profile>
 	</profiles>
 
 	<build>
