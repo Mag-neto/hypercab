@@ -155,7 +155,7 @@ public class DatabaseManager {
 		tableToUpdate.setYear(table.getYear());
 	}
 
-	private Table findTable(String description) {
+	Table findTable(String description) {
 		Set<Table> installedTables = getInstalledTables();
 		for (Table currentTable : installedTables) {
 			if (currentTable.getDescription().equals(description)) {
