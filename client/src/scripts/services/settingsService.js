@@ -1,10 +1,10 @@
 'use strict';
-angular.module('hypercab').service('settingsService', function ($http) {
+angular.module('hypercab').service('settingsService', function ($http, hypercabApiUrl) {
 
     var settings = {};
 
     function fetchSettings() {
-        $http.get('../../hypercab-rest/settings')
+        $http.get(hypercabApiUrl+'settings')
             .success(function (data) {
                 settings.settings = data;
                 console.log('Stored hyperpin settings');
@@ -13,14 +13,13 @@ angular.module('hypercab').service('settingsService', function ($http) {
 
     this.getSettings = function () {
         if (!settings.settings) {
-            console.log('Loading hyperpin settings...');
             fetchSettings();
         }
         return settings;
     };
 
     this.saveSettings = function (settings) {
-        $http.put('../../hypercab-rest/settings', settings)
+        $http.put(hypercabApiUrl+'settings', settings)
             .success(function () {
                 console.log('Saved settings');
             });

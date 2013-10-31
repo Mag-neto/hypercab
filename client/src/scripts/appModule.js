@@ -2,6 +2,8 @@
 'use strict';
 angular.module('hypercab', []);
 
+angular.module('hypercab', []).constant('hypercabApiUrl','../../hypercab-rest/');
+
 angular.module('hypercab').config(function ($routeProvider) {
     $routeProvider
         .when('/', {
