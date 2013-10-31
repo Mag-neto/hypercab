@@ -4,7 +4,7 @@ angular.module('hypercab').service('settingsService', function ($http) {
     var settings = {};
 
     function fetchSettings() {
-        $http.get('../hypercab-rest/settings')
+        $http.get('../../hypercab-rest/settings')
             .success(function (data) {
                 settings.settings = data;
                 console.log('Stored hyperpin settings');
@@ -20,7 +20,7 @@ angular.module('hypercab').service('settingsService', function ($http) {
     };
 
     this.saveSettings = function (settings) {
-        $http.put('../hypercab-rest/settings', settings)
+        $http.put('../../hypercab-rest/settings', settings)
             .success(function () {
                 console.log('Saved settings');
             });

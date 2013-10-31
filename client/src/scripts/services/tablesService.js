@@ -4,7 +4,7 @@ angular.module('hypercab').service('tablesService', function ($http) {
     var tableData = {}, selectedTable = {};
 
     function fetchTables() {
-        $http.get('../hypercab-rest/tables').success(function (data) {
+        $http.get('../../hypercab-rest/tables').success(function (data) {
             tableData.tables = data;
             console.log('Stored table data');
         });
@@ -24,7 +24,7 @@ angular.module('hypercab').service('tablesService', function ($http) {
 
     this.updateTable = function (description, table) {
         console.log('updating ' + description);
-        $http.put('../hypercab-rest/tables/' + description, table)
+        $http.put('../../hypercab-rest/tables/' + description, table)
             .success(function () {
                 console.log('updated table ' + table.description);
             })
@@ -34,11 +34,11 @@ angular.module('hypercab').service('tablesService', function ($http) {
     };
 
     this.createImageLink = function (table, type) {
-        return '../hypercab-rest/media/' + table.platform + '/' + table.description + '/' + type;
+        return '../../hypercab-rest/media/' + table.platform + '/' + table.description + '/' + type;
     };
 
     this.addTable = function (table) {
-        $http.post('../hypercab-rest/tables', table)
+        $http.post('../../hypercab-rest/tables', table)
             .success(function () {
                 console.log('added table ' + table.description);
             })
@@ -48,7 +48,7 @@ angular.module('hypercab').service('tablesService', function ($http) {
     };
 
     this.removeTable = function (table) {
-        $http.delete('../hypercab-rest/tables', table)
+        $http.delete('../../hypercab-rest/tables', table)
             .success(function () {
                 console.log('removed table ' + table.description);
             })
@@ -59,7 +59,7 @@ angular.module('hypercab').service('tablesService', function ($http) {
 
     this.save = function () {
         console.log('saving databases...');
-        $http.get('../hypercab-rest/tables/save').success(function () {
+        $http.get('../../hypercab-rest/tables/save').success(function () {
             console.log('saved databases.');
         });
     };

@@ -3,7 +3,7 @@ angular.module('hypercab').service('uploadService',function ($http) {
         this.uploadFile = function (table, mediatype, file, successCallback, errorCallback) {
             $http({
                 method: 'POST',
-                url: '../hypercab-rest/media/' + table.platform + '/' + table.description + '/' + mediatype,
+                url: '../../hypercab-rest/media/' + table.platform + '/' + table.description + '/' + mediatype,
                 headers: { 'Content-Type': false },
                 transformRequest: function (data) {
                     var formData = new FormData();
