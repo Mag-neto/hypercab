@@ -5,8 +5,8 @@ angular.module('hypercab').controller('TablesController', function ($scope, tabl
     $scope.selectedTable = tablesService.getSelectedTable();
 
     $scope.toggleActive = function (table) {
-        tablesService.updateTable(table.description, table);
         table.active = !table.active;
+        tablesService.updateTable(table.description, table);
     };
 
     $scope.displayImage = function (table, type) {
