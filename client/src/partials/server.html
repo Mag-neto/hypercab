@@ -1,0 +1,16 @@
+<div class="container">
+
+    <h3>Installed Hyperpin Modules:</h3>
+    <table class="table">
+        <tr data-ng-repeat="module in serverModules.data | orderBy:'name'">
+            <td>
+                <dl class="dl-horizontal">
+                    <dl>{{module.name}}</dl>
+                    <dl>{{module.moduleDescription}}</dl>
+                    <dt>{{module.moduleVersion}}</dt>
+                </dl>
+            </td>
+        </tr>
+    </table>
+
+</div>
