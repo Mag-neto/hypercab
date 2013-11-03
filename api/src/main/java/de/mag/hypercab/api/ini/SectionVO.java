@@ -1,4 +1,4 @@
-package de.mag.hypercab.app.hyperpin.settings;
+package de.mag.hypercab.api.ini;
 
 import java.util.ArrayList;
 import java.util.List;

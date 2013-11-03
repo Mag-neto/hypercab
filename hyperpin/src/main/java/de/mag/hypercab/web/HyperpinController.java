@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import de.mag.hypercab.api.ini.SectionVO;
 import de.mag.hypercab.app.hyperpin.settings.HyperpinSettings;
-import de.mag.hypercab.app.hyperpin.settings.SectionVO;
 
 @Controller
 @RequestMapping("/settings")

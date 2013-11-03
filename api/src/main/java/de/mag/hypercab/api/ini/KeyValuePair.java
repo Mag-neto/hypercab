@@ -1,4 +1,4 @@
-package de.mag.hypercab.app.hyperpin.settings;
+package de.mag.hypercab.api.ini;
 
 public class KeyValuePair {
 
@@ -28,6 +28,11 @@ public class KeyValuePair {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	@Override
+	public String toString() {
+		return "KVP [key=" + key + ", value=" + value + "]";
 	}
 
 }
