@@ -1,4 +1,4 @@
-package de.mag.hypercab.app.hyperpin;
+package de.mag.hypercab.app.hyperpin.config;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,5 +40,10 @@ public class Configuration {
 
 	public File getHyperpinPath() {
 		return new File(hyperPinBasePath);
+	}
+
+	public String getSetting(Section section, String key) {
+		SectionVO sectionVO = settings.getSection(section.getSectionName());
+		return sectionVO.getConfig(key);
 	}
 }

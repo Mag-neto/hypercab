@@ -24,4 +24,13 @@ public class SectionVO {
 		this.configs = configs;
 	}
 
+	public String getConfig(String key) {
+		for (KeyValuePair pair : configs) {
+			if (pair.getKey().equalsIgnoreCase(key)) {
+				return pair.getValue();
+			}
+		}
+		return null;
+	}
+
 }

@@ -6,7 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import de.mag.hypercab.AbstractIntegrationTest;
-import de.mag.hypercab.app.hyperpin.Configuration;
+import de.mag.hypercab.app.hyperpin.config.Configuration;
+import de.mag.hypercab.app.hyperpin.config.Section;
 
 public class ConfigurationTest extends AbstractIntegrationTest {
 
@@ -16,5 +17,12 @@ public class ConfigurationTest extends AbstractIntegrationTest {
 	@Test
 	public void settingsAreInitialized() {
 		Assert.assertEquals(configuration.getSettings().size(), 16);
+	}
+
+	@Test
+	public void singleSettingIsResolved() {
+		String setting = configuration.getSetting(Section.VISUAL_PINBALL, "Backglass_Image_Path");
+		Assert.assertNotNull(setting);
+		Assert.assertEquals(setting, "C:/HyperPin/Media/Visual Pinball/Backglass Images/");
 	}
 }

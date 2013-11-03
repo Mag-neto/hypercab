@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import de.mag.hypercab.api.Platform;
 import de.mag.hypercab.api.Table;
-import de.mag.hypercab.app.hyperpin.Configuration;
+import de.mag.hypercab.app.hyperpin.config.Configuration;
 
 @Component
 public class DatabaseManager {

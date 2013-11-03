@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
-import de.mag.hypercab.app.hyperpin.Configuration;
+import de.mag.hypercab.app.hyperpin.config.Configuration;
 
 @Service
 public class MediaService {
@@ -22,12 +22,16 @@ public class MediaService {
 	@Resource
 	private ImageConverter imageConverter;
 
+	@Resource
+	private MediaPathResolver mediaPathResolver;
+
 	public byte[] getImageData(String tableRef, MediaType type) {
-		return imageConverter.toByteArray(resolveResourceFile(tableRef, type));
+		return imageConverter.toByteArray(mediaPathResolver.resolveMediaPath(tableRef, type));
 	}
 
-	public void storeMediaFile(InputStream fileData, String tableRef, MediaType type) throws IOException {
-		File targetFile = resolveResourceFile(tableRef, type);
+	public void storeMediaFile(InputStream fileData, String tableRef, MediaType type)
+			throws IOException {
+		File targetFile = mediaPathResolver.resolveMediaPath(tableRef, type);
 		try (OutputStream out = new FileOutputStream(targetFile, false)) {
 			IOUtils.copy(fileData, out);
 		} finally {
@@ -36,11 +40,7 @@ public class MediaService {
 	}
 
 	public boolean mediaFileExists(String tableRef, MediaType type) {
-		return resolveResourceFile(tableRef, type).exists();
+		return mediaPathResolver.resolveMediaPath(tableRef, type).exists();
 	}
 
-	private File resolveResourceFile(String tableRef, MediaType type) {
-		// FIXME: Flyer Images are in subfolders (Front,Back,Inside1...)
-		return new File(configuration.getHyperpinPath(), type.mediaPath() + tableRef + type.extension());
-	}
 }
