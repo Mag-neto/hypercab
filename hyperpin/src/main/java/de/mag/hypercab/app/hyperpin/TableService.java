@@ -1,4 +1,4 @@
-package de.mag.hypercab.app.hyperpin.database;
+package de.mag.hypercab.app.hyperpin;
 
 import java.util.Collection;
 import java.util.Set;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import de.mag.hypercab.api.Table;
 import de.mag.hypercab.api.TableEnhancer;
 import de.mag.hypercab.app.ServerRegistry;
+import de.mag.hypercab.app.hyperpin.database.DatabaseManager;
 
 @Service
 public class TableService {

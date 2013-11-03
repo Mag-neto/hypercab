@@ -51,7 +51,7 @@ public class DatabaseManager {
 		}
 	}
 
-	Set<Table> getInstalledTables() {
+	public Set<Table> getInstalledTables() {
 		Set<Table> tables = new HashSet<>();
 		tables.addAll(vpActiveTables.values());
 		tables.addAll(vpInactiveTables.values());
@@ -60,14 +60,14 @@ public class DatabaseManager {
 		return tables;
 	}
 
-	void save() {
+	public void save() {
 		XmlDatabase.writeDb(new File(hyperpinRootPath, VP_DB_ACTIVE), vpActiveTables.values());
 		XmlDatabase.writeDb(new File(hyperpinRootPath, VP_DB_INACTIVE), vpInactiveTables.values());
 		XmlDatabase.writeDb(new File(hyperpinRootPath, FP_DB_ACTIVE), fpActiveTables.values());
 		XmlDatabase.writeDb(new File(hyperpinRootPath, FP_DB_INACTIVE), fpInactiveTables.values());
 	}
 
-	void addTable(Table table) {
+	public void addTable(Table table) {
 		switch (table.getPlatform()) {
 		case VISUAL_PINBALL:
 			if (table.isActive()) {
@@ -86,7 +86,7 @@ public class DatabaseManager {
 		}
 	}
 
-	void removeTable(Table table) {
+	public void removeTable(Table table) {
 		switch (table.getPlatform()) {
 		case VISUAL_PINBALL:
 			if (table.isActive()) {
@@ -140,7 +140,7 @@ public class DatabaseManager {
 		}
 	}
 
-	void updateTable(String description, Table table) {
+	public void updateTable(String description, Table table) {
 		Table tableToUpdate = findTable(description);
 
 		if (tableToUpdate.isActive() != table.isActive()) {

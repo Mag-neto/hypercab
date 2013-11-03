@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import de.mag.hypercab.api.Table;
-import de.mag.hypercab.app.hyperpin.database.TableService;
+import de.mag.hypercab.app.hyperpin.TableService;
 
 @Controller
 @RequestMapping("/tables")
