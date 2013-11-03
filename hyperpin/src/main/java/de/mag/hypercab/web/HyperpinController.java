@@ -14,26 +14,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.mag.hypercab.api.ini.SectionVO;
-import de.mag.hypercab.app.hyperpin.settings.HyperpinSettings;
+import de.mag.hypercab.app.hyperpin.Configuration;
 
 @Controller
 @RequestMapping("/settings")
 public class HyperpinController {
 
 	@Resource
-	private HyperpinSettings hyperpinSettings;
+	private Configuration configuration;
 
 	@ResponseBody
 	@RequestMapping("")
 	public List<SectionVO> getHyperpinConfig() {
-		return hyperpinSettings.getSettings();
+		return configuration.getSettings();
 
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public void storeConfig(@RequestBody SectionVO[] sections) throws IOException {
-		hyperpinSettings.saveSettings(Arrays.asList(sections));
+		configuration.saveSettings(Arrays.asList(sections));
 	}
 
 }
