@@ -34,20 +34,26 @@ public class TableControllerTest extends AbstractWebIntegrationTest {
 
 	@Test
 	public void deliversTables() throws Exception {
-		mvc.perform(get("/tables")).andExpect(status().isOk());
+		mvc.perform(
+				get("/tables"))
+				.andExpect(status().isOk());
 	}
 
 	@Test
 	public void savesTables() throws Exception {
-		mvc.perform(get("/tables/save")).andExpect(status().isOk());
+		mvc.perform(
+				put("/tables"))
+				.andExpect(status().isOk());
 	}
 
 	@Test
 	public void createsTable() throws Exception {
 		try (InputStream in = new FileInputStream("src/test/resources/table.json")) {
 			mvc.perform(
-					post("/tables").contentType(MediaType.APPLICATION_JSON).content(
-							new String(IOUtils.toByteArray(in)))).andExpect(status().isCreated());
+					post("/tables")
+							.contentType(MediaType.APPLICATION_JSON)
+							.content(IOUtils.toByteArray(in)))
+					.andExpect(status().isCreated());
 		}
 	}
 
@@ -55,8 +61,10 @@ public class TableControllerTest extends AbstractWebIntegrationTest {
 	public void updatesTable() throws Exception {
 		try (InputStream in = new FileInputStream("src/test/resources/modifytable.json")) {
 			mvc.perform(
-					put("/tables/Sorcerer (Williams 1985)").contentType(MediaType.APPLICATION_JSON).content(
-							new String(IOUtils.toByteArray(in)))).andExpect(status().isOk());
+					put("/tables/Sorcerer (Williams 1985)")
+							.contentType(MediaType.APPLICATION_JSON)
+							.content(IOUtils.toByteArray(in)))
+					.andExpect(status().isOk());
 		}
 	}
 }
