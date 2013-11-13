@@ -43,7 +43,7 @@ public class TableController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/save")
+	@RequestMapping(method = RequestMethod.PUT)
 	public void saveTables() {
 		tableService.save();
 	}
