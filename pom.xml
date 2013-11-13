@@ -39,6 +39,7 @@
 		<module>bootstrap</module>
 		<module>hyperpin</module>
 		<module>hyperpin-media</module>
+		<module>vpinmame</module>
 		<module>webapp</module>
 	</modules>
 

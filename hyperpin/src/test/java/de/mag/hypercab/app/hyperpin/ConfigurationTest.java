@@ -1,5 +1,7 @@
 package de.mag.hypercab.app.hyperpin;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 
 import org.testng.Assert;
@@ -23,6 +25,7 @@ public class ConfigurationTest extends AbstractIntegrationTest {
 	public void singleSettingIsResolved() {
 		String setting = configuration.getSetting(Section.VISUAL_PINBALL, "Backglass_Image_Path");
 		Assert.assertNotNull(setting);
-		Assert.assertEquals(setting, "C:/HyperPin/Media/Visual Pinball/Backglass Images/");
+		Assert.assertEquals(setting, "C:" + File.separator + "HyperPin" + File.separator + "Media" + File.separator
+				+ "Visual Pinball" + File.separator + "Backglass Images" + File.separator);
 	}
 }
