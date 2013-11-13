@@ -8,6 +8,8 @@ public enum MediaType {
 
 	VP_TABLE_VIDEO("Table_Video_Path", ".f4v", true),
 
+	VP_TABLE_FILE("Table_Path", ".vpt", true),
+
 	FP_BACKGLASS_IMAGE("Backglass_Image_Path", ".png", true),
 
 	FP_TABLE_IMAGE("Table_Image_Path", ".png", true),
