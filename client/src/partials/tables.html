@@ -1,8 +1,10 @@
 <div class="container">
     <h3>Installed Tables:</h3>
-    <input type="text" placeholder="filter" ng-model="searchTerm">
-    <a href="#addTable"><input type="button" class="btn btn-primary pull-right" value="Add Table"></a>
-    <input type="button" class="btn btn-primary pull-right" value="Save Databases" data-ng-click="save()">
+    <div class="row">
+        <input type="text" class="form-control col-md-6" placeholder="filter" ng-model="searchTerm">
+        <a href="#addTable"><input type="button" class="btn btn-primary btn-sm pull-right" value="Add Table"></a>
+        <input type="button" class="btn btn-primary btn-sm pull-right" value="Save Databases" data-ng-click="save()">
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -17,36 +19,36 @@
         <tr ng-repeat="table in tableData.tables | orderBy:'description' | filter:searchTerm">
             <td><a href="#tabledetail" data-ng-click="setSelectedTable(table)">{{table.description}}</a></td>
             <td>
-                <input ng-show="table.active" type="button" class="btn btn-success btn-mini" value="Deactivate"
+                <input ng-show="table.active" type="button" class="btn btn-success btn-xs" value="Deactivate"
                        data-ng-click="toggleActive(table)">
-                <input ng-show="!table.active" type="button" class="btn btn-inverse btn-mini" value="Activate"
+                <input ng-show="!table.active" type="button" class="btn btn-inverse btn-xs" value="Activate"
                        data-ng-click="toggleActive(table)">
             </td>
             <td>
                 <span ng-show="table.additionals.backglassImage == 'true'" class="badge badge-success"
                       data-ng-click="displayImage(table,'backglass')">
-                    <i class="icon-file icon-white"></i>
+                    <i class="glyphicon glyphicon-file"></i>
                 </span>
                 <span ng-show="table.additionals.backglassImage == 'false'" class="badge badge-warning"><i
-                        class="icon-upload icon-white"></i></span>
+                        class="glyphicon glyphicon-upload"></i></span>
             </td>
             <td>
                 <span ng-show="table.additionals.tableImage == 'true'" class="badge badge-success"
-                      data-ng-click="displayImage(table,'table')"><i class="icon-file icon-white"></i></span>
+                      data-ng-click="displayImage(table,'table')"><i class="glyphicon glyphicon-file"></i></span>
                 <span ng-show="table.additionals.tableImage == 'false'" class="badge badge-warning"><i
-                        class="icon-upload icon-white"></i></span>
+                        class="glyphicon glyphicon-upload"></i></span>
             </td>
             <td>
                 <span ng-show="table.additionals.wheelImage == 'true'" class="badge badge-success"><i
-                        class="icon-file icon-white" data-ng-click="displayImage(table,'wheel')"></i></span>
+                        class="glyphicon glyphicon-file" data-ng-click="displayImage(table,'wheel')"></i></span>
                 <span ng-show="table.additionals.wheelImage == 'false'" class="badge badge-warning"><i
-                        class="icon-upload icon-white"></i></span>
+                        class="glyphicon glyphicon-upload"></i></span>
             </td>
             <td>
                 <span ng-show="table.additionals.tableVideo == 'true'" class="badge badge-success"><i
-                        class="icon-file icon-white"></i></span>
+                        class="glyphicon glyphicon-file"></i></span>
                 <span ng-show="table.additionals.tableVideo == 'false'" class="badge badge-warning"><i
-                        class="icon-upload icon-white"></i></span>
+                        class="glyphicon glyphicon-upload"></i></span>
             </td>
         </tr>
     </table>

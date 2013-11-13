@@ -69,7 +69,7 @@ angular.module('hypercab').service('tablesService', function ($http,hypercabApiU
 
     this.save = function () {
         console.log('saving databases...');
-        $http.get(hypercabApiUrl+'tables/save').success(function () {
+        $http.put(hypercabApiUrl+'tables').success(function () {
             console.log('saved databases.');
         });
     };
