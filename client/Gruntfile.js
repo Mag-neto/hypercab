@@ -67,7 +67,8 @@ module.exports = function (grunt) {
                         },
                         styles:{
                             bundle:[
-                                '<%= buildConfig.src %>css/**/*.css'
+                                '<%= buildConfig.src %>css/**/*.css',
+                                '<%= buildConfig.src %>components/bootstrap/dist/css/bootstrap.css'
                             ]
                         }
                     }
