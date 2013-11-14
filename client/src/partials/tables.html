@@ -8,11 +8,12 @@
     <table class="table">
         <thead>
         <tr>
-            <td>Table</td>
+            <td>Game</td>
             <td>&nbsp;</td>
-            <td>Backglass</td>
-            <td>Table</td>
-            <td>Wheel</td>
+            <td>Tablefile</td>
+            <td>BackglassImg</td>
+            <td>TableImg</td>
+            <td>WheelImg</td>
             <td>Video</td>
         </tr>
         </thead>
@@ -23,6 +24,13 @@
                        data-ng-click="toggleActive(table)">
                 <input ng-show="!table.active" type="button" class="btn btn-inverse btn-xs" value="Activate"
                        data-ng-click="toggleActive(table)">
+            </td>
+            <td>
+                <span ng-show="table.additionals.tableFile == 'true'" class="badge badge-success">
+                    <i class="glyphicon glyphicon-check"></i>
+                </span>
+                <span ng-show="table.additionals.tableFile == 'false'" class="badge badge-warning"><i
+                        class="glyphicon glyphicon-exclamation-sign"></i></span>
             </td>
             <td>
                 <span ng-show="table.additionals.backglassImage == 'true'" class="badge badge-success"
