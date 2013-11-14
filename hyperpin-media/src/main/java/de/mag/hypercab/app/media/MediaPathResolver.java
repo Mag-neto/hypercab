@@ -22,13 +22,15 @@ public class MediaPathResolver {
 			if (type.isResolveFromConfig()) {
 				path = configuration.getSetting(Section.VISUAL_PINBALL, type.mediaPath());
 			} else {
-				path = type.mediaPath();
+				path = configuration.getHyperpinPath().getAbsolutePath() + File.separator
+						+ type.mediaPath();
 			}
 		} else if (type.isFPMediaType()) {
 			if (type.isResolveFromConfig()) {
 				path = configuration.getSetting(Section.FUTURE_PINBALL, type.mediaPath());
 			} else {
-				path = type.mediaPath();
+				path = configuration.getHyperpinPath().getAbsolutePath() + File.separator
+						+ type.mediaPath();
 			}
 		}
 
