@@ -32,10 +32,15 @@ public class MediaService {
 	public void storeMediaFile(InputStream fileData, String tableRef, MediaType type)
 			throws IOException {
 		File targetFile = mediaPathResolver.resolveMediaPath(tableRef, type);
+		copySourceStreamToTargetFile(fileData, targetFile);
+	}
+
+	private void copySourceStreamToTargetFile(InputStream sourceStream, File targetFile)
+			throws IOException {
 		try (OutputStream out = new FileOutputStream(targetFile, false)) {
-			IOUtils.copy(fileData, out);
+			IOUtils.copyLarge(sourceStream, out);
 		} finally {
-			IOUtils.closeQuietly(fileData);
+			IOUtils.closeQuietly(sourceStream);
 		}
 	}
 

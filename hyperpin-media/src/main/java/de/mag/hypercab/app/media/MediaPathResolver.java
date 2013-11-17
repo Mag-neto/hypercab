@@ -16,25 +16,25 @@ public class MediaPathResolver {
 	private Configuration configuration;
 
 	File resolveMediaPath(String tableRef, MediaType type) {
-		String path = "";
-
+		String path = null;
 		if (type.isVPMediaType()) {
-			if (type.isResolveFromConfig()) {
-				path = configuration.getSetting(Section.VISUAL_PINBALL, type.mediaPath());
-			} else {
-				path = configuration.getHyperpinPath().getAbsolutePath() + File.separator
-						+ type.mediaPath();
-			}
+			path = resolvePath(Section.VISUAL_PINBALL, type);
 		} else if (type.isFPMediaType()) {
-			if (type.isResolveFromConfig()) {
-				path = configuration.getSetting(Section.FUTURE_PINBALL, type.mediaPath());
-			} else {
-				path = configuration.getHyperpinPath().getAbsolutePath() + File.separator
-						+ type.mediaPath();
-			}
+			path = resolvePath(Section.FUTURE_PINBALL, type);
 		}
 
 		return new File(path + tableRef + type.extension());
+	}
+
+	private String resolvePath(Section section, MediaType type) {
+		String path = "";
+		if (type.isResolveFromConfig()) {
+			path = configuration.getSetting(section, type.mediaPath());
+		} else {
+			path = configuration.getHyperpinPath().getAbsolutePath() + File.separator
+					+ type.mediaPath();
+		}
+		return path;
 	}
 
 }

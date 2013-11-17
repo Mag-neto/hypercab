@@ -41,7 +41,6 @@ public class WebApplicationConfig extends WebMvcConfigurerAdapter {
 
 		MappingJacksonHttpMessageConverter jacksonConverter = new MappingJacksonHttpMessageConverter();
 		converters.add(jacksonConverter);
-		super.configureMessageConverters(converters);
 	}
 
 }
