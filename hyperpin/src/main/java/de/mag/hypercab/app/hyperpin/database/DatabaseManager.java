@@ -2,7 +2,6 @@ package de.mag.hypercab.app.hyperpin.database;
 
 import java.io.File;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -24,135 +23,76 @@ public class DatabaseManager {
 
 	@Resource
 	private Configuration configuration;
-
-	private Map<String, Table> vpActiveTables = null;
-	private Map<String, Table> vpInactiveTables = null;
-	private Map<String, Table> fpActiveTables = null;
-	private Map<String, Table> fpInactiveTables = null;
 	private File hyperpinRootPath;
+	private Set<DatabaseHandler> databaseHandlers;
 
 	@PostConstruct
 	public void init() {
 		this.hyperpinRootPath = configuration.getHyperpinPath();
-		this.vpActiveTables = XmlDatabase.readFromFile(new File(hyperpinRootPath, VP_DB_ACTIVE));
-		addPlatformAndStatus(vpActiveTables, Platform.VISUAL_PINBALL, true);
-		this.vpInactiveTables = XmlDatabase.readFromFile(new File(hyperpinRootPath, VP_DB_INACTIVE));
-		addPlatformAndStatus(vpInactiveTables, Platform.VISUAL_PINBALL, false);
-		this.fpActiveTables = XmlDatabase.readFromFile(new File(hyperpinRootPath, FP_DB_ACTIVE));
-		addPlatformAndStatus(fpActiveTables, Platform.FUTURE_PINBALL, true);
-		this.fpInactiveTables = XmlDatabase.readFromFile(new File(hyperpinRootPath, FP_DB_INACTIVE));
-		addPlatformAndStatus(fpInactiveTables, Platform.FUTURE_PINBALL, false);
+		initDatabaseHandlers();
 	}
 
-	private void addPlatformAndStatus(Map<String, Table> tables, Platform platform, boolean isActive) {
-		for (Table t : tables.values()) {
-			t.setPlatform(platform);
-			t.setActive(isActive);
-		}
+	private void initDatabaseHandlers() {
+		databaseHandlers = new HashSet<>();
+		databaseHandlers
+				.add(
+				new DatabaseHandler(Platform.VISUAL_PINBALL, new File(hyperpinRootPath, VP_DB_ACTIVE), true));
+		databaseHandlers.add(
+				new DatabaseHandler(Platform.VISUAL_PINBALL, new File(hyperpinRootPath, VP_DB_INACTIVE),
+						false));
+		databaseHandlers
+				.add(
+				new DatabaseHandler(Platform.FUTURE_PINBALL, new File(hyperpinRootPath, FP_DB_ACTIVE), true));
+		databaseHandlers.add(
+				new DatabaseHandler(Platform.FUTURE_PINBALL, new File(hyperpinRootPath, FP_DB_INACTIVE),
+						false));
 	}
 
 	public Set<Table> getInstalledTables() {
 		Set<Table> tables = new HashSet<>();
-		tables.addAll(vpActiveTables.values());
-		tables.addAll(vpInactiveTables.values());
-		tables.addAll(fpActiveTables.values());
-		tables.addAll(fpInactiveTables.values());
+		for (DatabaseHandler dbHandler : databaseHandlers) {
+			tables.addAll(dbHandler.getTables());
+		}
 		return tables;
 	}
 
 	public void save() {
-		XmlDatabase.storeToFile(new File(hyperpinRootPath, VP_DB_ACTIVE), vpActiveTables.values());
-		XmlDatabase.storeToFile(new File(hyperpinRootPath, VP_DB_INACTIVE), vpInactiveTables.values());
-		XmlDatabase.storeToFile(new File(hyperpinRootPath, FP_DB_ACTIVE), fpActiveTables.values());
-		XmlDatabase.storeToFile(new File(hyperpinRootPath, FP_DB_INACTIVE), fpInactiveTables.values());
+		for (DatabaseHandler dbHandler : databaseHandlers) {
+			dbHandler.saveDatabase();
+		}
 	}
 
 	public void addTable(Table table) {
-		switch (table.getPlatform()) {
-		case VISUAL_PINBALL:
-			if (table.isActive()) {
-				vpActiveTables.put(table.getDescription(), table);
-			} else {
-				vpInactiveTables.put(table.getDescription(), table);
+		DatabaseHandler databaseHandler = findMatchingHandler(table);
+		databaseHandler.addTable(table);
+	}
+
+	private DatabaseHandler findMatchingHandler(Table table) {
+		DatabaseHandler handler = null;
+		for (DatabaseHandler dbHandler : databaseHandlers) {
+			if (dbHandler.getPlatform().equals(table.getPlatform())) {
+				if (dbHandler.handlesActiveTables() == table.isActive()) {
+					handler = dbHandler;
+				}
 			}
-			break;
-		case FUTURE_PINBALL:
-			if (table.isActive()) {
-				fpActiveTables.put(table.getDescription(), table);
-			} else {
-				fpInactiveTables.put(table.getDescription(), table);
-			}
-			break;
 		}
+		if (handler == null) {
+			throw new DatabaseException("No matching DatabaseHandler for table " + table);
+		}
+		return handler;
 	}
 
 	public void removeTable(Table table) {
-		switch (table.getPlatform()) {
-		case VISUAL_PINBALL:
-			if (table.isActive()) {
-				vpActiveTables.remove(table.getDescription());
-			} else {
-				vpInactiveTables.remove(table.getDescription());
-			}
-			break;
-		case FUTURE_PINBALL:
-			if (table.isActive()) {
-				fpActiveTables.remove(table.getDescription());
-			} else {
-				fpInactiveTables.remove(table.getDescription());
-			}
-			break;
-		}
-	}
-
-	private void toggleActive(Table table) {
-		switch (table.getPlatform()) {
-		case VISUAL_PINBALL:
-			if (!table.isActive()) {
-				synchronized (this) {
-					table.setActive(true);
-					vpInactiveTables.remove(table.getDescription());
-					vpActiveTables.put(table.getDescription(), table);
-				}
-			} else {
-				synchronized (this) {
-					table.setActive(false);
-					vpActiveTables.remove(table.getDescription());
-					vpInactiveTables.put(table.getDescription(), table);
-				}
-			}
-			break;
-		case FUTURE_PINBALL:
-			if (!table.isActive()) {
-				synchronized (this) {
-					table.setActive(true);
-					fpInactiveTables.remove(table.getDescription());
-					fpActiveTables.put(table.getDescription(), table);
-				}
-			} else {
-				synchronized (this) {
-					table.setActive(false);
-					fpActiveTables.remove(table.getDescription());
-					fpInactiveTables.put(table.getDescription(), table);
-				}
-			}
-			break;
-		}
+		DatabaseHandler databaseHandler = findMatchingHandler(table);
+		databaseHandler.removeTable(table);
 	}
 
 	public void updateTable(String description, Table table) {
 		Table tableToUpdate = findTable(description);
-
-		if (tableToUpdate.isActive() != table.isActive()) {
-			toggleActive(tableToUpdate);
-		}
-		tableToUpdate.setActive(table.isActive());
-		tableToUpdate.setDescription(table.getDescription());
-		tableToUpdate.setFileName(table.getFileName());
-		tableToUpdate.setMachineType(table.getMachineType());
-		tableToUpdate.setManufacturer(table.getManufacturer());
-		tableToUpdate.setPlatform(table.getPlatform());
-		tableToUpdate.setYear(table.getYear());
+		DatabaseHandler databaseHandler = findMatchingHandler(tableToUpdate);
+		databaseHandler.removeTable(tableToUpdate);
+		databaseHandler = findMatchingHandler(table);
+		databaseHandler.addTable(table);
 	}
 
 	Table findTable(String description) {
