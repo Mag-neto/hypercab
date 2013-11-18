@@ -34,13 +34,13 @@ public class DatabaseManager {
 	@PostConstruct
 	public void init() {
 		this.hyperpinRootPath = configuration.getHyperpinPath();
-		this.vpActiveTables = XmlDatabase.readDb(new File(hyperpinRootPath, VP_DB_ACTIVE));
+		this.vpActiveTables = XmlDatabase.readFromFile(new File(hyperpinRootPath, VP_DB_ACTIVE));
 		addPlatformAndStatus(vpActiveTables, Platform.VISUAL_PINBALL, true);
-		this.vpInactiveTables = XmlDatabase.readDb(new File(hyperpinRootPath, VP_DB_INACTIVE));
+		this.vpInactiveTables = XmlDatabase.readFromFile(new File(hyperpinRootPath, VP_DB_INACTIVE));
 		addPlatformAndStatus(vpInactiveTables, Platform.VISUAL_PINBALL, false);
-		this.fpActiveTables = XmlDatabase.readDb(new File(hyperpinRootPath, FP_DB_ACTIVE));
+		this.fpActiveTables = XmlDatabase.readFromFile(new File(hyperpinRootPath, FP_DB_ACTIVE));
 		addPlatformAndStatus(fpActiveTables, Platform.FUTURE_PINBALL, true);
-		this.fpInactiveTables = XmlDatabase.readDb(new File(hyperpinRootPath, FP_DB_INACTIVE));
+		this.fpInactiveTables = XmlDatabase.readFromFile(new File(hyperpinRootPath, FP_DB_INACTIVE));
 		addPlatformAndStatus(fpInactiveTables, Platform.FUTURE_PINBALL, false);
 	}
 
@@ -61,10 +61,10 @@ public class DatabaseManager {
 	}
 
 	public void save() {
-		XmlDatabase.writeDb(new File(hyperpinRootPath, VP_DB_ACTIVE), vpActiveTables.values());
-		XmlDatabase.writeDb(new File(hyperpinRootPath, VP_DB_INACTIVE), vpInactiveTables.values());
-		XmlDatabase.writeDb(new File(hyperpinRootPath, FP_DB_ACTIVE), fpActiveTables.values());
-		XmlDatabase.writeDb(new File(hyperpinRootPath, FP_DB_INACTIVE), fpInactiveTables.values());
+		XmlDatabase.storeToFile(new File(hyperpinRootPath, VP_DB_ACTIVE), vpActiveTables.values());
+		XmlDatabase.storeToFile(new File(hyperpinRootPath, VP_DB_INACTIVE), vpInactiveTables.values());
+		XmlDatabase.storeToFile(new File(hyperpinRootPath, FP_DB_ACTIVE), fpActiveTables.values());
+		XmlDatabase.storeToFile(new File(hyperpinRootPath, FP_DB_INACTIVE), fpInactiveTables.values());
 	}
 
 	public void addTable(Table table) {

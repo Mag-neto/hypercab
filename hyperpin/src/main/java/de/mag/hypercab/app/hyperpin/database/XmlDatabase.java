@@ -20,63 +20,77 @@ import de.mag.hypercab.api.Table;
 
 public class XmlDatabase {
 
-	private static final String TYPE_TAG = "type";
-	private static final String YEAR_TAG = "year";
-	private static final String MANUFACTURER_TAG = "manufacturer";
-	private static final String DESCRIPTION_TAG = "description";
-	private static final String NAME_ATTRIBUTE = "name";
 	private static final String GAME_TAG = "game";
+	private static final String NAME_ATTRIBUTE = "name";
+	private static final String DESCRIPTION_TAG = "description";
+	private static final String MANUFACTURER_TAG = "manufacturer";
+	private static final String YEAR_TAG = "year";
+	private static final String TYPE_TAG = "type";
 
-	static Map<String, Table> readDb(File dbFile) {
-		Document document;
+	static Map<String, Table> readFromFile(File dbFile) {
+		Document document = loadXmlFile(dbFile);
+		Map<String, Table> tables = new TreeMap<String, Table>();
+		NodeList tableNodes = document.getElementsByTagName(GAME_TAG);
+		for (int i = 0; i < tableNodes.getLength(); i++) {
+			Table table = createTableFromXmlNode(tableNodes.item(i));
+			tables.put(table.getDescription(), table);
+		}
+		return tables;
+	}
+
+	private static Document loadXmlFile(File dbFile) {
 		try {
-			document = readXmlDocument(dbFile);
+			if (!dbFile.exists()) {
+				createEmptyDbFile(dbFile);
+			}
+			return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(dbFile);
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			throw new DatabaseException("Error reading database file " + dbFile.getName(), e);
 		}
-		Map<String, Table> tableList = new TreeMap<String, Table>();
-		NodeList gamesNodes = document.getElementsByTagName(GAME_TAG);
-		for (int i = 0; i < gamesNodes.getLength(); i++) {
-			NodeList childNodes = gamesNodes.item(i).getChildNodes();
-			String gameName = gamesNodes.item(i).getAttributes().getNamedItem(NAME_ATTRIBUTE)
-					.getTextContent();
-			Table table = new Table();
-			table.setFileName(gameName);
-			for (int j = 0; j < childNodes.getLength(); j++) {
-				Node item = childNodes.item(j).getNextSibling();
-				if (item != null) {
-					if (item.getNodeName().equals(DESCRIPTION_TAG)) {
-						table.setDescription(item.getTextContent());
-					} else if (item.getNodeName().equals(MANUFACTURER_TAG)) {
-						table.setManufacturer(item.getTextContent());
-					} else if (item.getNodeName().equals(YEAR_TAG)) {
-						table.setYear(item.getTextContent());
-					} else if (item.getNodeName().equals(TYPE_TAG)) {
-						table.setMachineType(item.getTextContent());
-					}
-				}
-			}
-			tableList.put(table.getDescription(), table);
-		}
-		return tableList;
-	}
-
-	private static Document readXmlDocument(File dbFile) throws SAXException, IOException,
-			ParserConfigurationException {
-		if (!dbFile.exists()) {
-			createEmptyDbFile(dbFile);
-		}
-		return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(dbFile);
 	}
 
 	private static void createEmptyDbFile(File dbFile) throws IOException {
 		try (OutputStream outStream = new FileOutputStream(dbFile)) {
-			outStream.write("<menu>\n</menu>\n".getBytes("UTF-8"));
+			outStream.write("<menu></menu>".getBytes("UTF-8"));
 			outStream.flush();
 		}
 	}
 
-	static void writeDb(File dbFile, Collection<Table> tables) {
+	private static Table createTableFromXmlNode(Node tableNode) {
+		Table table = new Table();
+		table.setFileName(getTableNameFromNode(tableNode));
+		NodeList attributeNodes = tableNode.getChildNodes();
+		for (int j = 0; j < attributeNodes.getLength(); j++) {
+			Node tableAttribute = attributeNodes.item(j).getNextSibling();
+			setAsTableAttribute(tableAttribute, table);
+		}
+		return table;
+	}
+
+	private static String getTableNameFromNode(Node node) {
+		return node.getAttributes().getNamedItem(NAME_ATTRIBUTE).getTextContent();
+	}
+
+	private static void setAsTableAttribute(Node attribute, Table table) {
+		if (attribute != null) {
+			if (attribute.getNodeName().equals(DESCRIPTION_TAG)) {
+				table.setDescription(attribute.getTextContent());
+			} else if (attribute.getNodeName().equals(MANUFACTURER_TAG)) {
+				table.setManufacturer(attribute.getTextContent());
+			} else if (attribute.getNodeName().equals(YEAR_TAG)) {
+				table.setYear(attribute.getTextContent());
+			} else if (attribute.getNodeName().equals(TYPE_TAG)) {
+				table.setMachineType(attribute.getTextContent());
+			}
+		}
+	}
+
+	static void storeToFile(File dbFile, Collection<Table> tables) {
+		storeTablesToNewFile(dbFile, tables);
+		renameAndDeleteOldFile(dbFile);
+	}
+
+	private static void storeTablesToNewFile(File dbFile, Collection<Table> tables) {
 		try (OutputStream outStream = new FileOutputStream(dbFile.getAbsolutePath() + ".new");) {
 			outStream.write("<menu>\n".getBytes("UTF-8"));
 			for (Table table : tables) {
@@ -87,6 +101,9 @@ public class XmlDatabase {
 		} catch (Exception e) {
 			throw new DatabaseException("Error writing database " + dbFile.getName(), e);
 		}
+	}
+
+	private static void renameAndDeleteOldFile(File dbFile) {
 		try {
 			File lastFile = new File(dbFile.getAbsolutePath() + ".last");
 			dbFile.renameTo(lastFile);
@@ -99,13 +116,25 @@ public class XmlDatabase {
 
 	private static String toXmlString(Table table) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("\n<game name=\"").append(table.getFileName()).append("\">")
-				.append("\n<description>").append(table.getDescription()).append("</description>")
-				.append("\n<manufacturer>").append(table.getManufacturer()).append("</manufacturer>")
-				.append("\n<year>").append(table.getYear()).append("</year>").append("\n<type>")
-				.append(table.getMachineType()).append("</type>");
-		sb.append("\n</game>");
+		sb.append(buildStartGameTag(table.getFileName()))
+				.append(buildAttributeTag(DESCRIPTION_TAG, table.getDescription()))
+				.append(buildAttributeTag(MANUFACTURER_TAG, table.getManufacturer()))
+				.append(buildAttributeTag(YEAR_TAG, table.getYear()))
+				.append(buildAttributeTag(TYPE_TAG, table.getMachineType()));
+		sb.append(buildEndGameTag());
 		return sb.toString();
+	}
+
+	private static String buildStartGameTag(String tableFileName) {
+		return "\n<game name=\"" + tableFileName + "\">";
+	}
+
+	private static String buildAttributeTag(String attribute, String value) {
+		return "\n<" + attribute + ">" + value + "</" + attribute + ">";
+	}
+
+	private static String buildEndGameTag() {
+		return "\n</game>";
 	}
 
 }
