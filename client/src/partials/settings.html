@@ -5,8 +5,9 @@
     <h3>Hyperpin settings:</h3>
 
     <p>Configure your 'Settings.ini' file here.</p>
+    <input type="text" class="form-control col-md-6 col-lg-5" placeholder="Filter categories" ng-model="searchTerm">
     <table class="table">
-        <tr data-ng-repeat="section in settings.settings | orderBy:'name'">
+        <tr data-ng-repeat="section in settings.settings | orderBy:'name' | filter:searchTerm">
             <td>{{section.name}}</td>
             <td>
                 <dl class="dl-horizontal">
