@@ -25,7 +25,9 @@ public class ConfigurationTest extends AbstractIntegrationTest {
 	public void singleSettingIsResolved() {
 		String setting = configuration.getSetting(Section.VISUAL_PINBALL, "Backglass_Image_Path");
 		Assert.assertNotNull(setting);
-		Assert.assertEquals(setting, "C:" + File.separator + "HyperPin" + File.separator + "Media" + File.separator
+		Assert.assertEquals(setting, "C:" + File.separator + "HyperPin" + File.separator + "Media"
+				+ File.separator
 				+ "Visual Pinball" + File.separator + "Backglass Images" + File.separator);
 	}
+
 }

@@ -1,5 +1,6 @@
 package de.mag.hypercab.api.ini;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.testng.Assert;
@@ -12,7 +13,7 @@ public class IniFileTest {
 
 	@Test
 	public void initializesRegularIniFile() throws IOException {
-		regularIniFile = IniFileFactory.createIniFile("target/test-classes/Settings.ini",
+		regularIniFile = IniFileFactory.createIniFile(new File("target/test-classes/Settings.ini"),
 				IniFileType.INI);
 		Assert.assertEquals(regularIniFile.getSections().size(), 16);
 	}
@@ -20,7 +21,7 @@ public class IniFileTest {
 	@Test
 	public void initializesRegistryIniFile() throws IOException {
 		registryFile = IniFileFactory
-				.createIniFile("target/test-classes/vpinmame.reg", IniFileType.REG);
+				.createIniFile(new File("target/test-classes/vpinmame.reg"), IniFileType.REG);
 		Assert.assertEquals(registryFile.getSections().size(), 52);
 	}
 

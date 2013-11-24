@@ -20,18 +20,26 @@ public class Configuration {
 	private static final String SETTINGS_SUBPATH = "Settings/Settings.ini";
 
 	@Value("${hyperpin.base.path}")
-	private String hyperPinBasePath;
+	private File hyperPinBasePath;
+
+	@Value("${hypercab.temp.path}")
+	private File hyperCabTempPath;
 
 	private IniFile settings;
 
 	@PostConstruct
 	public void init() throws IOException {
 		File settingsFile = new File(hyperPinBasePath, SETTINGS_SUBPATH);
-		this.settings = IniFileFactory.createIniFile(settingsFile.getAbsolutePath(), IniFileType.INI);
+		this.settings = IniFileFactory.createIniFile(settingsFile, IniFileType.INI);
 	}
 
 	public List<SectionVO> getSettings() {
 		return settings.getSections();
+	}
+
+	public String getSetting(Section section, String key) {
+		SectionVO sectionVO = settings.getSection(section.getSectionName());
+		return sectionVO.getConfig(key);
 	}
 
 	public void saveSettings(List<SectionVO> configs) throws IOException {
@@ -39,11 +47,10 @@ public class Configuration {
 	}
 
 	public File getHyperpinPath() {
-		return new File(hyperPinBasePath);
+		return hyperPinBasePath;
 	}
 
-	public String getSetting(Section section, String key) {
-		SectionVO sectionVO = settings.getSection(section.getSectionName());
-		return sectionVO.getConfig(key);
+	public File getHyperCabTempPath() {
+		return hyperCabTempPath;
 	}
 }

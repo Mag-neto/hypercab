@@ -5,12 +5,12 @@ import java.io.IOException;
 
 public class IniFileFactory {
 
-	public static IniFile createIniFile(String fileRef, IniFileType type) throws IOException {
+	public static IniFile createIniFile(File sourceFile, IniFileType type) throws IOException {
 		switch (type) {
 		case INI:
-			return new RegularIniFile(new File(fileRef));
+			return new RegularIniFile(sourceFile);
 		case REG:
-			return new RegistryFile(new File(fileRef));
+			return new RegistryFile(sourceFile);
 		default:
 			throw new IllegalArgumentException("No such IniFile type " + type);
 		}
