@@ -25,6 +25,9 @@ public class Configuration {
 	@Value("${hypercab.temp.path}")
 	private File hyperCabTempPath;
 
+	@Value("${vpinmame.base.path}")
+	private File vpinmameBasePath;
+
 	private IniFile settings;
 
 	@PostConstruct
@@ -52,5 +55,9 @@ public class Configuration {
 
 	public File getHyperCabTempPath() {
 		return hyperCabTempPath;
+	}
+
+	public File getVpinmamePath() {
+		return vpinmameBasePath;
 	}
 }

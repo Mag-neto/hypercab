@@ -49,6 +49,7 @@
 			<properties>
 				<hyperpin.base.path>/Users/marco/HyperPin</hyperpin.base.path>
 				<hypercab.temp.path>/Users/marco/HyperPin/hypercab-temp</hypercab.temp.path>
+				<vpinmame.base.path>/Users/marco/HyperPin/VisualPinball/VPinMame</vpinmame.base.path>
 			</properties>
 		</profile>
 		<profile>
@@ -56,6 +57,7 @@
 			<properties>
 				<hyperpin.base.path>C:/HyperPin</hyperpin.base.path>
 				<hypercab.temp.path>C:/HyperPin/hypercab-temp</hypercab.temp.path>
+				<vpinmame.base.path>C:/HyperPin/VisualPinball/VPinMame</vpinmame.base.path>
 			</properties>
 		</profile>
 		<profile>
@@ -63,6 +65,7 @@
 			<properties>
 				<hyperpin.base.path>${project.build.directory}/test-classes/HyperPin</hyperpin.base.path>
 				<hypercab.temp.path>${project.build.directory}/test-classes/HyperPin/hypercab-temp</hypercab.temp.path>
+				<vpinmame.base.path>${project.build.directory}/test-classes/VPinMame</vpinmame.base.path>
 			</properties>
 		</profile>
 	</profiles>
