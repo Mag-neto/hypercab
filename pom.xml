@@ -215,6 +215,11 @@
 				<artifactId>hypercab-hyperpin-media</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>de.mag.hypercab</groupId>
+				<artifactId>hypercab-vpinmame</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

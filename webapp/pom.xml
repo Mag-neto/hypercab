@@ -26,6 +26,10 @@
 			<groupId>de.mag.hypercab</groupId>
 			<artifactId>hypercab-hyperpin-media</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>de.mag.hypercab</groupId>
+			<artifactId>hypercab-vpinmame</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
