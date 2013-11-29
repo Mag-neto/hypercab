@@ -33,7 +33,11 @@ public class FileSystemService {
 	}
 
 	public List<String> getRomList() {
-		return Arrays.asList(vpinmameRomPath.list());
+		String[] roms = vpinmameRomPath.list();
+		if (roms == null) {
+			roms = new String[0];
+		}
+		return Arrays.asList(roms);
 	}
 
 	public void writeRomFile(InputStream fileStream, String romName) throws IOException {
@@ -51,5 +55,4 @@ public class FileSystemService {
 		}
 		FileUtils.deleteQuietly(fileToDelete);
 	}
-
 }
