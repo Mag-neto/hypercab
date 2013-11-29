@@ -25,6 +25,9 @@ public class FileSystemService {
 	@Resource
 	private Configuration configuration;
 
+	@Resource
+	private RomFilenameFilter romFilenameFilter;
+
 	private File vpinmameRomPath;
 
 	@PostConstruct
@@ -33,7 +36,7 @@ public class FileSystemService {
 	}
 
 	public List<String> getRomList() {
-		String[] roms = vpinmameRomPath.list();
+		String[] roms = vpinmameRomPath.list(romFilenameFilter);
 		if (roms == null) {
 			roms = new String[0];
 		}
