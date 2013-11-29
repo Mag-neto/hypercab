@@ -19,7 +19,14 @@ public class RegistryServiceTest extends AbstractIntegrationTest {
 	public void registryFileIsLoaded() {
 		List<SectionVO> romSettings = registryService.getRomSettings();
 		Assert.assertNotNull(romSettings);
-		Assert.assertEquals(romSettings.size(), 53);
+		Assert.assertEquals(romSettings.size(), 52);
+	}
+
+	@Test
+	public void getDefaultSettings() {
+		SectionVO romSettings = registryService.getRomSettings("default");
+		Assert.assertNotNull(romSettings);
+		Assert.assertEquals(romSettings.getConfigs().size(), 17);
 	}
 
 }

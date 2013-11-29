@@ -56,6 +56,10 @@ public class RegistryService {
 		return this.registryFile.getSections();
 	}
 
+	public SectionVO getRomSettings(String romName) {
+		return this.registryFile.getSectionEndingWith(romName);
+	}
+
 	public void writeRegistry() {
 		if (OSUtils.isWindows()) {
 			RegistryUtils.importRegistryTree(registrySourceFile);
