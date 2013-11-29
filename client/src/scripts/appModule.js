@@ -29,6 +29,10 @@ angular.module('hypercab').config(function ($routeProvider) {
             templateUrl: 'partials/addTable.html',
             controller: 'TablesController'
         })
+        .when('/roms', {
+            templateUrl: 'partials/roms.html',
+            controller: 'VPinMameController'
+        })
         .otherwise({
             redirectTo: '/'
         });
