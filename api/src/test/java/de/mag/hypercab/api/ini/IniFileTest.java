@@ -22,7 +22,7 @@ public class IniFileTest {
 	public void initializesRegistryIniFile() throws IOException {
 		registryFile = IniFileFactory
 				.createIniFile(new File("target/test-classes/vpinmame.reg"), IniFileType.REG);
-		Assert.assertEquals(registryFile.getSections().size(), 52);
+		Assert.assertEquals(registryFile.getSections().size(), 51);
 	}
 
 	@Test(dependsOnMethods = { "initializesRegistryIniFile" })

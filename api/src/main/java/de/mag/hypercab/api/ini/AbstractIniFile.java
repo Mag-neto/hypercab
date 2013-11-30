@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.ini4j.Ini;
+import org.ini4j.BasicProfile;
 import org.ini4j.Profile.Section;
 
-public abstract class AbstractIniFile implements IniFile {
+public abstract class AbstractIniFile<E extends BasicProfile> implements IniFile {
 
-	protected Ini iniFile;
+	protected E iniFile;
 
 	AbstractIniFile(File iniFile) throws IOException {
 		this.iniFile = createIniFile(iniFile);
 	}
 
-	protected abstract Ini createIniFile(File iniFile2) throws IOException;
+	protected abstract E createIniFile(File iniFile2) throws IOException;
 
 	@Override
 	public List<SectionVO> getSections() {
@@ -47,14 +47,9 @@ public abstract class AbstractIniFile implements IniFile {
 	}
 
 	@Override
-	public void saveSections(List<SectionVO> sections) throws IOException {
-		for (SectionVO section : sections) {
-			writeSection(section);
-		}
-		iniFile.store();
-	}
+	public abstract void saveSections(List<SectionVO> sections) throws IOException;
 
-	private void writeSection(SectionVO section) {
+	protected void writeSection(SectionVO section) {
 		Section currentSection = iniFile.get(section.getName());
 		for (KeyValuePair config : section.getConfigs()) {
 			currentSection.put(config.getKey(), config.getValue());
@@ -80,9 +75,6 @@ public abstract class AbstractIniFile implements IniFile {
 	}
 
 	@Override
-	public void saveSection(SectionVO section) throws IOException {
-		writeSection(section);
-		iniFile.store();
-	}
+	public abstract void saveSection(SectionVO section) throws IOException;
 
 }
