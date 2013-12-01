@@ -33,4 +33,20 @@ public class SectionVO {
 		return null;
 	}
 
+	public void setConfig(String key, String value) {
+		KeyValuePair config = null;
+		for (KeyValuePair pair : configs) {
+			if (pair.getKey().equalsIgnoreCase(key)) {
+				config = pair;
+				break;
+			}
+		}
+		if (config == null) {
+			config = new KeyValuePair();
+			config.setKey(key);
+			configs.add(config);
+		}
+		config.setValue(value);
+	}
+
 }

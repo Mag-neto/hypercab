@@ -60,7 +60,8 @@ public class RegistryService {
 		return this.registryFile.getSectionEndingWith(romName);
 	}
 
-	public void writeRegistry() {
+	public void writeRegistry() throws IOException {
+		registryFile.saveSections(registryFile.getSections());
 		if (OSUtils.isWindows()) {
 			RegistryUtils.importRegistryTree(registrySourceFile);
 		}

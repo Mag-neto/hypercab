@@ -1,5 +1,6 @@
 package de.mag.hypercab.app.vpinmame.registry;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,7 +20,7 @@ public class RegistryServiceTest extends AbstractIntegrationTest {
 	public void registryFileIsLoaded() {
 		List<SectionVO> romSettings = registryService.getRomSettings();
 		Assert.assertNotNull(romSettings);
-		Assert.assertEquals(romSettings.size(), 52);
+		Assert.assertEquals(romSettings.size(), 51);
 	}
 
 	@Test
@@ -27,6 +28,18 @@ public class RegistryServiceTest extends AbstractIntegrationTest {
 		SectionVO romSettings = registryService.getRomSettings("default");
 		Assert.assertNotNull(romSettings);
 		Assert.assertEquals(romSettings.getConfigs().size(), 17);
+	}
+
+	@Test
+	public void updateRomSettings() throws IOException {
+		SectionVO settings = registryService.getRomSettings("afm_113b");
+		Assert.assertNotNull(settings);
+		String dmdX = settings.getConfig("dmd_pos_x");
+		Assert.assertEquals(dmdX, "1969");
+		settings.setConfig("dmd_pos_x", "1024");
+		dmdX = settings.getConfig("dmd_pos_x");
+		Assert.assertEquals(dmdX, "1024");
+		settings.setConfig("dmd_pos_x", "1969");
 	}
 
 }
