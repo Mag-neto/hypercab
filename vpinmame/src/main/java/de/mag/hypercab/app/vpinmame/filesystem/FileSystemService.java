@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,15 @@ public class FileSystemService {
 		if (roms == null) {
 			roms = new String[0];
 		}
+		roms = stripFileEndings(roms);
 		return Arrays.asList(roms);
+	}
+
+	private String[] stripFileEndings(String[] roms) {
+		for (int i = 0; i < roms.length; i++) {
+			roms[i] = FilenameUtils.getBaseName(roms[i]);
+		}
+		return roms;
 	}
 
 	public void writeRomFile(InputStream fileStream, String romName) throws IOException {

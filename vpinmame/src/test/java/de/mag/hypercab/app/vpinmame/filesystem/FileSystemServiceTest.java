@@ -29,7 +29,7 @@ public class FileSystemServiceTest extends AbstractIntegrationTest {
 		InputStream in = new FileInputStream("target/test-classes/VPinMame/roms/afm_113.zip");
 		fileSystemService.writeRomFile(in, "testrom");
 		List<String> romList = fileSystemService.getRomList();
-		Assert.assertTrue(romList.contains("testrom.zip"));
+		Assert.assertTrue(romList.contains("testrom"));
 	}
 
 	@Test
