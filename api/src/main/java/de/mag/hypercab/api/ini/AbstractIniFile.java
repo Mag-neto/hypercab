@@ -47,14 +47,21 @@ public abstract class AbstractIniFile<E extends BasicProfile> implements IniFile
 	}
 
 	@Override
-	public abstract void saveSections(List<SectionVO> sections) throws IOException;
+	public void saveSections(List<SectionVO> sections) throws IOException {
+		for (SectionVO section : sections) {
+			writeSection(section);
+		}
+		storeToFile();
+	}
 
-	protected void writeSection(SectionVO section) {
+	private void writeSection(SectionVO section) {
 		Section currentSection = iniFile.get(section.getName());
 		for (KeyValuePair config : section.getConfigs()) {
 			currentSection.put(config.getKey(), config.getValue());
 		}
 	}
+
+	protected abstract void storeToFile() throws IOException;
 
 	@Override
 	public SectionVO getSection(String sectionName) {
@@ -75,6 +82,8 @@ public abstract class AbstractIniFile<E extends BasicProfile> implements IniFile
 	}
 
 	@Override
-	public abstract void saveSection(SectionVO section) throws IOException;
-
+	public void saveSection(SectionVO section) throws IOException {
+		writeSection(section);
+		storeToFile();
+	}
 }

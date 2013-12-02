@@ -2,7 +2,6 @@ package de.mag.hypercab.api.ini;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.ini4j.Reg;
 
@@ -18,16 +17,7 @@ public class RegistryFile extends AbstractIniFile<Reg> {
 	}
 
 	@Override
-	public void saveSections(List<SectionVO> sections) throws IOException {
-		for (SectionVO section : sections) {
-			writeSection(section);
-			iniFile.store();
-		}
-	}
-
-	@Override
-	public void saveSection(SectionVO section) throws IOException {
-		writeSection(section);
+	protected void storeToFile() throws IOException {
 		iniFile.store();
 	}
 

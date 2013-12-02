@@ -2,7 +2,6 @@ package de.mag.hypercab.api.ini;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.ini4j.Ini;
 
@@ -18,17 +17,7 @@ public class RegularIniFile extends AbstractIniFile<Ini> {
 	}
 
 	@Override
-	public void saveSections(List<SectionVO> sections) throws IOException {
-		for (SectionVO section : sections) {
-			writeSection(section);
-		}
+	protected void storeToFile() throws IOException {
 		iniFile.store();
 	}
-
-	@Override
-	public void saveSection(SectionVO section) throws IOException {
-		writeSection(section);
-		iniFile.store();
-	}
-
 }
