@@ -9,8 +9,8 @@ angular.module('hypercab').config(function ($routeProvider) {
         .when('/', {
             templateUrl: 'partials/home.html'
         })
-        .when('/server', {
-            templateUrl: 'partials/server.html',
+        .when('/about', {
+            templateUrl: 'partials/about.html',
             controller: 'ServerController'
         })
         .when('/settings', {
