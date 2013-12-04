@@ -10,9 +10,9 @@
                 <td>Romfile</td>
             </tr>
         </thead>
-        <tr data-ng-repeat="rom in roms.list | filter:searchTerm">
+        <tr data-ng-repeat="(key,value) in roms.map | orderBy:key | filter:searchTerm">
             <td>
-               {{rom}}
+               {{key}}
             </td>
         </tr>
     </table>

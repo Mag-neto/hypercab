@@ -3,17 +3,17 @@ angular.module('hypercab').factory('VpinMameService', function($http,hypercabApi
 
     var roms = {};
 
-    var getRomsList = function(){
-        if (!roms.list) {
+    var getRoms = function(){
+        if (!roms.map) {
             $http.get(hypercabApiUrl + 'vpinmame/roms')
                 .success(function (data) {
-                    roms.list = data;
+                    roms.map = data;
                 });
         }
         return roms;
     };
 
     return{
-        getRomsList: getRomsList
+        getRoms: getRoms
     };
 });
