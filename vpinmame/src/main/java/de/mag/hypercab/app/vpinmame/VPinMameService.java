@@ -1,5 +1,7 @@
 package de.mag.hypercab.app.vpinmame;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,6 +18,11 @@ public class VPinMameService {
 
 	public List<String> getInstalledRoms() {
 		return fileSystemService.getRomList();
+	}
+
+	public void storeRomFile(InputStream inputStream, String originalFilename) throws IOException {
+		fileSystemService.writeRomFile(inputStream, originalFilename);
+
 	}
 
 }
