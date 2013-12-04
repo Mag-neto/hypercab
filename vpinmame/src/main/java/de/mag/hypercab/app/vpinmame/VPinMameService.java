@@ -25,4 +25,8 @@ public class VPinMameService {
 
 	}
 
+	public void deleteRom(String romName) {
+		fileSystemService.deleteRom(romName);
+	}
+
 }
