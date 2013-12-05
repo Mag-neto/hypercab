@@ -1,10 +1,10 @@
 'use strict';
-angular.module('hypercab').controller('SettingsController', function ($scope, settingsService) {
+angular.module('hypercab').controller('SettingsController', function ($scope, SettingsService) {
 
-    $scope.settings = settingsService.getSettings();
+    $scope.settings = SettingsService.getSettings();
 
     $scope.save = function (settings) {
-        settingsService.saveSettings(settings);
+        SettingsService.saveSettings(settings);
     };
 
 });

@@ -1,10 +1,10 @@
 'use strict';
-angular.module('hypercab').factory('settingsService', function ($http, hypercabApiUrl) {
+angular.module('hypercab').factory('SettingsService', function ($http, hypercabApiUrl) {
 
     var settings = {};
 
-    var fetchSettings = function() {
-        $http.get(hypercabApiUrl+'settings')
+    var fetchSettings = function () {
+        $http.get(hypercabApiUrl + 'settings')
             .success(function (data) {
                 settings.settings = data;
                 console.log('Stored hyperpin settings');
@@ -19,7 +19,7 @@ angular.module('hypercab').factory('settingsService', function ($http, hypercabA
     };
 
     var saveSettings = function (settings) {
-        $http.put(hypercabApiUrl+'settings', settings)
+        $http.put(hypercabApiUrl + 'settings', settings)
             .success(function () {
                 console.log('Saved settings');
             });
