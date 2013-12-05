@@ -29,6 +29,11 @@ describe('SettingsService', function () {
         $httpBackend.when('PUT', hypercabApiUrl + 'settings').respond(200, '');
     }));
 
+    afterEach(function(){
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
+
     it('should be defined', inject(function (SettingsService) {
         expect(SettingsService).toBeDefined();
     }));
@@ -46,23 +51,21 @@ describe('SettingsService', function () {
     it('should fetch settings data', inject(function (SettingsService, hypercabApiUrl) {
         $httpBackend.expectGET(hypercabApiUrl + 'settings');
         var settings = SettingsService.getSettings();
-        $httpBackend.flush();
+        $httpBackend.flush(1);
         expect(settings.settings).toEqual(settingsData);
     }));
 
-    it('should cache settings data', inject(function (SettingsService, hypercabApiUrl) {
+    it('should cache settings data', inject(function (SettingsService) {
         SettingsService.getSettings();
-        $httpBackend.flush();
+        $httpBackend.flush(1);
         // second call shall return cached data
         SettingsService.getSettings();
-        // so there must not be outstanding requests
-        $httpBackend.verifyNoOutstandingRequest();
     }));
 
     it('should send save request', inject(function (SettingsService, hypercabApiUrl) {
         $httpBackend.expectPUT(hypercabApiUrl + 'settings');
         SettingsService.saveSettings(settingsData);
-        $httpBackend.flush();
+        $httpBackend.flush(1);
     }));
 
 });

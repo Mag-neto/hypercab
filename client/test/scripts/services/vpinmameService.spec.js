@@ -14,6 +14,11 @@ describe('VpinMameService', function () {
         $httpBackend.when('GET', hypercabApiUrl + 'vpinmame/roms').respond(romData);
     }));
 
+    afterEach(function(){
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
+
     it('should be defined', inject(function (VpinMameService) {
         expect(VpinMameService).toBeDefined();
     }));
@@ -26,15 +31,14 @@ describe('VpinMameService', function () {
     it('should fetch rom data', inject(function (VpinMameService, hypercabApiUrl) {
         $httpBackend.expectGET(hypercabApiUrl + 'vpinmame/roms');
         var roms = VpinMameService.getRoms();
-        $httpBackend.flush();
+        $httpBackend.flush(1);
         expect(roms.map).toEqual(romData);
     }));
 
     it('should cache rom data', inject(function (VpinMameService) {
         VpinMameService.getRoms();
-        $httpBackend.flush();
+        $httpBackend.flush(1);
         VpinMameService.getRoms();
-        $httpBackend.verifyNoOutstandingRequest();
     }));
 });
 

@@ -38,9 +38,6 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
             .success(function () {
                 console.log('updated table ' + table.description);
             })
-            .error(function () {
-                console.log('error updating table ' + table.description);
-            });
     };
 
     var createImageLink = function (table, type) {
@@ -52,9 +49,6 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
             .success(function () {
                 console.log('added table ' + table.description);
             })
-            .error(function () {
-                console.log('error adding table ' + table.description);
-            });
     };
 
     var removeTable = function (table) {
@@ -62,9 +56,6 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
             .success(function () {
                 console.log('removed table ' + table.description);
             })
-            .error(function () {
-                console.log('error removing table ' + table.description);
-            });
     };
 
     var save = function () {

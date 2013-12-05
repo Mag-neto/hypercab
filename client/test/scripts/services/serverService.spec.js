@@ -30,6 +30,11 @@ describe('ServerService', function () {
         $httpBackend.when('GET', hypercabApiUrl + 'server').respond(modulesData);
     }));
 
+    afterEach(function(){
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
+
     it('should be defined', inject(function (ServerService) {
         expect(ServerService).toBeDefined();
     }));
@@ -42,14 +47,13 @@ describe('ServerService', function () {
     it('should fetch module data', inject(function (ServerService, hypercabApiUrl) {
         $httpBackend.expectGET(hypercabApiUrl + 'server');
         var modules = ServerService.getHypercabModules();
-        $httpBackend.flush();
+        $httpBackend.flush(1);
         expect(modules.data).toEqual(modulesData);
     }));
 
-    it('should cache module data', inject(function (ServerService, hypercabApiUrl) {
+    it('should cache module data', inject(function (ServerService) {
         ServerService.getHypercabModules();
-        $httpBackend.flush();
+        $httpBackend.flush(1);
         ServerService.getHypercabModules();
-        $httpBackend.verifyNoOutstandingRequest();
     }));
 });
