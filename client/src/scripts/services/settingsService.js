@@ -1,9 +1,9 @@
 'use strict';
-angular.module('hypercab').service('settingsService', function ($http, hypercabApiUrl) {
+angular.module('hypercab').factory('settingsService', function ($http, hypercabApiUrl) {
 
     var settings = {};
 
-    function fetchSettings() {
+    var fetchSettings = function() {
         $http.get(hypercabApiUrl+'settings')
             .success(function (data) {
                 settings.settings = data;
@@ -11,17 +11,22 @@ angular.module('hypercab').service('settingsService', function ($http, hypercabA
             });
     }
 
-    this.getSettings = function () {
+    var getSettings = function () {
         if (!settings.settings) {
             fetchSettings();
         }
         return settings;
     };
 
-    this.saveSettings = function (settings) {
+    var saveSettings = function (settings) {
         $http.put(hypercabApiUrl+'settings', settings)
             .success(function () {
                 console.log('Saved settings');
             });
+    };
+
+    return{
+        getSettings: getSettings,
+        saveSettings: saveSettings
     };
 });
