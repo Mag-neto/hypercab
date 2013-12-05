@@ -9,6 +9,7 @@ target/
 test-output/
 /client/dist
 index.html
+coverage
 .settings/
 .classpath
 .project
