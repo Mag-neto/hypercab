@@ -1,39 +1,39 @@
 'use strict';
-angular.module('hypercab').controller('TablesController', function ($scope, tablesService, uploadService) {
+angular.module('hypercab').controller('TablesController', function ($scope, TablesService, uploadService) {
 
-    $scope.tableData = tablesService.getTables();
-    $scope.selectedTable = tablesService.getSelectedTable();
+    $scope.tableData = TablesService.getTables();
+    $scope.selectedTable = TablesService.getSelectedTable();
 
     $scope.toggleActive = function (table) {
         table.active = !table.active;
-        tablesService.updateTable(table.description, table);
+        TablesService.updateTable(table.description, table);
     };
 
     $scope.displayImage = function (table, type) {
-        var link = tablesService.createImageLink(table, type);
+        var link = TablesService.createImageLink(table, type);
         window.open(link);
     };
 
     $scope.getImageLink = function (table, type) {
-        return tablesService.createImageLink(table, type);
+        return TablesService.createImageLink(table, type);
     };
 
     $scope.save = function () {
-        tablesService.save();
+        TablesService.save();
     };
 
     $scope.setSelectedTable = function (table) {
-        tablesService.setSelectedTable(table);
+        TablesService.setSelectedTable(table);
     };
 
     $scope.addTable = function (table) {
-        tablesService.addTable(table);
-        $scope.tableData = tablesService.forceTablesReload();
+        TablesService.addTable(table);
+        $scope.tableData = TablesService.forceTablesReload();
     };
 
     $scope.removeTable = function (table) {
-        tablesService.removeTable(table);
-        $scope.tableData = tablesService.forceTablesReload();
+        TablesService.removeTable(table);
+        $scope.tableData = TablesService.forceTablesReload();
     };
 
     $scope.uploadFiles = function (table, mediatype, files) {

@@ -1,15 +1,15 @@
 'use strict';
-angular.module('hypercab').service('tablesService', function ($http,hypercabApiUrl) {
+angular.module('hypercab').factory('TablesService', function ($http, hypercabApiUrl) {
 
     var tableData = {}, selectedTable = {};
 
-    function fetchTables() {
-        $http.get(hypercabApiUrl+'tables').success(function (data) {
+    var fetchTables = function () {
+        $http.get(hypercabApiUrl + 'tables').success(function (data) {
             tableData.tables = data;
         });
     }
 
-    function buildTransportTableObject(table){
+    var toTableTO = function (table) {
         var newTable = {};
         newTable.platform = table.platform;
         newTable.fileName = table.fileName;
@@ -22,19 +22,19 @@ angular.module('hypercab').service('tablesService', function ($http,hypercabApiU
         return newTable;
     }
 
-    this.getTables = function () {
+    var getTables = function () {
         if (!tableData.tables) {
             fetchTables();
         }
         return tableData;
     };
 
-    this.forceTablesReload = function () {
+    var forceTablesReload = function () {
         fetchTables();
     };
 
-    this.updateTable = function (description, table) {
-        $http.put(hypercabApiUrl+'tables/' + description, buildTransportTableObject(table))
+    var updateTable = function (description, table) {
+        $http.put(hypercabApiUrl + 'tables/' + description, toTableTO(table))
             .success(function () {
                 console.log('updated table ' + table.description);
             })
@@ -43,12 +43,12 @@ angular.module('hypercab').service('tablesService', function ($http,hypercabApiU
             });
     };
 
-    this.createImageLink = function (table, type) {
-        return hypercabApiUrl+'media/' + table.platform + '/' + table.description + '/' + type;
+    var createImageLink = function (table, type) {
+        return hypercabApiUrl + 'media/' + table.platform + '/' + table.description + '/' + type;
     };
 
-    this.addTable = function (table) {
-        $http.post(hypercabApiUrl+'tables', table)
+    var addTable = function (table) {
+        $http.post(hypercabApiUrl + 'tables', table)
             .success(function () {
                 console.log('added table ' + table.description);
             })
@@ -57,8 +57,8 @@ angular.module('hypercab').service('tablesService', function ($http,hypercabApiU
             });
     };
 
-    this.removeTable = function (table) {
-        $http.delete(hypercabApiUrl+'tables', table)
+    var removeTable = function (table) {
+        $http.delete(hypercabApiUrl + 'tables', table)
             .success(function () {
                 console.log('removed table ' + table.description);
             })
@@ -67,19 +67,31 @@ angular.module('hypercab').service('tablesService', function ($http,hypercabApiU
             });
     };
 
-    this.save = function () {
+    var save = function () {
         console.log('saving databases...');
-        $http.put(hypercabApiUrl+'tables').success(function () {
+        $http.put(hypercabApiUrl + 'tables').success(function () {
             console.log('saved databases.');
         });
     };
 
-    this.setSelectedTable = function (table) {
+    var setSelectedTable = function (table) {
         selectedTable = table;
     };
 
-    this.getSelectedTable = function () {
+    var getSelectedTable = function () {
         return selectedTable;
+    };
+
+    return{
+        getTables: getTables,
+        forceTablesReload: forceTablesReload,
+        addTable: addTable,
+        updateTable: updateTable,
+        removeTable: removeTable,
+        save: save,
+        getSelectedTable: getSelectedTable,
+        setSelectedTable: setSelectedTable,
+        createImageLink: createImageLink
     };
 
 });
