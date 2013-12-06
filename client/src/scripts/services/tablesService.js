@@ -7,7 +7,7 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
         $http.get(hypercabApiUrl + 'tables').success(function (data) {
             tableData.tables = data;
         });
-    }
+    };
 
     var toTableTO = function (table) {
         var newTable = {};
@@ -20,7 +20,7 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
         newTable.active = table.active;
 
         return newTable;
-    }
+    };
 
     var getTables = function () {
         if (!tableData.tables) {
@@ -37,7 +37,7 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
         $http.put(hypercabApiUrl + 'tables/' + description, toTableTO(table))
             .success(function () {
                 console.log('updated table ' + table.description);
-            })
+            });
     };
 
     var createImageLink = function (table, type) {
@@ -48,14 +48,14 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
         $http.post(hypercabApiUrl + 'tables', table)
             .success(function () {
                 console.log('added table ' + table.description);
-            })
+            });
     };
 
     var removeTable = function (table) {
         $http.delete(hypercabApiUrl + 'tables', table)
             .success(function () {
                 console.log('removed table ' + table.description);
-            })
+            });
     };
 
     var save = function () {

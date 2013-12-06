@@ -9,7 +9,7 @@ angular.module('hypercab').factory('SettingsService', function ($http, hypercabA
                 settings.settings = data;
                 console.log('Stored hyperpin settings');
             });
-    }
+    };
 
     var getSettings = function () {
         if (!settings.settings) {
