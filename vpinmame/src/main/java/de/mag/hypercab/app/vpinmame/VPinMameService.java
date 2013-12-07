@@ -33,6 +33,10 @@ public class VPinMameService {
 			if (romSettings != null) {
 				rom.setDmdX(romSettings.getConfig(Rom.DMD_X));
 				rom.setDmdY(romSettings.getConfig(Rom.DMD_Y));
+				rom.setDmdCompact(romSettings.getConfig(Rom.DMD_COMPACT));
+				rom.setDmdDoubleSize(romSettings.getConfig(Rom.DMD_DOUBLESIZE));
+				rom.setDmdWidth(romSettings.getConfig(Rom.DMD_WIDTH));
+				rom.setDmdHeight(romSettings.getConfig(Rom.DMD_HEIGHT));
 			}
 			roms.add(rom);
 		}

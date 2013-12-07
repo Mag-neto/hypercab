@@ -11,6 +11,10 @@
                 <td>Romfile</td>
                 <td>DMD X</td>
                 <td>DMD Y</td>
+                <td>DMD width</td>
+                <td>DMD height</td>
+                <td>DMD compact</td>
+                <td>DMD double size</td>
             </tr>
         </thead>
         <tr data-ng-repeat="rom in roms.map | filter:searchTerm">
@@ -21,7 +25,19 @@
                 <span contenteditable="true" ng-bind="rom.dmdX"></span>
             </td>
             <td>
-                <span contenteditable="true">{{rom.dmdY}}</span>
+                <span contenteditable="true" ng-bind="rom.dmdY"></span>
+            </td>
+            <td>
+                <span contenteditable="true" ng-bind="rom.dmdWidth"></span>
+            </td>
+            <td>
+                <span contenteditable="true" ng-bind="rom.dmdHeight"></span>
+            </td>
+            <td>
+                <span contenteditable="true" ng-bind="rom.dmdCompact"></span>
+            </td>
+            <td>
+                <span contenteditable="true" ng-bind="rom.dmdDoubleSize"></span>
             </td>
         </tr>
     </table>

@@ -4,12 +4,56 @@ public class Rom implements Comparable<Rom> {
 
 	public static final String DMD_X = "dmd_pos_x";
 	public static final String DMD_Y = "dmd_pos_y";
+	public static final String DMD_WIDTH = "dmd_width";
+	public static final String DMD_HEIGHT = "dmd_height";
+	public static final String DMD_COMPACT = "dmd_compact";
+	public static final String DMD_DOUBLESIZE = "dmd_doublesize";
 
 	private String name;
 
 	private String dmdX;
 
 	private String dmdY;
+
+	private String dmdDoubleSize;
+
+	private String dmdCompact;
+
+	private String dmdWidth;
+
+	private String dmdHeight;
+
+	public String getDmdWidth() {
+		return dmdWidth;
+	}
+
+	public void setDmdWidth(String dmdWidth) {
+		this.dmdWidth = dmdWidth;
+	}
+
+	public String getDmdHeight() {
+		return dmdHeight;
+	}
+
+	public void setDmdHeight(String dmdHeight) {
+		this.dmdHeight = dmdHeight;
+	}
+
+	public String getDmdDoubleSize() {
+		return dmdDoubleSize;
+	}
+
+	public void setDmdDoubleSize(String dmdDoubleSize) {
+		this.dmdDoubleSize = dmdDoubleSize;
+	}
+
+	public String getDmdCompact() {
+		return dmdCompact;
+	}
+
+	public void setDmdCompact(String dmdCompact) {
+		this.dmdCompact = dmdCompact;
+	}
 
 	public String getName() {
 		return name;
