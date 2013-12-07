@@ -2,9 +2,9 @@ package de.mag.hypercab.app.vpinmame;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
@@ -23,11 +23,18 @@ public class VPinMameService {
 	@Resource
 	private RegistryService registryService;
 
-	public Map<String, SectionVO> getInstalledRoms() {
-		Map<String, SectionVO> roms = new HashMap<>();
+	public Set<Rom> getInstalledRoms() {
+		Set<Rom> roms = new TreeSet<>();
 		List<String> romList = fileSystemService.getRomList();
+
 		for (String romName : romList) {
-			roms.put(romName, registryService.getRomSettings(romName));
+			SectionVO romSettings = registryService.getRomSettings(romName);
+			Rom rom = new Rom().withName(romName);
+			if (romSettings != null) {
+				rom.setDmdX(romSettings.getConfig(Rom.DMD_X));
+				rom.setDmdY(romSettings.getConfig(Rom.DMD_Y));
+			}
+			roms.add(rom);
 		}
 		return roms;
 	}

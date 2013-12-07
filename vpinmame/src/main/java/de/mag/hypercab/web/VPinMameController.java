@@ -1,7 +1,7 @@
 package de.mag.hypercab.web;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 
-import de.mag.hypercab.api.ini.SectionVO;
+import de.mag.hypercab.app.vpinmame.Rom;
 import de.mag.hypercab.app.vpinmame.VPinMameService;
 
 @Controller
@@ -27,7 +27,7 @@ public class VPinMameController {
 
 	@ResponseBody
 	@RequestMapping(value = "/roms", method = RequestMethod.GET)
-	public Map<String, SectionVO> getRoms() {
+	public Set<Rom> getRoms() {
 		return vPinMameService.getInstalledRoms();
 	}
 

@@ -16,10 +16,10 @@ angular.module('hypercab').factory('VpinMameService', function($http,hypercabApi
     var updateRegistry = function(){
         $http.put(hypercabApiUrl + 'vpinmame/registry')
             .success(function(){
-               console.log('Wrote registry');
+                console.log('Wrote registry');
             })
             .error(function(){
-               console.log('Update failed');
+                console.log('Update failed');
             });
     };
 

@@ -9,11 +9,19 @@
         <thead>
             <tr>
                 <td>Romfile</td>
+                <td>DMD X</td>
+                <td>DMD Y</td>
             </tr>
         </thead>
-        <tr data-ng-repeat="(key,value) in roms.map | orderBy:key | filter:searchTerm">
+        <tr data-ng-repeat="rom in roms.map | filter:searchTerm">
             <td>
-               {{key}}
+               {{rom.name}}
+            </td>
+            <td>
+                <span contenteditable="true" ng-bind="rom.dmdX"></span>
+            </td>
+            <td>
+                <span contenteditable="true">{{rom.dmdY}}</span>
             </td>
         </tr>
     </table>
