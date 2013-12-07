@@ -40,4 +40,8 @@ public class VPinMameService {
 		fileSystemService.deleteRom(romName);
 	}
 
+	public void updateRegistry() throws IOException {
+		registryService.writeRegistry();
+	}
+
 }

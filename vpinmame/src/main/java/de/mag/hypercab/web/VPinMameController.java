@@ -43,4 +43,10 @@ public class VPinMameController {
 		vPinMameService.storeRomFile(file.getInputStream(), file.getOriginalFilename());
 	}
 
+	@ResponseStatus(HttpStatus.OK)
+	@RequestMapping(value = "/registry", method = RequestMethod.PUT)
+	public void writeRegistry() throws IOException {
+		vPinMameService.updateRegistry();
+	}
+
 }
