@@ -43,6 +43,17 @@ public class VPinMameService {
 		return roms;
 	}
 
+	public void updateRomSettings(Rom rom) throws IOException {
+		SectionVO romSettings = registryService.getRomSettings(rom.getName());
+		romSettings.setConfig(Rom.DMD_X, rom.getDmdX());
+		romSettings.setConfig(Rom.DMD_Y, rom.getDmdY());
+		romSettings.setConfig(Rom.DMD_COMPACT, rom.getDmdCompact());
+		romSettings.setConfig(Rom.DMD_DOUBLESIZE, rom.getDmdDoubleSize());
+		romSettings.setConfig(Rom.DMD_HEIGHT, rom.getDmdHeight());
+		romSettings.setConfig(Rom.DMD_WIDTH, rom.getDmdWidth());
+		registryService.updateRomSettings(romSettings);
+	}
+
 	public void storeRomFile(InputStream inputStream, String originalFilename) throws IOException {
 		fileSystemService.writeRomFile(inputStream, originalFilename);
 	}

@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +36,12 @@ public class VPinMameController {
 	@RequestMapping(value = "/roms/{romName}", method = RequestMethod.DELETE)
 	public void deleteRom(@PathVariable String romName) {
 		vPinMameService.deleteRom(romName);
+	}
+
+	@ResponseStatus(HttpStatus.OK)
+	@RequestMapping(value = "/roms/{romName}", method = RequestMethod.PUT)
+	public void updateRomSettings(@RequestBody Rom rom) throws IOException {
+		vPinMameService.updateRomSettings(rom);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
