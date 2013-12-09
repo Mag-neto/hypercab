@@ -3,4 +3,5 @@ angular.module('hypercab').controller('VPinMameController', function($scope, Vpi
 
     $scope.roms = VpinMameService.getRoms();
     $scope.updateRegistry = VpinMameService.updateRegistry;
+    $scope.updateRomSettings = VpinMameService.updateRomSettings;
 });

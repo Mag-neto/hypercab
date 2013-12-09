@@ -15,6 +15,7 @@
                 <td>DMD height</td>
                 <td>DMD compact</td>
                 <td>DMD double size</td>
+                <td>&nbsp;</td>
             </tr>
         </thead>
         <tr data-ng-repeat="rom in roms.map | filter:searchTerm">
@@ -38,6 +39,9 @@
             </td>
             <td>
                 <span contenteditable="true" ng-bind="rom.dmdDoubleSize"></span>
+            </td>
+            <td>
+                <input type="button" class="btn btn-primary btn-xs pull-right" value="Save" data-ng-click="updateRomSettings(rom)">
             </td>
         </tr>
     </table>

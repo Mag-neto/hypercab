@@ -13,6 +13,13 @@ angular.module('hypercab').factory('VpinMameService', function($http,hypercabApi
         return roms;
     };
 
+    var updateRomSettings = function(rom){
+        $http.put(hypercabApiUrl + 'vpinmame/roms/' + rom.name, rom)
+            .success(function(){
+                console.log('Updated rom');
+            });
+    };
+
     var updateRegistry = function(){
         $http.put(hypercabApiUrl + 'vpinmame/registry')
             .success(function(){
@@ -25,6 +32,7 @@ angular.module('hypercab').factory('VpinMameService', function($http,hypercabApi
 
     return{
         getRoms: getRoms,
-        updateRegistry: updateRegistry
+        updateRegistry: updateRegistry,
+        updateRomSettings: updateRomSettings
     };
 });
