@@ -23,22 +23,22 @@
                {{rom.name}}
             </td>
             <td>
-                <span contenteditable="true" ng-bind="rom.dmdX"></span>
+                <input type="text" ng-model="rom.dmdX">
             </td>
             <td>
-                <span contenteditable="true" ng-bind="rom.dmdY"></span>
+                <input type="text" ng-model="rom.dmdY">
             </td>
             <td>
-                <span contenteditable="true" ng-bind="rom.dmdWidth"></span>
+                <input type="text" ng-model="rom.dmdWidth">
             </td>
             <td>
-                <span contenteditable="true" ng-bind="rom.dmdHeight"></span>
+                <input type="text" ng-model="rom.dmdHeight">
             </td>
             <td>
-                <span contenteditable="true" ng-bind="rom.dmdCompact"></span>
+                <input type="checkbox" ng-model="rom.dmdCompact" ng-true-value="1" ng-false-value="0">
             </td>
             <td>
-                <span contenteditable="true" ng-bind="rom.dmdDoubleSize"></span>
+                <input type="checkbox" ng-model="rom.dmdDoubleSize" ng-true-value="1" ng-false-value="0">
             </td>
             <td>
                 <input type="button" class="btn btn-primary btn-xs pull-right" value="Save" data-ng-click="updateRomSettings(rom)">
