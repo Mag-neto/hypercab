@@ -53,7 +53,7 @@ public class FileSystemService {
 	}
 
 	public void writeRomFile(InputStream fileStream, String romName) throws IOException {
-		try (OutputStream out = new FileOutputStream(new File(vpinmameRomPath, romName + ".zip"))) {
+		try (OutputStream out = new FileOutputStream(new File(vpinmameRomPath, romName))) {
 			IOUtils.copyLarge(fileStream, out);
 		} finally {
 			IOUtils.closeQuietly(fileStream);
