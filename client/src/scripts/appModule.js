@@ -1,13 +1,14 @@
 /* Defines the main application module and configures routing */
 'use strict';
-angular.module('hypercab', []);
+angular.module('hypercab', ['angularFileUpload']);
 
 angular.module('hypercab').constant('hypercabApiUrl','../../hypercab-rest/');
 
 angular.module('hypercab').config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'partials/home.html'
+            templateUrl: 'partials/home.html',
+            controller: 'testUploadCtrl'
         })
         .when('/about', {
             templateUrl: 'partials/about.html',

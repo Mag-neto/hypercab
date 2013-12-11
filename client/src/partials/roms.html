@@ -4,6 +4,8 @@
     <div class="row">
         <input type="text" class="form-control col" placeholder="Filter" ng-model="searchTerm">
         <input type="button" class="btn btn-primary btn-sm pull-right" value="Update Registry" data-ng-click="updateRegistry()">
+        <input type="button" class="btn btn-warning btn-sm" value="Add Rom" onclick="$('#romUpload').click();">
+        <input type="file" class="hidden" id="romUpload" ng-file-select="onFileSelect($files)" >
     </div>
     <table class="table">
         <thead>
@@ -47,5 +49,6 @@
     </table>
     <div class="row">
         <input type="button" class="btn btn-primary btn-sm pull-right" value="Update Registry" data-ng-click="updateRegistry()">
+        <input type="button" class="btn btn-warning btn-sm" value="Add Rom" onclick="$('#romUpload').click();">
     </div>
 </div>
