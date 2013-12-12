@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,12 @@ public class MediaService {
 
 	public boolean mediaFileExists(String tableRef, MediaType type) {
 		return mediaPathResolver.resolveMediaPath(tableRef, type).exists();
+	}
+
+	public void storeTableFile(InputStream fileData, String fileName) throws IOException {
+		String baseFileName = FilenameUtils.getBaseName(fileName);
+		File targetFile = mediaPathResolver.resolveMediaPath(baseFileName, MediaType.VP_TABLE_FILE);
+		copySourceStreamToTargetFile(fileData, targetFile);
 	}
 
 }
