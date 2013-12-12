@@ -6,7 +6,7 @@
         <tr>
             <td>Platform:</td>
             <td>
-                <input type="text" class="form-control" data-ng-model="newTable.platform">
+                <select ng-model="newTable.platform" ng-options="key for key in platforms"></select>
             </td>
         </tr>
         <tr>
@@ -36,7 +36,7 @@
         <tr>
             <td>Type (SS or EM):</td>
             <td>
-                <input type="text" class="form-control" data-ng-model="newTable.machineType">
+                <select ng-model="newTable.machineType" ng-options="key for key in machineTypes"></select>
             </td>
         </tr>
     </table>

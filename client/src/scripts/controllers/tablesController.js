@@ -4,6 +4,9 @@ angular.module('hypercab').controller('TablesController', function ($scope, Tabl
     $scope.tableData = TablesService.getTables();
     $scope.selectedTable = TablesService.getSelectedTable();
 
+    $scope.platforms = ['VISUAL_PINBALL','FUTURE_PINBALL'];
+    $scope.machineTypes = ['SS','EM'];
+
     $scope.toggleActive = function (table) {
         table.active = !table.active;
         TablesService.updateTable(table.description, table);
