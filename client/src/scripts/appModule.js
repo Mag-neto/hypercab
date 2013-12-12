@@ -7,8 +7,7 @@ angular.module('hypercab').constant('hypercabApiUrl','../../hypercab-rest/');
 angular.module('hypercab').config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'partials/home.html',
-            controller: 'testUploadCtrl'
+            templateUrl: 'partials/home.html'
         })
         .when('/about', {
             templateUrl: 'partials/about.html',
