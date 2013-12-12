@@ -57,10 +57,12 @@
             </td>
             <td>
                 <div ng-show="selectedTable.additionals.tableVideo == 'true'">
-                    <input type="button" class="btn btn-primary btn-sm" value="Replace...">
+                    <input type="button" class="btn btn-primary btn-sm" value="Replace..." onclick="$('#videoupload').click();">
                 </div>
-                <input type="button" ng-show="selectedTable.additionals.tableVideo == 'false'" class="btn btn-warning btn-sm"
-                       value="Upload">
+                <div ng-show="selectedTable.additionals.tableVideo == 'false'">
+                    <input type="button" class="btn btn-warning btn-sm" value="Upload" onclick="$('#videoupload').click();">
+                </div>
+                <input type="file" class="hidden" id="videoupload" file-upload table="selectedTable" mediatype="video"/>
             </td>
         </tr>
     </table>
