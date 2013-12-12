@@ -65,5 +65,19 @@
                 <input type="file" class="hidden" id="videoupload" file-upload table="selectedTable" mediatype="video"/>
             </td>
         </tr>
+        <tr>
+            <td>
+                Table Script file
+            </td>
+            <td>
+                <div ng-show="selectedTable.additionals.tableFile == 'true'">
+                    <input type="button" class="btn btn-primary btn-sm" value="Replace..." onclick="$('#tablefile').click();">
+                </div>
+                <div ng-show="selectedTable.additionals.tableFile == 'false'">
+                    <input type="button" class="btn btn-warning btn-sm" value="Upload" onclick="$('#tablefile').click();">
+                </div>
+                <input type="file" class="hidden" id="tablefile" file-upload table="selectedTable" mediatype="tablefile"/>
+            </td>
+        </tr>
     </table>
 </div>
