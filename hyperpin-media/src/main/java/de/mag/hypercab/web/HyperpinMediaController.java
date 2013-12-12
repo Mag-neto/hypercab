@@ -26,6 +26,7 @@ public class HyperpinMediaController {
 	private static final String VISUALPINBALL_WHEEL = "/VISUAL_PINBALL/{tableRef}/wheel";
 	private static final String VISUALPINBALL_TABLE = "/VISUAL_PINBALL/{tableRef}/table";
 	private static final String VISUALPINBALL_BACKGLASS = "/VISUAL_PINBALL/{tableRef}/backglass";
+	private static final String VISUALPINBALL_VIDEO = "/VISUAL_PINBALL/{tableRef}/video";
 	private static final String VISUALPINBALL_TABLEFILE = "/VISUAL_PINBALL/{tableRef}/tablefile";
 
 	@Resource
@@ -68,6 +69,13 @@ public class HyperpinMediaController {
 	public void storeVPWheelImage(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file,
 			@PathVariable String tableRef) throws IOException {
 		mediaService.storeMediaFile(file.getInputStream(), tableRef, MediaType.VP_WHEEL_IMAGE);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = VISUALPINBALL_VIDEO, method = RequestMethod.POST)
+	public void storeVPVideo(@RequestParam(FILEUPLOAD_FILE_PARAM) MultipartFile file,
+			@PathVariable String tableRef) throws IOException {
+		mediaService.storeMediaFile(file.getInputStream(), tableRef, MediaType.VP_TABLE_VIDEO);
 	}
 
 	@ResponseBody
