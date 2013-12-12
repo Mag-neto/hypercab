@@ -27,7 +27,7 @@ public class FileSystemServiceTest extends AbstractIntegrationTest {
 	@Test
 	public void storesRomFile() throws IOException {
 		InputStream in = new FileInputStream("target/test-classes/VPinMame/roms/afm_113.zip");
-		fileSystemService.writeRomFile(in, "testrom");
+		fileSystemService.writeRomFile(in, "testrom.zip");
 		List<String> romList = fileSystemService.getRomList();
 		Assert.assertTrue(romList.contains("testrom"));
 	}
