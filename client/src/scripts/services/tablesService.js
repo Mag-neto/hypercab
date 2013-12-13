@@ -65,6 +65,16 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
         });
     };
 
+    var convertToTable = function (xmlData, targetTable) {
+        $http.get(hypercabApiUrl + 'convert/table?xml='+xmlData).success(function (data) {
+            targetTable.description = data.description;
+            targetTable.fileName = data.fileName;
+            targetTable.manufacturer = data.manufacturer;
+            targetTable.machineType = data.machineType;
+            targetTable.year = data.year;
+        });
+    };
+
     var setSelectedTable = function (table) {
         selectedTable = table;
     };
@@ -82,7 +92,8 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
         save: save,
         getSelectedTable: getSelectedTable,
         setSelectedTable: setSelectedTable,
-        createImageLink: createImageLink
+        createImageLink: createImageLink,
+        convertToTable: convertToTable
     };
 
 });

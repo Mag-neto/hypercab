@@ -3,6 +3,7 @@ angular.module('hypercab').controller('TablesController', function ($scope, Tabl
 
     $scope.tableData = TablesService.getTables();
     $scope.selectedTable = TablesService.getSelectedTable();
+    $scope.newTable = {machineType: 'SS', platform: 'VISUAL_PINBALL'};
 
     $scope.platforms = ['VISUAL_PINBALL','FUTURE_PINBALL'];
     $scope.machineTypes = ['SS','EM'];
@@ -47,6 +48,12 @@ angular.module('hypercab').controller('TablesController', function ($scope, Tabl
         }, function () {
             console.log('Error uploading file');
         });
+    };
+
+    $scope.setValues = function(){
+        if(angular.isString($scope.textareaContent) && $scope.textareaContent.length > 0){
+            TablesService.convertToTable($scope.textareaContent, $scope.newTable);
+        }
     };
 
 });
