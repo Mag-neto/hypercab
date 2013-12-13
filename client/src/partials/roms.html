@@ -1,10 +1,11 @@
 <div class="container">
 
     <h3>Installed ROMS:</h3>
-    <div class="row">
-        <input type="text" class="form-control col" placeholder="Filter" ng-model="searchTerm">
-        <input type="button" class="btn btn-primary btn-sm pull-right" value="Update Registry" data-ng-click="updateRegistry()">
+    <input type="text" class="form-control col" placeholder="Filter" ng-model="searchTerm">
+    <p></p>
+    <div class="row pull-right">
         <input type="button" class="btn btn-warning btn-sm" value="Add Rom" onclick="$('#romUpload').click();">
+        <input type="button" class="btn btn-primary btn-sm" value="Update Registry" data-ng-click="updateRegistry()">
         <input type="file" class="hidden" id="romUpload" ng-file-select="onFileSelect($files)" >
     </div>
     <table class="table">
@@ -47,8 +48,9 @@
             </td>
         </tr>
     </table>
-    <div class="row">
-        <input type="button" class="btn btn-primary btn-sm pull-right" value="Update Registry" data-ng-click="updateRegistry()">
+    <p></p>
+    <div class="row pull-right">
         <input type="button" class="btn btn-warning btn-sm" value="Add Rom" onclick="$('#romUpload').click();">
+        <input type="button" class="btn btn-primary btn-sm" value="Update Registry" data-ng-click="updateRegistry()">
     </div>
 </div>

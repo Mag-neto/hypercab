@@ -2,9 +2,13 @@
     <h3>Installed Tables:</h3>
     <div class="row">
         <input type="text" class="form-control col" placeholder="Filter" ng-model="searchTerm">
-        <a href="#addTable"><input type="button" class="btn btn-primary btn-sm pull-right" value="Add Table"></a>
-        <input type="button" class="btn btn-primary btn-sm pull-right" value="Save Databases" data-ng-click="save()">
+        <p></p>
+        <div class="pull-right">
+            <a href="#addTable"><input type="button" class="btn btn-primary btn-sm" value="Add Table"></a>
+            <input type="button" class="btn btn-primary btn-sm" value="Save Databases" data-ng-click="save()">
+        </div>
     </div>
+    <p></p>
     <table class="table">
         <thead>
         <tr>
@@ -60,8 +64,8 @@
             </td>
         </tr>
     </table>
-    <div class="row">
-        <a href="#addTable"><input type="button" class="btn btn-primary btn-sm pull-right" value="Add Table"></a>
-        <input type="button" class="btn btn-primary btn-sm pull-right" value="Save Databases" data-ng-click="save()">
+    <div class="row pull-right">
+        <a href="#addTable"><input type="button" class="btn btn-primary btn-sm" value="Add Table"></a>
+        <input type="button" class="btn btn-primary btn-sm" value="Save Databases" data-ng-click="save()">
     </div>
 </div>

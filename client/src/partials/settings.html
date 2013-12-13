@@ -3,10 +3,12 @@
     <h3>Hyperpin settings:</h3>
 
     <p>Configure your 'Settings.ini' file here.</p>
-    <div class="row">
-        <input type="text" class="form-control col-md-6 col-lg-5" placeholder="Filter categories" ng-model="searchTerm">
-        <input type="button" class="btn btn-primary pull-right" value="Save Settings" data-ng-click="save(settings.settings)">
+    <input type="text" class="form-control" placeholder="Filter categories" ng-model="searchTerm">
+    <p></p>
+    <div class="row pull-right">
+        <input type="button" class="btn btn-primary btn-sm" value="Save Settings" data-ng-click="save(settings.settings)">
     </div>
+    <div class="row"></div>
     <table class="table">
         <tr data-ng-repeat="section in settings.settings | orderBy:'name' | filter:searchTerm">
             <td>{{section.name}}</td>
@@ -21,7 +23,7 @@
             </td>
         </tr>
     </table>
-    <div class="row">
-        <input type="button" class="btn btn-primary pull-right" value="Save Settings" data-ng-click="save(settings.settings)">
+    <div class="row pull-right">
+        <input type="button" class="btn btn-primary btn-sm" value="Save Settings" data-ng-click="save(settings.settings)">
     </div>
 </div>
