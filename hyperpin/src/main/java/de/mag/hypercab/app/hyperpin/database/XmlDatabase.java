@@ -56,12 +56,12 @@ public class XmlDatabase {
 		}
 	}
 
-	private static Table createTableFromXmlNode(Node tableNode) {
+	public static Table createTableFromXmlNode(Node tableNode) {
 		Table table = new Table();
 		table.setFileName(getTableNameFromNode(tableNode));
 		NodeList attributeNodes = tableNode.getChildNodes();
 		for (int j = 0; j < attributeNodes.getLength(); j++) {
-			Node tableAttribute = attributeNodes.item(j).getNextSibling();
+			Node tableAttribute = attributeNodes.item(j);
 			setAsTableAttribute(tableAttribute, table);
 		}
 		return table;
@@ -114,7 +114,7 @@ public class XmlDatabase {
 		}
 	}
 
-	private static String toXmlString(Table table) {
+	public static String toXmlString(Table table) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(buildStartGameTag(table.getFileName()))
 				.append(buildAttributeTag(DESCRIPTION_TAG, table.getDescription()))
