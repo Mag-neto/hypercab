@@ -55,4 +55,9 @@ public class MediaService {
 		copySourceStreamToTargetFile(fileData, targetFile);
 	}
 
+	public void storeMediaPack(InputStream inputStream, String originalFilename) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
