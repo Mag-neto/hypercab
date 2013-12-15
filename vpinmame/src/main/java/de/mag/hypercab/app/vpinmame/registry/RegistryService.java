@@ -7,6 +7,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import de.mag.hypercab.api.ini.IniFile;
@@ -18,9 +20,11 @@ import de.mag.hypercab.app.hyperpin.config.Configuration;
 @Service
 public class RegistryService {
 
+	private static Logger LOGGER = LoggerFactory.getLogger(RegistryService.class);
+
 	private static final String WORKDIR_NAME = "vpinmame";
 	private static final String REG_FILENAME = "vpinmame.reg";
-	private static final String REGISTRY_KEY = "HKEY_CURRENT_USER\\Software\\Freeware\\Visual PinMame";
+	private static final String REGISTRY_KEY = "\"HKEY_CURRENT_USER\\Software\\Freeware\\Visual PinMame\"";
 
 	@Resource
 	private Configuration configuration;
@@ -33,6 +37,7 @@ public class RegistryService {
 	void init() throws IOException {
 		createWorkingDirectory();
 		this.registrySourceFile = new File(workingDir, REG_FILENAME);
+		LOGGER.debug("Registry file is: " + registrySourceFile);
 		if (OSUtils.isWindows()) {
 			RegistryUtils.exportRegistryTree(REGISTRY_KEY, registrySourceFile);
 		}

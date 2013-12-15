@@ -5,10 +5,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class RegistryUtils {
 
+	private static Logger LOGGER = LoggerFactory.getLogger(RegistryUtils.class);
+
 	static void exportRegistryTree(String key, File targetFile) {
+		LOGGER.debug("Exporting registry to " + targetFile.getAbsolutePath());
 		List<String> command = createRegeditExportCommand(key, targetFile);
+		LOGGER.debug("Command: " + command);
 		executeCommand(command);
 	}
 

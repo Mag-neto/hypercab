@@ -10,8 +10,8 @@
 		</encoder>
 	</appender>
 
-	<logger name="de.mag.hypercab" level="info" />
-	<logger name="org.springframework" level="info" />
+	<logger name="de.mag.hypercab" level="debug" />
+	<logger name="org.springframework" level="debug" />
 	
 	<root level="warn">
 		<appender-ref ref="console" />
