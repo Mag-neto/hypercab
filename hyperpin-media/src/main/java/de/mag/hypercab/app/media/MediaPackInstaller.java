@@ -17,7 +17,7 @@ public class MediaPackInstaller {
 	private Configuration configuration;
 
 	void installFromDirectory(File directory) throws IOException {
-		if (directory.getName() != "HyperPin") {
+		if (!directory.getName().equals("HyperPin")) {
 			throw new IllegalArgumentException("Given directory is not a media pack: "
 					+ directory.getAbsolutePath());
 		}

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('hypercab').controller('TablesController', function ($scope, TablesService, uploadService) {
+angular.module('hypercab').controller('TablesController', function ($scope, TablesService, uploadService,$upload,hypercabApiUrl) {
 
     $scope.tableData = TablesService.getTables();
     $scope.selectedTable = TablesService.getSelectedTable();
@@ -53,6 +53,20 @@ angular.module('hypercab').controller('TablesController', function ($scope, Tabl
     $scope.setValues = function(){
         if(angular.isString($scope.textareaContent) && $scope.textareaContent.length > 0){
             TablesService.convertToTable($scope.textareaContent, $scope.newTable);
+        }
+    };
+
+    $scope.onFileSelect = function($files) {
+        for (var i = 0; i < $files.length; i++) {
+            var $file = $files[i];
+            $scope.upload = $upload.upload({
+                url: hypercabApiUrl + 'media/mediapack',
+                file: $file
+            })
+                .success(function() {
+                    // file is uploaded successfully
+                    console.log('media pack upload complete');
+                });
         }
     };
 

@@ -79,5 +79,16 @@
                 <input type="file" class="hidden" id="videoupload" file-upload table="selectedTable" mediatype="video"/>
             </td>
         </tr>
+        <tr>
+            <td>
+                Install Media Pack
+            </td>
+            <td>
+                <div>
+                    <input type="button" class="btn btn-primary btn-sm" value="Upload" onclick="$('#mediaPackUpload').click();">
+                    <input type="file" class="hidden" id="mediaPackUpload" ng-file-select="onFileSelect($files)" >
+                </div>
+            </td>
+        </tr>
     </table>
 </div>
