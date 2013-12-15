@@ -31,6 +31,7 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
 
     var forceTablesReload = function () {
         fetchTables();
+        return tableData;
     };
 
     var updateTable = function (description, table) {

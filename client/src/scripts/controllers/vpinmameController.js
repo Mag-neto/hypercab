@@ -15,6 +15,7 @@ angular.module('hypercab').controller('VPinMameController', function($scope, Vpi
             .success(function() {
                 // file is uploaded successfully
                 console.log('upload complete');
+                VpinMameService.reloadRoms();
             });
         }
     };

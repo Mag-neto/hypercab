@@ -3,13 +3,22 @@ angular.module('hypercab').factory('VpinMameService', function($http,hypercabApi
 
     var roms = {};
 
+    var fetchRoms = function(){
+        $http.get(hypercabApiUrl + 'vpinmame/roms')
+            .success(function (data) {
+                roms.map = data;
+            });
+    };
+
     var getRoms = function(){
         if (!roms.map) {
-            $http.get(hypercabApiUrl + 'vpinmame/roms')
-                .success(function (data) {
-                    roms.map = data;
-                });
+            fetchRoms();
         }
+        return roms;
+    };
+
+    var reloadRoms = function(){
+        fetchRoms();
         return roms;
     };
 
@@ -32,6 +41,7 @@ angular.module('hypercab').factory('VpinMameService', function($http,hypercabApi
 
     return{
         getRoms: getRoms,
+        reloadRoms: reloadRoms,
         updateRegistry: updateRegistry,
         updateRomSettings: updateRomSettings
     };
