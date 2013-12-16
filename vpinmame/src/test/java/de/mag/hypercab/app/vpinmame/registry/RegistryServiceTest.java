@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -40,6 +41,14 @@ public class RegistryServiceTest extends AbstractIntegrationTest {
 		dmdX = settings.getConfig("dmd_pos_x");
 		Assert.assertEquals(dmdX, "1024");
 		settings.setConfig("dmd_pos_x", "1969");
+	}
+
+	@Test
+	public void createsNewSectionForNewRom() throws IOException {
+		String romName = RandomStringUtils.randomAlphabetic(6);
+		SectionVO romSettings = registryService.getRomSettings(romName);
+		Assert.assertNotNull(romSettings);
+		Assert.assertTrue(romSettings.getName().contains(romName));
 	}
 
 }

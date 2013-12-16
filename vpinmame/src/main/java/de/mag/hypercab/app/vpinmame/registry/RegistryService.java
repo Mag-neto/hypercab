@@ -25,6 +25,7 @@ public class RegistryService {
 	private static final String WORKDIR_NAME = "vpinmame";
 	private static final String REG_FILENAME = "vpinmame.reg";
 	private static final String REGISTRY_KEY = "\"HKEY_CURRENT_USER\\Software\\Freeware\\Visual PinMame\"";
+	private static final String DEFAULT_SETTINGS = "default";
 
 	@Resource
 	private Configuration configuration;
@@ -62,7 +63,12 @@ public class RegistryService {
 	}
 
 	public SectionVO getRomSettings(String romName) {
-		return this.registryFile.getSectionEndingWith(romName);
+		SectionVO settings = this.registryFile.getSectionEndingWith(romName);
+		if (settings == null) {
+			settings = registryFile.getSectionEndingWith(DEFAULT_SETTINGS);
+			settings.setName(settings.getName().replace(DEFAULT_SETTINGS, romName));
+		}
+		return settings;
 	}
 
 	public void writeRegistry() throws IOException {
