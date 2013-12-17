@@ -40,7 +40,7 @@ public class IniFileTest {
 		sectionVO.setName(newName);
 		registryFile.saveSection(sectionVO);
 		SectionVO newSection = registryFile.getSectionEndingWith("newSection");
-		Assert.assertEquals(newSection.getName(), "newSection");
+		Assert.assertTrue(newSection.getName().endsWith("newSection"));
 	}
 
 	@Test(dependsOnMethods = { "initializesRegularIniFile" })
