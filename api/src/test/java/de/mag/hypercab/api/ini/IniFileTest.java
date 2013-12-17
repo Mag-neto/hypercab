@@ -32,6 +32,17 @@ public class IniFileTest {
 		Assert.assertEquals(afmConfig.getConfigs().size(), 97);
 	}
 
+	@Test(dependsOnMethods = { "initializesRegistryIniFile" })
+	public void addsNewSection() throws IOException {
+		SectionVO sectionVO = registryFile.getSectionEndingWith("default");
+		Assert.assertNotNull(sectionVO);
+		String newName = sectionVO.getName().replace("default", "newSection");
+		sectionVO.setName(newName);
+		registryFile.saveSection(sectionVO);
+		SectionVO newSection = registryFile.getSectionEndingWith("newSection");
+		Assert.assertEquals(newSection.getName(), "newSection");
+	}
+
 	@Test(dependsOnMethods = { "initializesRegularIniFile" })
 	public void findsRegularSectionByName() {
 		SectionVO videoSection = regularIniFile.getSection("Video");

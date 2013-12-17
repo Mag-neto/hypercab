@@ -56,6 +56,9 @@ public abstract class AbstractIniFile<E extends BasicProfile> implements IniFile
 
 	private void writeSection(SectionVO section) {
 		Section currentSection = iniFile.get(section.getName());
+		if (currentSection == null) {
+			currentSection = iniFile.add(section.getName());
+		}
 		for (KeyValuePair config : section.getConfigs()) {
 			currentSection.put(config.getKey(), config.getValue());
 		}
