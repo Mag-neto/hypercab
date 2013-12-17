@@ -65,6 +65,7 @@ public class RegistryService {
 	public SectionVO getRomSettings(String romName) {
 		SectionVO settings = this.registryFile.getSectionEndingWith(romName);
 		if (settings == null) {
+			LOGGER.debug("No rom setting found for name {}, returning a copy of defaults", romName);
 			settings = registryFile.getSectionEndingWith(DEFAULT_SETTINGS);
 			settings.setName(settings.getName().replace(DEFAULT_SETTINGS, romName));
 		}

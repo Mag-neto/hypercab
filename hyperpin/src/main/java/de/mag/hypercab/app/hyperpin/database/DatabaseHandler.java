@@ -4,10 +4,15 @@ import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.mag.hypercab.api.Platform;
 import de.mag.hypercab.api.Table;
 
 public class DatabaseHandler {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseHandler.class);
 
 	private final Platform platform;
 	private final File databaseFile;
@@ -27,6 +32,8 @@ public class DatabaseHandler {
 			t.setPlatform(platform);
 			t.setActive(handleActiveTables);
 		}
+		LOGGER.debug("Initialized DatabaseHandler for platform {} and file {}"
+				, platform.name(), databaseFile.getName());
 	}
 
 	Collection<Table> getTables() {
@@ -35,6 +42,7 @@ public class DatabaseHandler {
 
 	void saveDatabase() {
 		XmlDatabase.storeToFile(databaseFile, getTables());
+		LOGGER.debug("Wrote database file {}", databaseFile.getName());
 	}
 
 	synchronized void addTable(Table table) {

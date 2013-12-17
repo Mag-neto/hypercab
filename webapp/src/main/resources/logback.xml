@@ -11,7 +11,7 @@
 	</appender>
 
 	<logger name="de.mag.hypercab" level="debug" />
-	<logger name="org.springframework" level="debug" />
+	<logger name="org.springframework.web.servlet.DispatcherServlet" level="debug" />
 	
 	<root level="warn">
 		<appender-ref ref="console" />

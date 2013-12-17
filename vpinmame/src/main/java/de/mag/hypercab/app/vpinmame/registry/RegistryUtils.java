@@ -46,7 +46,9 @@ public class RegistryUtils {
 	}
 
 	static void importRegistryTree(File sourceFile) {
+		LOGGER.debug("Importing registry from " + sourceFile.getAbsolutePath());
 		List<String> command = createRegeditImportCommand(sourceFile);
+		LOGGER.debug("Command: " + command);
 		executeCommand(command);
 	}
 
