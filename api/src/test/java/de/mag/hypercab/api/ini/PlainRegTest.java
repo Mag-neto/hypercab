@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class PlainRegTest {
 
-	@Test
+	@Test(enabled = false)
 	public void readWriteRegFile() throws IOException {
 
 		File testFile = new File("target/test-classes/vpinmame.reg");
