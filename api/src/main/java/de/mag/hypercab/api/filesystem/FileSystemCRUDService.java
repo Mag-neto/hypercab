@@ -1,11 +1,11 @@
 package de.mag.hypercab.api.filesystem;
 
 import java.io.InputStream;
-import java.util.Set;
+import java.util.List;
 
 public interface FileSystemCRUDService {
 
-	public Set<String> getFiles();
+	public List<String> getFiles();
 
 	public void addFile(InputStream fileStream, String fileName);
 

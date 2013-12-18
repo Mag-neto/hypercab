@@ -4,15 +4,15 @@ public class FileSystemException extends RuntimeException {
 
 	private static final long serialVersionUID = 1110954084984415182L;
 
-	FileSystemException(String message, Throwable cause) {
+	public FileSystemException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	FileSystemException(String message) {
+	public FileSystemException(String message) {
 		super(message);
 	}
 
-	FileSystemException(Throwable cause) {
+	public FileSystemException(Throwable cause) {
 		super(cause);
 	}
 
