@@ -44,7 +44,7 @@ public class VPinMameController {
 		vPinMameService.updateRomSettings(rom);
 	}
 
-	@ResponseStatus(HttpStatus.OK)
+	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "/roms", method = RequestMethod.POST)
 	public void storeRomFile(@RequestParam("file") MultipartFile file) throws IOException {
 		vPinMameService.storeRomFile(file.getInputStream(), file.getOriginalFilename());
