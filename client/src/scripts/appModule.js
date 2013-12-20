@@ -33,6 +33,10 @@ angular.module('hypercab').config(function ($routeProvider) {
             templateUrl: 'partials/roms.html',
             controller: 'VPinMameController'
         })
+        .when('/hyperpin', {
+            templateUrl: 'partials/hyperpin.html',
+            controller: 'HyperPinController'
+        })
         .otherwise({
             redirectTo: '/'
         });
