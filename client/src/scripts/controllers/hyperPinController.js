@@ -3,6 +3,8 @@ angular.module('hypercab').controller('HyperPinController', function($scope, Hyp
 
     $scope.files = HyperPinService.getFiles();
 
+    $scope.deleteFile = HyperPinService.deleteFile;
+
     $scope.onFileSelect = function($files) {
         for (var i = 0; i < $files.length; i++) {
             var $file = $files[i];

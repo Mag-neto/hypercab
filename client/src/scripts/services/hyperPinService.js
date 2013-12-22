@@ -7,6 +7,7 @@ angular.module('hypercab').factory('HyperPinService', function ($http, hypercabA
         $http.get(hypercabApiUrl + 'hyperpinfiles')
             .success(function (data) {
                 files.list = data;
+                console.log('Fetched hyperpin files');
             });
     };
 
@@ -26,6 +27,7 @@ angular.module('hypercab').factory('HyperPinService', function ($http, hypercabA
         $http.delete(hypercabApiUrl + 'hyperpinfiles/'+filename)
             .success(function(){
                 console.log('file '+ filename + ' deleted');
+                reloadFiles();
             });
     };
 
