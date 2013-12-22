@@ -84,6 +84,11 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
         return selectedTable;
     };
 
+    var uploadSuccess = function(){
+        // file is uploaded successfully
+        console.log('media pack upload complete');
+    };
+
     return{
         getTables: getTables,
         forceTablesReload: forceTablesReload,
@@ -94,7 +99,8 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
         getSelectedTable: getSelectedTable,
         setSelectedTable: setSelectedTable,
         createImageLink: createImageLink,
-        convertToTable: convertToTable
+        convertToTable: convertToTable,
+        uploadSuccess: uploadSuccess
     };
 
 });

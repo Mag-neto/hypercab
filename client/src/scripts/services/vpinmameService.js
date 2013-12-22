@@ -39,10 +39,17 @@ angular.module('hypercab').factory('VpinMameService', function($http,hypercabApi
             });
     };
 
+    var uploadSuccess = function(){
+        // file is uploaded successfully
+        console.log('upload complete');
+        reloadRoms();
+    };
+
     return{
         getRoms: getRoms,
         reloadRoms: reloadRoms,
         updateRegistry: updateRegistry,
-        updateRomSettings: updateRomSettings
+        updateRomSettings: updateRomSettings,
+        uploadSuccess: uploadSuccess
     };
 });

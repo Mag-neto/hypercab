@@ -4,10 +4,10 @@ angular.module('hypercab').factory('HyperPinService', function ($http, hypercabA
     var files = {};
 
     var fetchFiles = function(){
-      $http.get(hypercabApiUrl + 'hyperpinfiles')
-          .success(function (data) {
-              files.list = data;
-          });
+        $http.get(hypercabApiUrl + 'hyperpinfiles')
+            .success(function (data) {
+                files.list = data;
+            });
     };
 
     var getFiles = function(){
@@ -25,14 +25,21 @@ angular.module('hypercab').factory('HyperPinService', function ($http, hypercabA
     var deleteFile = function(filename){
         $http.delete(hypercabApiUrl + 'hyperpinfiles/'+filename)
             .success(function(){
-               console.log('file '+ filename + ' deleted');
+                console.log('file '+ filename + ' deleted');
             });
+    };
+
+    var uploadSuccess = function(){
+        // file is uploaded successfully
+        console.log('upload complete');
+        reloadFiles();
     };
 
     return {
         getFiles: getFiles,
         reloadFiles: reloadFiles,
-        deleteFile: deleteFile
+        deleteFile: deleteFile,
+        uploadSuccess: uploadSuccess
     };
 
 });

@@ -10,11 +10,7 @@ angular.module('hypercab').controller('HyperPinController', function($scope, Hyp
                 url: hypercabApiUrl + 'hyperpinfiles',
                 file: $file
             })
-                .success(function() {
-                    // file is uploaded successfully
-                    console.log('upload complete');
-                    HyperPinService.reloadFiles();
-                });
+                .success(HyperPinService.uploadSuccess);
         }
     };
 

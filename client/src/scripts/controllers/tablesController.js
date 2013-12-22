@@ -63,10 +63,7 @@ angular.module('hypercab').controller('TablesController', function ($scope, Tabl
                 url: hypercabApiUrl + 'media/mediapack',
                 file: $file
             })
-                .success(function() {
-                    // file is uploaded successfully
-                    console.log('media pack upload complete');
-                });
+                .success(TablesService.uploadSuccess);
         }
     };
 

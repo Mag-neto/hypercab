@@ -12,11 +12,7 @@ angular.module('hypercab').controller('VPinMameController', function($scope, Vpi
                 url: hypercabApiUrl + 'vpinmame/roms',
                 file: $file
             })
-            .success(function() {
-                // file is uploaded successfully
-                console.log('upload complete');
-                VpinMameService.reloadRoms();
-            });
+            .success(VpinMameService.uploadSuccess);
         }
     };
 });
