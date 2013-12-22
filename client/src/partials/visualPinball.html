@@ -1,0 +1,28 @@
+<div class="container">
+
+    <h3>Visual Pinball Files:</h3>
+    <p></p>
+    <div class="row pull-right">
+        <input type="button" class="btn btn-primary btn-sm" value="Add File" onclick="$('#fileUpload').click();">
+        <input type="file" class="hidden" id="fileUpload" ng-file-select="onFileSelect($files)" >
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Filename</td>
+        </tr>
+        </thead>
+        <tr data-ng-repeat="file in files.list">
+            <td>
+                {{file}}
+                <span class="pull-right">
+                    <input type="button" class="btn-danger btn-sm" data-ng-click="deleteFile(file)" value="Delete">
+                </span>
+            </td>
+        </tr>
+    </table>
+    <p></p>
+    <div class="row pull-right">
+        <input type="button" class="btn btn-primary btn-sm" value="Add File" onclick="$('#fileUpload').click();">
+    </div>
+</div>

@@ -37,6 +37,10 @@ angular.module('hypercab').config(function ($routeProvider) {
             templateUrl: 'partials/hyperpin.html',
             controller: 'HyperPinController'
         })
+        .when('/visualpinball', {
+            templateUrl: 'partials/visualPinball.html',
+            controller: 'VisualPinballController'
+        })
         .otherwise({
             redirectTo: '/'
         });
