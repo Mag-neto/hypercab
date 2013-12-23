@@ -37,9 +37,9 @@ public class VisualPinballFilesController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "/{fileName}", method = RequestMethod.DELETE)
-	public void deleteHyperPinFile(@PathVariable String fileName) {
-		visualPinballFileSystemService.removeFile(fileName);
+	@RequestMapping(value = "/{fileName}.{ext}", method = RequestMethod.DELETE)
+	public void deleteHyperPinFile(@PathVariable String fileName, @PathVariable String ext) {
+		visualPinballFileSystemService.removeFile(fileName + "." + ext);
 	}
 
 }

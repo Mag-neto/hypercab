@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,8 @@ import de.mag.hypercab.app.hyperpin.filesystem.HyperPinFileSystemService;
 @Controller
 @RequestMapping("/hyperpinfiles")
 public class HyperPinFilesController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(HyperPinFilesController.class);
 
 	@Resource
 	private HyperPinFileSystemService hyperPinFileSystemService;
@@ -37,9 +41,10 @@ public class HyperPinFilesController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(value = "/{fileName}", method = RequestMethod.DELETE)
-	public void deleteHyperPinFile(@PathVariable String fileName) {
-		hyperPinFileSystemService.removeFile(fileName);
+	@RequestMapping(value = "/{fileName}.{ext}", method = RequestMethod.DELETE)
+	public void deleteHyperPinFile(@PathVariable String fileName, @PathVariable String ext) {
+		LOGGER.debug("Delete request with file name " + fileName + "." + ext);
+		hyperPinFileSystemService.removeFile(fileName + "." + ext);
 	}
 
 }
