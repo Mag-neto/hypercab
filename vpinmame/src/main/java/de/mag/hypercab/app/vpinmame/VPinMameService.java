@@ -37,6 +37,8 @@ public class VPinMameService {
 				rom.setDmdDoubleSize(romSettings.getConfig(Rom.DMD_DOUBLESIZE));
 				rom.setDmdWidth(romSettings.getConfig(Rom.DMD_WIDTH));
 				rom.setDmdHeight(romSettings.getConfig(Rom.DMD_HEIGHT));
+				rom.setRotateLeft(romSettings.getConfig(Rom.DMD_ROTATION_LEFT));
+				rom.setRotateRight(romSettings.getConfig(Rom.DMD_ROTATION_RIGHT));
 			}
 			roms.add(rom);
 		}
@@ -51,6 +53,8 @@ public class VPinMameService {
 		romSettings.setConfig(Rom.DMD_DOUBLESIZE, rom.getDmdDoubleSize());
 		romSettings.setConfig(Rom.DMD_HEIGHT, rom.getDmdHeight());
 		romSettings.setConfig(Rom.DMD_WIDTH, rom.getDmdWidth());
+		romSettings.setConfig(Rom.DMD_ROTATION_LEFT, rom.getRotateLeft());
+		romSettings.setConfig(Rom.DMD_ROTATION_RIGHT, rom.getRotateRight());
 		registryService.updateRomSettings(romSettings);
 	}
 

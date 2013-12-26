@@ -8,6 +8,8 @@ public class Rom implements Comparable<Rom> {
 	public static final String DMD_HEIGHT = "dmd_height";
 	public static final String DMD_COMPACT = "dmd_compact";
 	public static final String DMD_DOUBLESIZE = "dmd_doublesize";
+	public static final String DMD_ROTATION_LEFT = "rol";
+	public static final String DMD_ROTATION_RIGHT = "ror";
 
 	private String name;
 
@@ -22,6 +24,10 @@ public class Rom implements Comparable<Rom> {
 	private String dmdWidth;
 
 	private String dmdHeight;
+
+	private String rotateLeft;
+
+	private String rotateRight;
 
 	public String getDmdWidth() {
 		return dmdWidth;
@@ -78,6 +84,22 @@ public class Rom implements Comparable<Rom> {
 	public Rom withName(String name) {
 		this.name = name;
 		return this;
+	}
+
+	public String getRotateLeft() {
+		return rotateLeft;
+	}
+
+	public void setRotateLeft(String rotateLeft) {
+		this.rotateLeft = rotateLeft;
+	}
+
+	public String getRotateRight() {
+		return rotateRight;
+	}
+
+	public void setRotateRight(String rotateRight) {
+		this.rotateRight = rotateRight;
 	}
 
 	@Override
