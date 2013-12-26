@@ -12,12 +12,14 @@
         <thead>
             <tr>
                 <td>Romfile</td>
-                <td>DMD X</td>
-                <td>DMD Y</td>
-                <td>DMD width</td>
-                <td>DMD height</td>
-                <td>DMD compact</td>
-                <td>DMD double size</td>
+                <td>X</td>
+                <td>Y</td>
+                <td>Width</td>
+                <td>Height</td>
+                <td>Compact</td>
+                <td>Double size</td>
+                <td>RoL</td>
+                <td>RoR</td>
                 <td>&nbsp;</td>
             </tr>
         </thead>
@@ -42,6 +44,12 @@
             </td>
             <td>
                 <input type="checkbox" ng-model="rom.dmdDoubleSize" ng-true-value="1" ng-false-value="0">
+            </td>
+            <td>
+                <input type="checkbox" ng-model="rom.rotateLeft" ng-true-value="1" ng-false-value="0">
+            </td>
+            <td>
+                <input type="checkbox" ng-model="rom.rotateRight" ng-true-value="1" ng-false-value="0">
             </td>
             <td>
                 <input type="button" class="btn btn-primary btn-xs pull-right" value="Save" data-ng-click="updateRomSettings(rom)">
