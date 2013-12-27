@@ -13,6 +13,12 @@ angular.module('hypercab').controller('TablesController', function ($scope, Tabl
         TablesService.updateTable(table.description, table);
     };
 
+    $scope.updateTable = function(table) {
+        TablesService.updateTable(table.description, table).then(function(){
+            $scope.tableData = TablesService.forceTablesReload();
+        });
+    };
+
     $scope.displayImage = function (table, type) {
         var link = TablesService.createImageLink(table, type);
         window.open(link);

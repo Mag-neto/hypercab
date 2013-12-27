@@ -5,6 +5,15 @@
     <table class="table">
         <tr>
             <td>
+                Filename
+            </td>
+            <td>
+                <input type="text" ng-model="selectedTable.fileName">
+                <input type="button" class="btn btn-primary btn-sm" ng-click="updateTable(selectedTable)" value="update">
+            </td>
+        </tr>
+        <tr>
+            <td>
                 Table Script file
             </td>
             <td>

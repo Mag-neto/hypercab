@@ -35,7 +35,7 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
     };
 
     var updateTable = function (description, table) {
-        $http.put(hypercabApiUrl + 'tables/' + description, toTableTO(table))
+        return $http.put(hypercabApiUrl + 'tables/' + description, toTableTO(table))
             .success(function () {
                 console.log('updated table ' + table.description);
             });
