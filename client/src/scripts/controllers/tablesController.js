@@ -37,13 +37,15 @@ angular.module('hypercab').controller('TablesController', function ($scope, Tabl
     };
 
     $scope.addTable = function (table) {
-        TablesService.addTable(table);
-        $scope.tableData = TablesService.forceTablesReload();
+        TablesService.addTable(table).then(function(){
+            $scope.tableData = TablesService.forceTablesReload();
+        });
     };
 
     $scope.removeTable = function (table) {
-        TablesService.removeTable(table);
-        $scope.tableData = TablesService.forceTablesReload();
+        TablesService.removeTable(table).then(function(){
+            $scope.tableData = TablesService.forceTablesReload();
+        });
     };
 
     $scope.uploadFiles = function (table, mediatype, files) {

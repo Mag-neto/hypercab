@@ -46,14 +46,14 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
     };
 
     var addTable = function (table) {
-        $http.post(hypercabApiUrl + 'tables', table)
+        return $http.post(hypercabApiUrl + 'tables', table)
             .success(function () {
                 console.log('added table ' + table.description);
             });
     };
 
     var removeTable = function (table) {
-        $http.delete(hypercabApiUrl + 'tables', table)
+        return $http.delete(hypercabApiUrl + 'tables', table)
             .success(function () {
                 console.log('removed table ' + table.description);
             });
@@ -87,6 +87,7 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
     var uploadSuccess = function(){
         // file is uploaded successfully
         console.log('media pack upload complete');
+        fetchTables();
     };
 
     return{
