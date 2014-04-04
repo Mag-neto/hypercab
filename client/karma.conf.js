@@ -16,6 +16,8 @@ module.exports = function (config) {
             // Bower Components
             'src/components/angular/angular.js',
             'src/components/angular-mocks/angular-mocks.js',
+            'src/components/angular-route/angular-route.js',
+            'src/components/angular-resource/angular-resource.js',
             'src/components/ng-file-upload/angular-file-upload.js',
 
             // Hypercab Specific Modules
