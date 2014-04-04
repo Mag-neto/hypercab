@@ -51,8 +51,9 @@ describe('SettingsService', function () {
     it('should fetch settings data', inject(function (SettingsService, hypercabApiUrl) {
         $httpBackend.expectGET(hypercabApiUrl + 'settings');
         var settings = SettingsService.getSettings();
+        expect(settings.settings.length).toBe(0);
         $httpBackend.flush(1);
-        expect(settings.settings).toEqual(settingsData);
+        expect(settings.settings.length).toBe(1);
     }));
 
     it('should cache settings data', inject(function (SettingsService) {

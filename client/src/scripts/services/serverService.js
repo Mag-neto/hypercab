@@ -7,9 +7,7 @@ angular.module('hypercab').factory('ServerService', function ($resource, hyperca
 
     var getHypercabModules = function () {
         if (!modules.data) {
-            moduleResource.query().$promise.then(function (data) {
-                modules.data = data;
-            });
+            modules.data = moduleResource.query();
         }
         return modules;
     };

@@ -1,14 +1,12 @@
 'use strict';
-angular.module('hypercab').factory('SettingsService', function ($http, hypercabApiUrl) {
+angular.module('hypercab').factory('SettingsService', function ($http, $resource, hypercabApiUrl) {
+
+    var settingsResource = $resource(hypercabApiUrl + 'settings');
 
     var settings = {};
 
     var fetchSettings = function () {
-        $http.get(hypercabApiUrl + 'settings')
-            .success(function (data) {
-                settings.settings = data;
-                console.log('Stored hyperpin settings');
-            });
+        settings.settings = settingsResource.query();
     };
 
     var getSettings = function () {
