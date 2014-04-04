@@ -1,6 +1,6 @@
 /* Defines the main application module and configures routing */
 'use strict';
-angular.module('hypercab', ['angularFileUpload']);
+angular.module('hypercab', ['angularFileUpload','ngRoute', 'ngResource']);
 
 angular.module('hypercab').constant('hypercabApiUrl','../../hypercab-rest/');
 
