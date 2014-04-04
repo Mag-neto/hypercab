@@ -1,8 +1,11 @@
 'use strict';
-angular.module('hypercab').factory('SettingsService', function ($http, $resource, hypercabApiUrl) {
+angular.module('hypercab').factory('SettingsService', function ($resource, hypercabApiUrl) {
 
-    var settingsResource = $resource(hypercabApiUrl + 'settings');
-
+    var settingsResource = $resource(hypercabApiUrl + 'settings', null,
+        {
+            'update': {method: 'PUT'}
+        }
+    );
     var settings = {};
 
     var fetchSettings = function () {
@@ -17,10 +20,7 @@ angular.module('hypercab').factory('SettingsService', function ($http, $resource
     };
 
     var saveSettings = function (settings) {
-        $http.put(hypercabApiUrl + 'settings', settings)
-            .success(function () {
-                console.log('Saved settings');
-            });
+        settingsResource.update(settings);
     };
 
     return{

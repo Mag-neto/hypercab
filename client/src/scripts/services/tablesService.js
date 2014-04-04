@@ -1,12 +1,15 @@
 'use strict';
-angular.module('hypercab').factory('TablesService', function ($http, hypercabApiUrl) {
+angular.module('hypercab').factory('TablesService', function ($resource, $http, hypercabApiUrl) {
 
+    var tableResource = $resource(hypercabApiUrl + 'tables', null,
+        {
+            'update': {method: 'PUT'}
+        }
+    );
     var tableData = {}, selectedTable = {};
 
     var fetchTables = function () {
-        $http.get(hypercabApiUrl + 'tables').success(function (data) {
-            tableData.tables = data;
-        });
+        tableData.tables = tableResource.query();
     };
 
     var toTableTO = function (table) {
@@ -46,10 +49,7 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
     };
 
     var addTable = function (table) {
-        return $http.post(hypercabApiUrl + 'tables', table)
-            .success(function () {
-                console.log('added table ' + table.description);
-            });
+        return tableResource.save(table);
     };
 
     var removeTable = function (table) {
@@ -61,9 +61,7 @@ angular.module('hypercab').factory('TablesService', function ($http, hypercabApi
 
     var save = function () {
         console.log('saving databases...');
-        $http.put(hypercabApiUrl + 'tables').success(function () {
-            console.log('saved databases.');
-        });
+        tableResource.update();
     };
 
     var convertToTable = function (xmlData, targetTable) {

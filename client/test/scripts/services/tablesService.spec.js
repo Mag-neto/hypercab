@@ -64,7 +64,7 @@ describe('TablesService', function () {
         expect(typeof TablesService.updateTable).toBe('function');
     }));
 
-    it('should define a updateTable function', inject(function (TablesService) {
+    it('should define a removeTable function', inject(function (TablesService) {
         expect(TablesService.removeTable).toBeDefined();
         expect(typeof TablesService.removeTable).toBe('function');
     }));
@@ -92,8 +92,9 @@ describe('TablesService', function () {
     it('should fetch table data', inject(function (TablesService, hypercabApiUrl) {
         $httpBackend.expectGET(hypercabApiUrl + 'tables');
         var tables = TablesService.getTables();
+        expect(tables.tables.length).toBe(0);
         $httpBackend.flush(1);
-        expect(tables.tables).toEqual(tablesData);
+        expect(tables.tables.length).toBe(1);
     }));
 
     it('should cache table data', inject(function (TablesService) {
