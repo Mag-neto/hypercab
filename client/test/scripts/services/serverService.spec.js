@@ -47,8 +47,9 @@ describe('ServerService', function () {
     it('should fetch module data', inject(function (ServerService, hypercabApiUrl) {
         $httpBackend.expectGET(hypercabApiUrl + 'server');
         var modules = ServerService.getHypercabModules();
+        expect(modules.data).toBeUndefined();
         $httpBackend.flush(1);
-        expect(modules.data).toEqual(modulesData);
+        expect(modules.data.length).toBe(3);
     }));
 
     it('should cache module data', inject(function (ServerService) {

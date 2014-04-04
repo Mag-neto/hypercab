@@ -1,14 +1,15 @@
 'use strict';
-angular.module('hypercab').factory('ServerService', function ($http, hypercabApiUrl) {
+angular.module('hypercab').factory('ServerService', function ($resource, hypercabApiUrl) {
+
+    var moduleResource = $resource(hypercabApiUrl + 'server');
 
     var modules = {};
 
     var getHypercabModules = function () {
         if (!modules.data) {
-            $http.get(hypercabApiUrl + 'server')
-                .success(function (data) {
-                    modules.data = data;
-                });
+            moduleResource.query().$promise.then(function (data) {
+                modules.data = data;
+            });
         }
         return modules;
     };
