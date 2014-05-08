@@ -45,9 +45,11 @@ public class RegistryService {
 		this.registryFile = IniFileFactory.createIniFile(registrySourceFile, IniFileType.REG);
 	}
 
-	private void createWorkingDirectory() {
+	private void createWorkingDirectory() throws IOException {
 		this.workingDir = new File(configuration.getHyperCabTempPath(), WORKDIR_NAME);
-		this.workingDir.mkdirs();
+		if (!this.workingDir.mkdirs()) {
+			throw new IOException("Error creating internal workdir " + this.workingDir.getAbsolutePath());
+		}
 	}
 
 	public void updateRomSettings(SectionVO romSection) throws IOException {

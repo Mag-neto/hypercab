@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -113,9 +114,12 @@ public class XmlDatabase {
 	private static void renameAndDeleteOldFile(File dbFile) {
 		try {
 			File lastFile = new File(dbFile.getAbsolutePath() + ".last");
-			dbFile.renameTo(lastFile);
-			new File(dbFile.getAbsolutePath() + ".new").renameTo(dbFile);
-			lastFile.delete();
+			File newFile = new File(dbFile.getAbsolutePath() + ".new");
+
+			FileUtils.moveFile(dbFile, lastFile);
+			FileUtils.moveFile(newFile, dbFile);
+
+			FileUtils.forceDelete(lastFile);
 		} catch (Exception e) {
 			throw new DatabaseException("Error renaming db files " + dbFile.getName(), e);
 		}

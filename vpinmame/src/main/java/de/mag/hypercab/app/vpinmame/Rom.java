@@ -106,4 +106,14 @@ public class Rom implements Comparable<Rom> {
 	public int compareTo(Rom o) {
 		return this.name.compareTo(o.getName());
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Rom) {
+			return this.name.equals(((Rom) obj).getName());
+		} else {
+			return false;
+		}
+	}
+
 }

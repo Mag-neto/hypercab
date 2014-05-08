@@ -62,10 +62,12 @@ public class MediaService {
 		return tempFile;
 	}
 
-	private File createTempFolderForFile(String fileName) {
+	private File createTempFolderForFile(String fileName) throws IOException {
 		File tempFolder = new File(configuration.getHyperCabTempPath(), fileName
 				+ UUID.randomUUID());
-		tempFolder.mkdirs();
+		if (!tempFolder.mkdirs()) {
+			throw new IOException("Unable to create temporary folder " + tempFolder.getAbsolutePath());
+		}
 		return tempFolder;
 	}
 

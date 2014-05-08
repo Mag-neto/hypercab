@@ -13,6 +13,8 @@ import de.mag.hypercab.app.hyperpin.config.Section;
 
 public class ConfigurationTest extends AbstractIntegrationTest {
 
+	private static final String BACKGLASS_PATH = "/Media/Visual Pinball/Backglass Images/";
+
 	@Resource
 	private Configuration configuration;
 
@@ -27,7 +29,7 @@ public class ConfigurationTest extends AbstractIntegrationTest {
 		Assert.assertNotNull(setting);
 
 		File imagePath = new File(setting);
-		File expectedPath = new File("C:/HyperPin/Media/Visual Pinball/Backglass Images/");
+		File expectedPath = new File(configuration.getHyperpinPath() + BACKGLASS_PATH);
 		Assert.assertEquals(imagePath, expectedPath);
 	}
 
